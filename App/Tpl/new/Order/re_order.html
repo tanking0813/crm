@@ -1,0 +1,37 @@
+<include file="Public:n_header" />
+
+
+
+<div class="tab-div">
+
+
+	 		<div id="tabbody-div">
+		
+	 		<table width="70%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+			<form  action="__SELF__" method="post" class="cf">
+				<tr><td class="label">订单号</td><td colspan="3">{$or.order_id}</td></tr>
+				<tr><td class="label">客户名称</td><td colspan="3">{$or.cusname}</td></tr>
+				<tr><td class="label">联系人</td><td colspan="3">{$or.contact}</td></tr>
+				<tr><td class="label">固定电话</td><td colspan="3">{$or.tel}</td></tr>
+				<tr><td class="label">用户名</td><td colspan="3">{$or.cus_username}</td></tr>
+				<tr><td class="label">开通日期</td><td colspan="3">{$or.fromtime|date='Y-m-d',###}</td></tr>
+				<tr><td class="label">下次到期</td><td colspan="3"><input type="text" name="endtime" value="{$or.totime|date='Y-m-d',###}" class="Wdate" onClick="WdatePicker()"><font color="red">(变更日期请手选)</font></td></tr>
+				<tr><td class="label">未付金额</td><td>{$or.nopaid}</td></tr>
+				<tr><td class="label">应付金额</td><td><input type="text" name="payment" value="{$or.nopaid}" onclick="this.value=''"/></td></tr>
+				<tr><td class="label">入账金额:</td><td colspan="3"><input type="text" name="paid"  /></td></tr>
+				<tr><td class="label">备注:</td><td colspan="3"><textarea name="note"></textarea></td></tr>
+			
+			</table>
+	 			<div class="button-div">
+					<input type="submit" name="sbt" value="续费" class="button" />
+						<input type="hidden" name="onum" value="{$or.order_id}">
+						<input type="button" value="返回" class="button" onclick="window.location.href='__URL__/finance'" />
+				
+						</form>
+					</div>
+	 		
+	 		</div>
+	 	</div>
+
+
+    <include file="Public:n_footer" />

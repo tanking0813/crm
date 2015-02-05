@@ -1,0 +1,116 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+<form action="__URL__/edit_order_save" method="post" enctype="multipart/form-data">
+			<div id="tabbar-div">
+				<p>
+					<span class="tab-front" id="general-tab">产品基本信息</span>
+					<if condition="$viewable eq true" >
+					<span class="tab-back" id="mix-tab">主机信息</span></if>
+				</p>
+			</div>
+	<div class="tabbody-div">
+		
+				<div class="list-div">
+	 			<table width="100%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+				<caption><h3>产品基本信息</h3></caption>
+				<tr><td class="label">客户名称</td><td colspan="3">{$cust.cusname}</td></tr>
+				<tr><td class="label">联系人</td><td>{$cust.contact}</td><td class="label">职务</td><td>{$cust.cont_job}</td></tr>
+				<tr><td class="label">邮箱</td><td>{$cust.email}</td><td class="label">QQ</td><td>{$cust.qq}</td></tr>
+				<tr><td class="label">手机</td><td>{$cust.mobile}</td><td class="label">固定电话</td><td>{$cust.tel}</td></tr>
+				<tr><td class="label">身份证</td><td>{$cust.id_card}</td><td class="label">主页</td><td>{$cust.web}</td></tr>
+				<tr><td class="label">地址</td><td colspan="3">{$cust.address}</td></tr>
+				</table>
+				<table width="100%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+				<tr><td class="label">产品编号</td><td>{$pl.order_id}</td><td class="label">产品名</td><td><select name="pid"><volist name="cate" id="ct"><option value="{$ct.tid}" <eq name="ct.tid" value="$pl.pid">selected</eq>>{$ct.fg}{$ct.labelname}</option></volist></select></td></tr>
+				<tr><td class="label">ip</td><td><input type="text" name="ip" value="{$pl.ip}" /></td><td class="label">域名</td><td><input type="text" name="domain" value="{$pl.domain}" /></td></tr>
+				<tr><td class="label">应付金额</td><td><input type="hidden" name="xgorder_id" value="{$pl.orders.id}" /><input type="text" name="payment" value="{$pl.orders.payment}" /></td><td class="label">用户名</td><td><input type="text" name="cus_username" value="{$pl.cus_username}" /></td></tr>
+				<tr><td class="label">开通时间</td><td><input type="text" name="from" value="{$pl.orders.from|date='Y-m-d',###}" class="Wdate" onClick="WdatePicker()"/></td><td class="label">到期时间</td><td><input type="text" name="to" value="{$pl.orders.to|date='Y-m-d',###}" class="Wdate" onClick="WdatePicker()" /></td></tr>
+				<tr><td class="label">添加人备注</td><td colspan="3"><textarea name="note" cols="80" rows="3">{$pl.orders.note}</textarea></td></tr>
+				<tr><td class="label"><input type="checkbox" name="prod_moveto" value="1" onclick="more_detail(this)">产品转移</td><td colspan="3"><input type="text" name="newcusname" id="pikdata" style="height:20px;line-height:20px;width:365px;"  disabled onkeyup="findme('#pikdata');" autocomplete="off" /></td></tr>
+				<tr><td class="label"><input type="checkbox" name="prod_xufei" value="1" onclick="xf_active(this);">&nbsp;&nbsp;续费</td><td colspan="3"></td>
+				</table>
+				<table id="xfyw" style="display:none;">
+				<tr><td class="label">续费金额:</td><td><input type="text" name="xf_payment" size="10" disabled /></td><td class="label">到期时间:</td><td><input type="text" name="xf_totime" value="<php>echo (date('Y',$pl['orders']['to'])+1).'-'.date('m',$pl['orders']['to']).'-'.date('d',$pl['orders']['to']);</php>" class="Wdate" onClick="WdatePicker()" disabled  /></td></tr>
+				<tr><td class="label">续费备注：</td><td colspan="3"><textarea name="xf_note" cols="40" rows="3" disabled></textarea></td></tr>
+				</table>
+				</div>
+				<if condition="$viewable eq true">
+				<div class="list-div" style="display:none;">
+				<table width="100%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+					<tr><td class="label">机户机柜</td><td><select name="store"><option value="0">-请选择-</option><volist name="store" id="st"><option value="{$st.id}" <eq name="st.id" value="$pl.store">selected</eq>>{$st.fullname}</option></volist></select></td><td class="label">占用大小</td><td><input type="text" name="size" value="{$pl.size}" />&nbsp;&nbsp;(u)</td></tr>
+					<td class="label">维护技术</td><td><select name="techID"><option value="0">-请选择-</option><volist name="tech" id="tc"><option value="{$tc.uid}" <eq name="tc.uid" value="$pl.techID">selected</eq>>{$tc.uname}</option></volist></select></td><td class="label">维护密码</td><td><input type="text" name="passwd" /></td></tr>
+					<tr><td class="label">设备型号</td><td><input type="text" name="style" value="{$pl.style}" /></td><td class="label">交换机接口</td><td><input type="text" name="port"  value="{$pl.port}" /></td></tr>
+					<tr><td class="label">设备备注信息</td><td colspan="3"><textarea cols="80" rows="4" name="technote">{$pl.technote}</textarea></td></tr>
+					<tr><td class="label">serialNo</td><td><input type="text" name="serialNo"  value="{$pl.serialNo}" /></td><td class="label">CPU</td><td><input type="text" name="cpu"  value="{$pl.cpu}" /></td></tr>
+					<tr><td class="label">内存</td><td><input type="text" name="memory"  value="{$pl.memory}"  /></td><td class="label">硬盘</td><td><input type="text" name="disk" value="{$pl.disk}" /></td></tr>
+					<tr><td class="label">主板</td><td><input type="text" name="motherboard"  value="{$pl.motherboard}" /></td><td class="label">MAC地址</td><td><input type="text" name="mac" value="{$pl.mac}" /></td></tr>
+					<tr><td class="label">图片1</td><td><input type="file" id="picture1" name="photo1" onchange="loadImage(this,'box1');" /></td><td class="label">图片2</td><td><input type="file" id="picture2" name="photo2" onchange="loadImage(this,'box2');" /></td></tr>
+			<tr><td colspan="2"><div id='box1'><notempty name="pl.picture1"><img width="500" height="300" src="__PUBLIC__/Uploads/{$pl.picture1}" /></notempty></div></td><td colspan="2"><div id='box2'><notempty name="pl.picture2"><img width="500" height="300" src="__PUBLIC__/Uploads/{$pl.picture2}" /></notempty></div></td></tr>
+				
+				</table>
+				</div>
+				</if>
+				
+							 
+		 </div>
+		 	<div class="button-div">
+						<input type="hidden" name="cusid" value="{$pl.cusid}">
+						<input type="hidden" name="order" value="{$pl.order_id}">
+						<input type="hidden" name="param" value="{$param}" />
+						<input type="submit" name="sbt" value="提交" class="button" />
+						<input type="button" value="返回" class="button" onclick="window.location.href='__APP__/Order/index?{$param}'" />
+		</div>
+		 </form>
+</div>
+<script type="text/javascript">
+	function more_detail(obj){
+		if($(obj).attr('checked')){
+			$('#pikdata').attr('disabled',false);
+		}else{
+			$('#pikdata').attr('disabled',true);
+		}
+	
+	}
+	$(function(){
+			$('#tabbar-div span').click(function(){
+				var ind=$(this).index();
+				$('#tabbar-div span:eq('+ind+')').attr('class','tab-front').siblings().attr('class','tab-back');
+				$('.tabbody-div .list-div:eq('+ind+')').css('display','block').siblings().css('display','none');
+			});
+	
+	});
+	
+	function findme(obj){
+			var sss=document.getElementById('pickv');
+				var position=$(obj).position();
+				var width=parseInt($(obj).width());
+				var height=parseInt($(obj).height());
+				$.getJSON('__APP__/Serve/cusAjaxBack',{'cusname':$(obj).val()},function(data){
+					if(null==sss){
+						$('body').append('<div style="background:white;position:absolute;top:'+(position.top+height)+'px;left:'+position.left+'px;z-index:1;width:'+width+'px;border:1px solid #ccc;" id="pickv">'+data.data+'</div>');
+					}else{
+						$('#pickv').html(data.data);
+					}
+				},'json');
+			}
+	function getFullname(obj){
+			var fullname=$(obj).html();
+			$('#pikdata').val(fullname);
+			$('#pickv').remove();
+		
+		}
+	function xf_active(obj){
+		if($(obj).attr('checked')==true){
+			$('#xfyw').show()
+			$('#xfyw :input').attr('disabled',false);
+		}else{
+			$('#xfyw').hide();
+			$('#xfyw :input').attr('disabled',true);
+		}
+	}
+</script>
+
+
+
+<script type="text/javascript" src="__PUBLIC__/Js/previewPic.js"></script>
+<include file="Public:n_footer" />

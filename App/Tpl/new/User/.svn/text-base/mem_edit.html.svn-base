@@ -1,0 +1,74 @@
+<include file="Public:n_header" />
+
+<div id="tabbody-div">
+<h1><span class="action-span"><a href="__URL__/authset/userid/{$info[0].uid}">修改权限</a></span></h1>
+	 	<form id="tform1" action="" method="post">
+		<table width="60%" align="center">
+
+	 		<tr><td class="label">用户名:</td><td><input type="text" name="uname" value="{$info[0].uname}" /></td></tr>
+	 		<tr><td class="label">登录名:</td><td><input type="text" name="loginname" value="{$info[0].loginname}" /></td></tr>
+	 		
+			<tr><td class="label">密码:</td><td><input type="text" id="pswdn" name="password" value="" disabled /><input id="markn" type="checkbox" /></td></tr>
+			<tr><td class="label">部门:</td><td><select name="department">
+			
+			
+			<?php
+			foreach($depart as $d){
+				echo '<option value="'.$d['did'].'"';
+
+				
+				if($info[0]['department']==$d['did']){
+				
+					echo ' selected>';
+				}else{
+					echo '>';
+				}
+				
+				echo $d['dname'].'</option>';
+			
+			}
+			?>
+		
+			
+			
+			
+			</select></td></tr>
+	 		<tr><td class="label">邮箱:</td><td><input type="text" name="email" value="{$info[0].email}" /></td></tr>
+	 		<tr><td class="label">手机:</td><td><input type="text" name="mobile" value="{$info[0].mobile}" /></td></tr>
+	 		<tr><td class="label">QQ:</td><td><input type="text" name="qq" value="{$info[0].qq}" /></td></tr>
+	 		<tr><td class="label">地址:</td><td><input type="text" name="address" value="{$info[0].address}" /></td></tr>
+			<tr><td class="label">是否禁用:</td><td>
+				<input type="radio" name="userswitches" value="1" <eq name= 'info[0][userswitches]' value='1' > checked="checked" </eq>  />
+				启用
+				<input type="radio" name="userswitches" value="0" <eq name= 'info[0][userswitches]' value= '0' > checked='checked' </eq>  />
+				禁用
+			</td></tr>
+
+			
+	 	</table>
+		<script>
+			$(function(){
+				$('#markn').click(function(){
+				
+					if($(this).attr('checked')){
+					
+						$('#pswdn').attr('disabled',false);
+					}else{
+						
+						$('#pswdn').attr('disabled',true).val('');
+					}
+				})
+				
+			
+			})
+		
+		</script>
+	 	</div>
+		<div class="button-div">
+					
+						<input type="submit" value=" 修改 " name="sbt" class="button" />
+						<input type="reset" value=" 返回 " class="button" />
+					</div>
+		</form>
+		</div>
+    <include file="Public:n_footer" />

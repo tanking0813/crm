@@ -1,0 +1,27 @@
+<include file="Public:n_header" />
+
+<div class="main-div">
+<table width="100%" id="general-table">
+<form id="adpro" action="__APP__/Products/add_jhjg" method="post">
+<tr><td class="label">添加类别</td><td><input type="text" name="storename" /></td><td></tr>
+<tr><td class="label">上级分类</td><td><select name="path"><option value="0">---根名---</option><volist name="cate" id="tp"><option value="{$tp.path}-{$tp.id}">{$tp.fg}{$tp.storename}</option></volist></select></td></tr>
+</table>
+<div class="button-div">
+					<input type="button"  value="保存" onclick="submt();" />
+					<input type="button" value=" 返回 " onclick="window.location.href='__APP__/Products';"/>
+					</div>
+</form>
+</div>
+<script language="javascript">
+	function submt(){
+		if($('input[name="storename"]').val()==''){
+			alert('请输入类名');
+		}else{
+		
+			$('#adpro').submit();
+		}
+	}
+</script>
+ 		
+
+    <include file="Public:n_footer" />

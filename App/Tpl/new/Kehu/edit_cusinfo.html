@@ -1,0 +1,97 @@
+<include file="Public:n_header" />
+
+<div class="tab-div">
+<div id="tabbody-div">
+<h1><span class="action-span"><a href="javascript:;" onclick="EV_modeAlert('modicustype')">更改客户类型</a></span></h1>
+  <form method="post" action="__SELF__">
+		 <div class="list-div">
+		<table width="90%" border="0" cellspacing="0" cellpadding="0">
+		<caption><h3>修改客户信息</h3></caption>
+		<tr><td class="label">公司名</td><td colspan="3"><input type="text" name="cusname" size="52" value="{$cusinfo.cusname}" /></td></tr>
+		<tr><td class="label">网&nbsp;&nbsp;&nbsp;址</td><td><input type="text" name="web" value="{$cusinfo.web}" ></td><td></td><td></td></tr>
+		<tr><td class="label">地&nbsp;&nbsp;&nbsp;址</td><td colspan="3"><textarea name="address"  cols="60" rows="4">{$cusinfo.address}</textarea></td></tr>
+		<tr></tr>
+		</table>
+		</div>
+		<div class="list-div" id="lianxiren">
+		<table align="center" width="90%" border="0" cellspacing="0" cellpadding="0"><caption><h5>联系人列表</h5></caption></table>
+	
+	
+	<php>
+		$count=count($cusinfo['contact_list']['contact']);
+		for($i=0;$i<$count;$i++){
+			echo '<table align="center" width="90%" border="0" cellspacing="0" cellpadding="0">';
+			echo '<tr><td class="label">联系人</td><td><input type="text" name="contact[]" value="'.$cusinfo['contact_list']['contact'][$i].'"></td>';
+			echo '<td class="label">职&nbsp;&nbsp;&nbsp;务</td><td><input type="text" name="cont_job[]" value="'.$cusinfo['contact_list']['cont_job'][$i].'"></td></tr>';
+			echo '<tr><td class="label">手&nbsp;&nbsp;&nbsp;机</td><td><input type="text" name="mobile[]" maxlength="11" value="'.$cusinfo['contact_list']['mobile'][$i].'"/></td>';
+			echo '<td class="label">电&nbsp;&nbsp;&nbsp;话</td><td><input type="text" name="tel[]" value="'.$cusinfo['contact_list']['tel'][$i].'"></td></tr>';
+			echo '<tr><td class="label">邮&nbsp;&nbsp;&nbsp;箱</td><td><input type="text" name="email[]" value="'.$cusinfo['contact_list']['email'][$i].'" /></td><td class="label">身份证</td><td><input type="text" name="id_card[]" value="'.$cusinfo['contact_list']['id_card'][$i].'"></td></tr>';
+			echo '<tr><td class="label">qq</td><td><input type="text" name="qq[]" value="'.$cusinfo['contact_list']['qq'][$i].'"/></td><td></td><td></td></tr></table><div style="height:1px;background:blue;clear:both;"></div>';		
+		}
+	</php>
+	
+		</div>
+		
+		<div class="list-div"><table><tr><td></td><td></td><td></td><td><a href="javascript:;" onclick="addmore();"><img src="__PUBLIC__/Images/wl/btn_maximize.gif">再添加一个</a></td></tr></table></div>
+		<div class="button-div">
+			<input type="hidden" name="cus" value="{$cusinfo.id}" />
+			<input type="submit" name="sbt" value=" 确定 " class="button" />
+			<input type="hidden" name="param" value="{$param}">
+			{__TOKEN__}
+            <input type="button" value=" 返回 " class="button" onclick="window.location.href='__APP__/Kehu/index?{$param}'"/>
+		</div>	
+		</form> 
+</div>
+
+
+	<script language="javascript">
+			
+			//获取事件源
+			function change_type(id){
+				$.post('__URL__/modi_custype',{'cusid':id,'custype':$('#tform2 select[name="custype"]').val()},function(data){
+					if(data==1){
+						alert('修改成功');
+						EV_closeAlert();
+					}else{
+						alert('服务器出错，请稍后再试');
+						EV_closeAlert();
+					}
+				})
+			
+			}
+			
+			
+			function addmore(){
+				
+				$('#lianxiren').append('<table align="center" width="90%" border="0" cellspacing="0" cellpadding="0" name="nn"><tr><td class="label">联系人</td><td><input type="text" name="contact[]"></td><td class="label">职&nbsp;&nbsp;&nbsp;务</td><td><input type="text" name="cont_job[]"></td></tr><tr><td class="label">手&nbsp;&nbsp;&nbsp;机</td><td><input type="text" name="mobile[]" maxlength="11" /></td><td class="label">电&nbsp;&nbsp;&nbsp;话</td><td><input type="text" name="tel[]"></td></tr><tr><td class="label">邮&nbsp;&nbsp;&nbsp;箱</td><td><input type="text" name="email[]" /></td><td class="label">身份证</td><td><input type="text" name="id_card[]"></td></tr><tr><td class="label">qq</td><td><input type="text" name="qq[]" /></td><td></td><td><a href="javascript:;" onclick="remove_self(this);">移除</a></td></tr></table>');
+			
+			}
+			
+			function remove_self(obj){
+				$(obj).parentsUntil('table').remove();
+			
+			}
+		
+		</script>
+</div>
+ <div id="modicustype" class="show_pop"  style="width:150px;">  	
+       
+        <form id="tform2" method="post" action="__URL__/modi_custype">
+	<table width="100%" height="100" align="center">
+	<tr><td colspan="2"><select name="custype">
+	
+	
+	<option value="2" <eq name="cusinfo.custype" value="2">selected</eq>>意向客户</option>
+	<option value="1" <eq name="cusinfo.custype" value="1">selected</eq>>成交客户</option>
+	<option value="3" <eq name="cusinfo.custype" value="3">selected</eq>>曾合作客户</option>
+	<option value="7" <eq name="cusinfo.custype" value="7">selected</eq>>无用客户</option>
+	
+	</select></td></tr>
+	
+	<tr><td><input type="hidden" name="cusid" value="{$cusinfo.id}" /><input type="button" value=" 更 改 " onclick="this.disabled=true;change_type('{$cusinfo.id}')"/></td><td><input type="button" onclick="javascript:EV_closeAlert();" name="" value=" 取 消 " /></td></tr>
+	</table>
+
+   </form>    
+</div>
+
+<include file="Public:n_footer" />

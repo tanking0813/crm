@@ -1,0 +1,52 @@
+<include file="Public:n_header" />
+		<form action="__SELF__" method="post" class="cf">
+		<div class="list-div">
+	 	<table>
+		<tr><td>报表周期</td><td>
+			<select name="ctime">
+			<option value="0">-选择-</option>
+			<option value="1" <eq name="Think.post.ctime" value="1">selected</eq>>本月</option>
+			<option value="2" <eq name="Think.post.ctime" value="2">selected</eq>>上月</option>
+			<option value="3" <eq name="Think.post.ctime" value="3">selected</eq>>本季度</option>
+			<option value="4" <eq name="Think.post.ctime" value="4">selected</eq>>本年</option>
+			<php>
+				$thisYear=date('Y');
+				for($i=$thisYear;$i>2010;){
+					$i--;
+					echo '<option value="'.$i.'"';
+					
+					echo $_POST['ctime']==$i?'selected':'';
+					echo '>'.$i.'年</option>';
+				}
+			</php>
+			</select></td>
+			<td>销&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售：</td><td>
+				<select  name="saleman"><option value="0">请选择</option><volist name="sale" id="s"><option value="{$s.uid}" <eq name="s.uid" value="$Think.post.saleman"> selected </eq>>{$s.uname}</option></volist></select>
+				</td>
+		
+			<td><input class="srchbutton" type="submit" value="&nbsp;"  title="搜索" /></td>
+	
+			</tr>
+				
+			</table>
+			</div>
+				</form>
+
+<div class="list-div">
+
+<table>
+<tr><th>产品</th><th>用户</th><th>应收</th><th>实收</th><th>销售人员</th><th>备注</th></tr>
+<volist name="repo" id="rp">
+<tr align="center">
+<td>{$rp.labelname}</td>
+<td>{$rp.cusname}</td>
+<td>{$rp.payment}</td>
+<td>{$rp.paid}</td>
+<td>{$rp.uname}</td>
+<td>{$rp.finnote}</td>
+</tr>
+</volist>
+</table>
+</div>
+<div><h1><span>共{$total}条记录&nbsp;&nbsp;&nbsp;应收金额累计：{$total_payment}元&nbsp;&nbsp;&nbsp;实收金额累计：{$total_money}元</span><span class="action-span"><a href="__SELF__/ctime/{$Think.post.ctime}/saleman/{$Think.post.saleman}/down/true">下载</a></span></h1></div>
+<include file="Public:n_footer" />

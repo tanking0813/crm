@@ -1,0 +1,1 @@
+<volist name="fullname" id="fl"><div style="width:100%;height:20px;line-height:20px;cursor:pointer;" onclick="getFullname(this);" onmouseover="this.style.backgroundColor='pink'" onmouseout="this.style.backgroundColor=''">{$fl.cusname|mb_substr='0','20','utf-8'}</div></volist>

@@ -1,0 +1,310 @@
+<include file="Public:n_header" />
+
+<form method="post" id="addkehu" method="post" action="__URL__/authset_save">
+<div class="list-div">
+<table align="center"><caption><h3>个人特殊权限设置</h3></caption>
+</table>
+</div>	
+<div class="list-div">
+<table align="center">
+<tr align="center">
+<td>&nbsp;</td>
+<td width="30%">继承部门权限&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="spec" onclick="special();" name="inherit" value="1"/></td>
+<td width="30%">特权范围:&nbsp;&nbsp;&nbsp;&nbsp;<input id="level1" type="radio" name="level" value="1" <eq name="level" value="1">checked</eq> /><label for="level1">仅部门</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="level" value="2" <eq name="level" value="2">checked</eq> /><label for="level2">全局</label></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td colspan="4"><font color="red">说明：权限默认继承部门权限，部门权限默认值操作自己的ID。本次操作属于特殊权限设置。设置了特殊权限后会忽略部门权限，如可看到非本ID的员工操作信息</font></td></tr>
+
+</table>
+</div>
+
+	<!--主操作界面-->
+	<input type="hidden" name="perm[]" value="Index" />
+	<input type="hidden" name="perm[]" value="Index:index" />
+	<input type="hidden" name="perm[]" value="Index:top" />
+	<input type="hidden" name="perm[]" value="Index:left" />
+	<input type="hidden" name="perm[]" value="Index:zhu" />
+
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="10" class="group-title"><input  type="checkbox"   name="perm[]" value="Kehu" />&nbsp;&nbsp;&nbsp;<strong style="color:green">客户管理</strong></th>
+  </tr>
+
+  <tr>
+    <td><input name="perm[]" type="checkbox"    value="Kehu:index" />&nbsp;&nbsp;&nbsp;<strong style="color:green">客户列表</strong></td>
+    <td><input name="perm[]" type="checkbox"   value="Kehu:addCus" />&nbsp;&nbsp;&nbsp;<strong style="color:green">添加客户</strong></td>
+    <td><input name="perm[]" type="checkbox"   value="Kehu:add_order" />&nbsp;&nbsp;&nbsp;<strong style="color:green">开通产品</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Kehu:edit_cusinfo" />&nbsp;&nbsp;&nbsp;<strong style="color:green">修改客户信息</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Order:remove_order" />&nbsp;&nbsp;&nbsp;<strong style="color:green">删除产品</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Kehu:modi_custype" />&nbsp;&nbsp;&nbsp;<strong style="color:green">更改客户类型</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Kehu:delete_costomer" />&nbsp;&nbsp;&nbsp;<strong style="color:green">处理无用客户</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Order:delete_order" />&nbsp;&nbsp;&nbsp;<strong style="color:green">处理无用产品</strong></td>
+	
+	<!--客户模块隐藏域-->
+	<input type="hidden" name="perm[]" value="Kehu:cate_out" />
+	<input type="hidden" name="perm[]" value="Kehu:view" />
+	<input type="hidden" name="perm[]" value="Kehu:hand_history" />
+	<input type="hidden" name="perm[]" value="Kehu:search" />
+	<input type="hidden" name="perm[]" value="Kehu:order_open" />
+	<input type="hidden" name="perm[]" value="Kehu:cusAjaxBack" />
+	
+ </tr>
+ 
+</table>
+</div>
+
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="10" class="group-title"><input  type="checkbox"   name="perm[]" value="Order" />&nbsp;&nbsp;&nbsp;<strong style="color:green">购买管理</strong></th>
+  </tr>
+
+  <tr>
+	<td><input name="perm[]" type="checkbox" value="Order:finance" />&nbsp;&nbsp;&nbsp;<strong style="color:green">查看入账状况</strong></td>
+	<td><input name="perm[]" type="checkbox" value="Order:finance_save" />&nbsp;&nbsp;&nbsp;<strong style="color:green">财务入账</strong></td>
+	<td><input name="perm[]" type="checkbox" value="Order:re_order" />&nbsp;&nbsp;&nbsp;<strong style="color:green">续费</strong></td>
+	<td><input name="perm[]" type="checkbox" value="Order:modify_order" />&nbsp;&nbsp;&nbsp;<strong style="color:green">编辑订购</strong></td>
+	<td><input name="perm[]" type="checkbox" value="Order:report" />&nbsp;&nbsp;&nbsp;<strong style="color:green">收入报表</strong></td>
+	   
+  <!--订单管理隐藏域-->
+  <input type="hidden" name="perm[]" value="Order:order_detail" />
+	<input type="hidden" name="perm[]" value="Order:edit_order_save" />
+	<input type="hidden" name="perm[]" value="Order:have_buy" />
+	<input type="hidden" name="perm[]" value="Order:finaSearch" />
+
+  </tr>
+ 
+</table>
+</div>
+
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="10" class="group-title"><input  type="checkbox" name="perm[]" value="Products" />&nbsp;&nbsp;&nbsp;<strong style="color:green">产品管理</strong></th>
+  </tr>
+
+  <tr>
+    <td><input name="perm[]" type="checkbox"   value="Products:index" />&nbsp;&nbsp;&nbsp;<strong style="color:green">产品列表</strong></td>
+	  <td><input name="perm[]" type="checkbox" value="Order:edit_order" />&nbsp;&nbsp;&nbsp;<strong style="color:green">修改产品</strong></td>
+    <td><input name="perm[]" type="checkbox"  value="Products:add_product" />&nbsp;&nbsp;&nbsp;<strong style="color:green">添加产品</strong></td>
+    <td><input name="perm[]" type="checkbox"  value="Products:add_prodtype" />&nbsp;&nbsp;&nbsp;<strong style="color:green">添加产品分类</strong></td>
+	 <td><input name="perm[]" type="checkbox"  value="Products:prodtype_list" />&nbsp;&nbsp;&nbsp;<strong style="color:green">修改产品分类</strong></td>
+	 <td><input name="perm[]" type="checkbox"  value="Products:add_jhjg" />&nbsp;&nbsp;&nbsp;<strong style="color:green">添加机柜</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Products:jg_remove" />&nbsp;&nbsp;&nbsp;<strong style="color:green">删除机柜</strong></td>
+	<td><input name="perm[]" type="checkbox" value="Products:prodtype_remove" />&nbsp;&nbsp;&nbsp;<strong style="color:green">删除产品分类</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Products:jg_modify" />&nbsp;&nbsp;&nbsp;<strong style="color:green">修改机柜</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Products:jg_list" />&nbsp;&nbsp;&nbsp;<strong style="color:green">机柜列表</strong></td>
+	 </tr>
+	 <tr>
+	 <td><input name="perm[]" type="checkbox"  value="Order:index" />&nbsp;&nbsp;&nbsp;<strong style="color:green">购买列表</strong></td>
+    <td><input name="perm[]" type="checkbox"  value="Order:search" />&nbsp;&nbsp;&nbsp;<strong style="color:green">搜索产品</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Products:open_products" />&nbsp;&nbsp;&nbsp;<strong style="color:green">快捷开通</strong></td>
+	
+	
+	</tr>
+	
+	
+	<!--产品权限隐藏域-->
+	<input type="hidden" name="perm[]" value="Products:prod_detail" />
+	<input type="hidden" name="perm[]" value="Products:edit_prod" />
+	<input type="hidden" name="perm[]" value="Products:prodAjax" />
+	
+	<input type="hidden" name="perm[]" value="Products:add_prodtype_save" />
+	<input type="hidden" name="perm[]" value="Products:prodtype_modify" />
+
+ 
+</table>
+</div>
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="10" class="group-title"><input  type="checkbox"  name="perm[]" value="User" />&nbsp;&nbsp;&nbsp;<strong style="color:green">员工管理</strong></th>
+  </tr>
+
+  <tr>
+    <td><input name="perm[]" type="checkbox"  value="User:index" />&nbsp;&nbsp;&nbsp;<strong style="color:green">员工列表</strong></td>
+    <td><input name="perm[]" type="checkbox"  value="User:add_member" />&nbsp;&nbsp;&nbsp;<strong style="color:green">添加员工</strong></td>
+    <td><input name="perm[]" type="checkbox"  value="User:add_depart" />&nbsp;&nbsp;&nbsp;<strong style="color:green">添加部门</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="User:authset" />&nbsp;&nbsp;&nbsp;<strong style="color:green">权限控制</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="User:authset_save" />&nbsp;&nbsp;&nbsp;<strong style="color:green">设置个人权限</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="User:setting_save" />&nbsp;&nbsp;&nbsp;<strong style="color:green">设置部门权限</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="User:mem_edit" />&nbsp;&nbsp;&nbsp;<strong style="color:green">修改员工信息</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="User:change_owner" />&nbsp;&nbsp;&nbsp;<strong style="color:green">工作移交</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="User:remove_user" />&nbsp;&nbsp;&nbsp;<strong style="color:green">删除员工</strong></td>
+	<!--员工管理隐藏域-->
+	<input type="hidden" name="perm[]" value="User:meminfo" />
+	<input type="hidden" name="perm[]" value="User:modinfo" />
+	<input type="hidden" name="perm[]" value="User:modipass" />
+	<input type="hidden" name="perm[]" value="User:ownerSearch" />
+	
+ </tr>
+ 
+</table>
+</div>
+
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="10" class="group-title"><input  type="checkbox"  name="perm[]" value="Serve" />&nbsp;&nbsp;&nbsp;<strong style="color:green">售后服务管理</strong></th>
+  </tr>
+
+  <tr>
+    <td><input name="perm[]" type="checkbox"  value="Serve:index" />&nbsp;&nbsp;<strong style="color:green">售后内容列表</strong></td>
+    <td><input name="perm[]" type="checkbox"  value="Serve:add_srecord" />&nbsp;&nbsp;<strong style="color:green">添加客户反馈</strong></td>
+    <td><input name="perm[]" type="checkbox"  value="Serve:serverTop" />&nbsp;&nbsp;<strong style="color:green">查看服务排行</strong></td>
+    <td><input name="perm[]" type="checkbox"  value="Serve:doneIt" />&nbsp;&nbsp;<strong style="color:green">售后处理</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Serve:zhidao" />&nbsp;&nbsp;<strong style="color:green">问题检索</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Serve:jiansuo" />&nbsp;&nbsp;<strong style="color:green">操作记录查询</strong></td>
+	
+	<!--售后管理隐藏域-->
+	<input type="hidden" name="perm[]" value="Serve:search" />
+	<input type="hidden" name="perm[]" value="Serve:cusAjaxBack" />
+	<input type="hidden" name="perm[]" value="Serve:serverTopAjax" />
+	<input type="hidden" name="perm[]" value="Serve:top_detail" />
+	<input type="hidden" name="perm[]" value="Serve:detail" />
+  </tr>
+ 
+</table>
+</div>
+
+
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="10" class="group-title"><input  type="checkbox"  name="perm[]" value="Sys" />&nbsp;&nbsp;&nbsp;<strong style="color:green">系统设定</strong></th>
+  </tr>
+
+  <tr>
+ 
+    <td><input name="perm[]" type="checkbox"  value="Sys:edit_time" />&nbsp;&nbsp;&nbsp;<strong style="color:green">修改考勤时间</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Ipool:index" />&nbsp;&nbsp;&nbsp;<strong style="color:green">IP资源管理</strong></td>
+	
+	<!--售后管理隐藏域-->
+	<input type="hidden" name="perm[]" value="Sys:search" />
+	<input type="hidden" name="perm[]" value="Sys:searchLeave" />
+	
+  </tr>
+ 
+</table>
+</div>
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="10" class="group-title"><input  type="checkbox"  name="perm[]" value="Expense:examine" />&nbsp;&nbsp;&nbsp;<strong style="color:green">员工报销审批</strong></th>
+  </tr>
+
+  <tr>
+     <td><input name="perm[]" type="checkbox"  value="Expense:examine:2" />&nbsp;&nbsp;&nbsp;<strong style="color:green">财务审批</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Expense:examine:3" />&nbsp;&nbsp;&nbsp;<strong style="color:green">总经办审批</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Expense:examine:4" />&nbsp;&nbsp;&nbsp;<strong style="color:green">支款</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Expense:examine:0" />&nbsp;&nbsp;&nbsp;<strong style="color:green">入账模块</strong></td>
+
+ 
+	<!--支出审批-->
+	<input type="hidden" name="perm[]" value="Expense" />
+	<input type="hidden" name="perm[]" value="Expense:index" />
+	<input type="hidden" name="perm[]" value="Expense:application" />
+	<input type="hidden" name="perm[]" value="Expense:shoukuan" />
+	<input type="hidden" name="perm[]" value="Expense:shenpi" />
+	<input type="hidden" name="perm[]" value="Expense:ruzhang" />
+  </tr>
+ 
+</table>
+</div>
+
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="10" class="group-title"><input  type="checkbox"  name="perm[]" value="CDN" />&nbsp;&nbsp;&nbsp;<strong style="color:green">cdn资源申请</strong></th>
+  </tr>
+
+  <tr>
+    <td><input name="perm[]" type="checkbox"  value="CDN:index" />&nbsp;&nbsp;&nbsp;<strong style="color:green">资源申请</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="CDN:auth" />&nbsp;&nbsp;&nbsp;<strong style="color:green">流程审批</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="CDN:auth:2" />&nbsp;&nbsp;&nbsp;<strong style="color:green">总经办审批</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="CDN:auth:3" />&nbsp;&nbsp;&nbsp;<strong style="color:green">资源引进</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="CDN:auth:0" />&nbsp;&nbsp;&nbsp;<strong style="color:green">入账</strong></td>
+
+	<input type="hidden" name="perm[]" value="CDN:ask_resource" />
+	<input type="hidden" name="perm[]" value="CDN:apply" />
+	<input type="hidden" name="perm[]" value="CDN:shenpi" />
+	<input type="hidden" name="perm[]" value="CDN:ruzhang" />
+	
+	
+  </tr>
+ 
+</table>
+</div>
+
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="10" class="group-title"><input  type="checkbox"  name="perm[]" value="Leave" />&nbsp;&nbsp;&nbsp;<strong style="color:green">出勤审批</strong></th>
+  </tr>
+
+  <tr>
+	<td><input name="perm[]" type="checkbox"  value="Leave:index" />&nbsp;&nbsp;&nbsp;<strong style="color:green">请假审批</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Leave:wc_list" />&nbsp;&nbsp;&nbsp;<strong style="color:green">外出审批</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Leave:apply" />&nbsp;&nbsp;&nbsp;<strong style="color:green">审核保存</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Daily:seek" />&nbsp;&nbsp;&nbsp;<strong style="color:green">查看工作日志</strong></td>
+	<td><input name="perm[]" type="checkbox"  value="Sys:index" />&nbsp;&nbsp;&nbsp;<strong style="color:green">查看考勤记录</strong></td>
+  </tr>
+ 
+</table>
+</div>
+
+<div class="button-div">
+				<input type="hidden" name="modiId" value="{$Think.get.userid}" />
+						<input type="submit" value=" 确定 " class="button" />
+						<input type="reset" value=" 返回 " class="button" onclick="window.location.href='__URL__'"/>
+					</div>
+
+
+			
+			
+
+
+ </form>
+ <script>
+	//var arr=new Array();
+	
+	$(function(){
+		//var stb=false;
+		$(':checkbox:gt(0)').each(function(index,obj){
+			//var obj=$(this);
+			
+			$.get('__SELF__',{'checkstr':$(this).val(),'actname':'check'},function(data){
+				//$(obj).attr('checked',data);
+				if(data==1){
+					$(obj).attr('checked',true);
+				}else{
+					$(obj).attr('checked',false);
+				}
+			});
+		})
+	})
+	
+	
+	function special(){
+		
+		if($('#spec').attr('checked')==true){
+		
+			$(':checkbox:gt(0)').each(function(){
+			
+				$(this).attr('disabled',true);
+			})
+			$('input:radio').attr('disabled',true);
+		}else{
+			$(':checkbox:gt(0)').each(function(){
+			
+				$(this).attr('disabled',false);
+			})
+			$('input:radio').attr('disabled',false);
+		}
+	
+	}
+ </script>
+
+
+    <include file="Public:n_footer" />

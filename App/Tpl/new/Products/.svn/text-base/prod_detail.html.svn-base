@@ -1,0 +1,35 @@
+<include file="Public:n_header" />
+	<div class="tab-div">
+	<div id="tabbody-div">
+	<div class="list-div">
+			<table width="500" align="center">
+		
+			<tr><td class="label">产品名称</td><td>{$detail.labelname}</td></tr>
+			<tr><td class="label">使用单位</td><td>{$detail.cusname}</td></tr>
+			<tr><td class="label">存放位置</td><td>{$detail.position}</td></tr>
+			<tr><td class="label">&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;P</td><td>{$detail.ip}</td></tr>
+			<tr><td class="label">占用大小</td><td>{$detail.size}&nbsp;&nbsp;(u)</td></tr>
+			<tr><td class="label">设备型号</td><td>{$detail.style}</td></tr>
+			<tr><td class="label">交换机接口</td><td>{$detail.port}</td></tr>
+			<tr><td class="label">MAC地址</td><td>{$detail.mac}</td></tr>
+			<tr><td class="label">维护技术</td><td>{$detail.techname}</td></tr>
+			<tr><td class="label">维护密码</td><td>{$detail.passwd}</td></tr>
+			<tr><td class="label">上架时间</td><td>{$detail.fromtime|date='Y-m-d',###}</td></tr>
+			<tr><td class="label">下架时间</td><td>{$detail.totime|date='Y-m-d',###}</td></tr>
+			<tr><td class="label">备注信息</td><td>{$detail.prod_note}</td></tr>
+			<if condition="$detail.serialNo neq ''">
+			<tr><td class="label">SerialNo</td><td>{$detail.serialNo}</td></tr>
+			<tr><td class="label">CPU</td><td>{$detail.cpu}</td></tr>
+			<tr><td class="label">Memory</td><td>{$detail.memory}</td></tr>
+			<tr><td class="label">Disk</td><td>{$detail.disk}</td></tr>
+			<tr><td class="label">MotherBoard</td><td>{$detail.motherboard}</td></tr>
+			</if>	
+			
+			</table>
+	 </div>
+	 <div class="button-div">
+			<input type="button" value="返回" onclick="window.location.href='__APP__/Products/index?{$param}'" class="button" />	
+	</div>	
+	</div>
+	</div>
+    <include file="Public:n_footer" />

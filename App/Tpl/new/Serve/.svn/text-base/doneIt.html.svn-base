@@ -1,0 +1,23 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+<div id="tabbody-div">
+			<table width="90%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+			<form method="post" action="__URL__/doneIt">
+			<tr><td class="label">客户名称</td><td>{$msg.cusname}<td></tr>
+			<tr><td class="label">机器IP</td><td><input type="text" name="ip" value="{$msg.ip}" /></td></tr>
+			<tr><td class="label">内容描述</td><td><textarea name="content" cols="50" rows="4">{$msg.content}</textarea></td></tr>
+			<tr><td class="label">处理备注</td><td><textarea name="note" cols="50" rows="4">{$msg.note}</textarea></td></tr>
+		
+		</table>
+		
+			<div class="button-div">
+				<input type="hidden" name="doId" value="{$msg.id}" />
+				<label for="zzcl">设为处理中：</label><input id="zzcl" type="radio" name="status" value="2" <eq name="msg.status" value="2">checked</eq> />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="ycl">设为已处理：</label><input type="radio" id="ycl" name="status" value="3" <eq name="msg.status" value="3">checked</eq> />
+				<br />
+				<br /><input type="submit" class="button"  value=" 修 改 " />
+		</div>
+		</form>
+			
+	 </div>
+	 </div>
+    <include file="Public:n_footer" />

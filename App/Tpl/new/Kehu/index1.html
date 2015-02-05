@@ -1,0 +1,200 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+<div id="tabbody-div">
+<div class="list-div">
+			<table border="0" cellspacing="0" cellpadding="0">
+			<form action="#" method="post" class="cf">
+			
+			<tr style="height:35px;">
+				<td>&nbsp;&nbsp;&nbsp;产品：<select name="proid" onchange="search();">
+				<option value="0">请选择</option>
+					<volist name="prolist" id="pr">
+					<option value="{$pr.tid}" <eq name="param.proid" value="$pr.tid">selected</eq>>{$pr.fg}{$pr.labelname}</option>
+					</volist>
+				</select>
+				</td>
+
+				<td align="right">
+				<select name="namesearch">
+					<option value="0"
+						<eq name="$param.namesearch" value="0">selected</eq>
+					>客户名称</option>
+					<option value="1"
+						<eq name="$param.namesearch" value="1">selected</eq>
+					>联系人</option>
+				</select>&nbsp;&nbsp;
+				</td>
+
+					<td>
+					<input type="text" id="kehusel" style="display:show;" class="input_text"  name="username" value="{$param.username}" onkeyup="search();"/>
+					<input type="text" id="lianxisel" style="display:none;" class="input_text"  name="contact"   value="{$param.contact}" onkeyup="search();"/>
+					</td>
+					
+
+				<td style="text-align:center;">
+					<a href="__APP__/Kehu/addCus" style="text-decoration:none;" class="addbutton" title="添加新客户" >添加新客户</a>
+				</td>
+				<br/>
+			</tr>
+			
+			
+				<!--
+			   <tr>
+				<td  align="center">：</td>
+				<td>
+				<input type="text" class="input_text"  name="contact"   value="{$param.contact}" onkeyup="search();"/>
+				</td>
+				
+				<?php
+			if(check_permission(MODULE_NAME.':'.ACTION_NAME)==1){
+			?>
+			<td>销&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售：</td><td>
+				<select  name="saleman" onchange="search();"><option value="0">请选择</option>
+				<volist name="sale" id="s">
+				
+				<option value="{$s.uid}" <php>if(empty($param['salemanId'])){if($s['uid']==$Think['session']['uid']){echo 'selected';}}else{if($s['uid']==$param['salemanId']){echo 'selected';}}</php>>{$s.uname}</option>
+				
+				</volist>
+				</select>
+				</td>
+				<?php
+				}else{
+				?>
+				<td colspan="2"></td>
+				<?php
+				}
+				?>
+				
+				<td><input class="srchbutton" type="button" value="&nbsp;" onclick="search();" title="搜索" /></td></tr>
+				
+				-->
+
+                
+				<tr>
+				
+				
+				<th width="40%">客户名称</th><th width="20%">联系人</th>
+				
+				
+				
+				<?php
+			if(check_permission(MODULE_NAME.':'.ACTION_NAME)==1){
+			?>
+			    <th width="20%">
+				<select  name="saleman" onchange="search();"><option value="0">所属销售</option>
+				<volist name="sale" id="s">
+				
+				<option value="{$s.uid}" <php>if(empty($param['salemanId'])){if($s['uid']==$Think['session']['uid']){echo 'selected';}}else{if($s['uid']==$param['salemanId']){echo 'selected';}}</php>>{$s.uname}</option>
+				
+				</volist>
+				</select>
+				</th>
+				<?php
+				}else{
+				?>
+				<th width="20%">所属销售</th>
+				<?php
+				}
+				?>
+				
+				<th width="20%">操作</th></tr>
+	 		</form>
+			
+			
+			</table>
+         
+	 	</div>
+	
+	 
+	 <div class="list-div">	
+	 			<table id="mess" width="800">
+				
+				</table>
+</div>
+</div>
+</div>
+<script language="javascript">
+	var salemanId="{$param.salemanId}";
+	var cusname="{$param.cusname}";
+	var namesearch="{$param.namesearch}";
+	var ip="{$param.ip}";
+	var proid="{$param.proid}"?"{$param.proid}":'0';
+	var contact="{$param.contact}";
+	var to="{$param.to}";
+	var rangeb="{$param.rangeb}";
+	var p="{$param.p}";
+	$(function(){
+			//alert(123);
+			$('#mess').html('<caption><caption><h3 style="margin:2px auto;text-align:center;background:#ddd;color:red;width:100%;height:30px;line-height:30px;">载入中...</h3></caption></caption>');
+				$.getJSON('__URL__/search',{'cusname':cusname,'namesearch':namesearch,'ip':ip,'proid':proid,'salemanId':salemanId,'contact':contact,'to':to,'rangeb':rangeb,'p':p},function(data){
+					//alert(data);
+					$('#mess').html(data.data);
+				},'json');
+	});
+	function search(page){
+			$('#mess').html('<caption><caption><h3 style="margin:2px auto;text-align:center;background:#ddd;color:red;width:100%;height:30px;line-height:30px;">载入中...</h3></caption></caption>');
+			$.getJSON('__URL__/search',{'cusname':$('input[name="username"]').val(),'namesearch':$('select[name="namesearch"]').val(),'ip':$('input[name="ip"]').val(),'proid':$('select[name="proid"]').val(),'salemanId':$('select[name="saleman"]').val(),'contact':$('input[name="contact"]').val(),'to':$('input[name="endtime"]').val(),'rangeb':$('select[name="rangeb"]').val(),'per_page':page},function(data){
+					$('#mess').html(data.data);
+					
+			},'json');
+			//alert($('input[name="username"]').val());
+			//alert($('input[name="contact"]').val());
+			
+	}
+	
+//	function inpshow(){
+	//	var namesel = getElementById('namesel').val();
+
+	
+	//}
+
+	$(function(){
+	  $("select[name='namesearch']").change(function(){
+		 if(this.value=="0"){
+			$("input[name='username']").show();
+			$("input[name='contact']").hide();
+		 }else{
+			$("input[name='username']").hide();
+			$("input[name='contact']").show();
+		 }
+	  });
+	});
+
+
+
+	var list={payment:'成交金额',totime:'合同结束时间'};
+	var listTable=new Object();
+	listTable.sort=function(info,order,param){
+	var order=!order?1:0;
+	var p_src=['sort_desc.gif','sort_asc.gif'];
+	var s=($('#sortImg').attr('src')).split('/');
+	s.pop();
+	if(order){
+			p_src=s.join('/')+'/'+p_src[order];
+	
+	}else{
+			p_src=s.join('/')+'/'+p_src[order];
+				
+	}
+	$.getJSON('__URL__/search?'+param+'&field='+info+'&order='+order,function(data){
+		
+		$('#mess').html(data.data)
+		var hah=list[info];
+		$('#sortImg').insertAfter($('th>a:contains('+hah+')'));
+		$('#sortImg').attr({src:p_src});
+							
+
+	},'json');
+}
+	function imglist(url){
+
+				$.getJSON(url,function(data){
+					$('#mess').html(data.data);
+						
+				})
+					
+	}
+				
+
+</script>
+    <include file="Public:n_footer" />

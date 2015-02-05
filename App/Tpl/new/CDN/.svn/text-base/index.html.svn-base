@@ -1,0 +1,44 @@
+<include file="Public:n_header" />
+<div class="list-div">
+<form method="get" class="cf">
+<table align="center" border="0" cellspacing="3" cellpadding="1">
+<caption><h3>CDN资源申请历史</h3></caption>
+	<tr><th>申请内容</th><th>申请时间</th><th>审核状态</th><th>最后操作</th><th>操作内容</th></tr>
+	<volist name="resource" id="rs"><tr><td>{$rs.reason}</td><td>{$rs.ctime|date='Y-m-d H:i',###}</td><td><if condition="($rs.status eq 1) or ($rs.status eq 2)">审核中<elseif condition="$rs.status eq 3" />审核通过<elseif condition="$rs.status eq 0" />已处理完</if></td><td><php>if(!empty($rs['lastman'])){echo $rs['lastman'];}elseif(!empty($rs['firstman'])){echo $rs['firstman'];}</php></td><td><php>if(!empty($rs['lastman'])){echo $rs['last_content'];}elseif(!empty($rs['firstman'])){echo $rs['resource'];}</php></td></tr></volist>
+</table>
+</form>
+</div>
+<div class="list-div">
+<a href="javascript:;" style="margin:0 auto;width:116px;height:30px;display:block;background:url(__PUBLIC__/Images/wl/user_top_btn.jpg);line-height:30px;text-align:center;size:12px;color:white;font-weight:bold;text-decoration:none;" onclick="EV_modeAlert('show_apply');">资 源 申 请</a>
+</div>
+<div id="show_apply" class="show_pop"  style="width:800px;">
+  <form method="post" action="__URL__/apply" id="app">
+  <div class="list-div">
+		<table align="center" width="90%" border="0" cellspacing="0" cellpadding="0">
+		<caption><h3>CDN资源申请</h3></caption>
+		<tr rowspan="3"><td class="label">申请内容</td><td colspan="3"><textarea cols="70" rows="6" name="reason"></textarea></td></tr>
+		</tr>
+		</table>
+		</div>
+		
+		<div class="button-div">
+			<input type="button" name="sbt" value=" 申请 " class="button" onclick="checkval()"/><input type="button"  value=" 取消 " class="button" onclick="EV_closeAlert();"/>
+		</div>	
+		</form> 
+
+</div>
+<script language="javascript">
+	function checkval(){
+		var reg1=/\S+/gm;
+		var s=$('textarea[name="reason"]').val();
+		//alert(reg1.test(s));
+		if(reg1.test(s)){
+			$('#app').submit();
+		}else{
+			alert('请填写申请内容');
+			return false;
+		}
+	}
+</script>
+
+<include file="Public:n_footer" />

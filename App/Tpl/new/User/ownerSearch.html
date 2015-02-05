@@ -1,0 +1,14 @@
+<tr><th>全部<input type="checkbox" name="selectAll" value="all" /></th><th>客户名称</th><th>联系人</th><th>手机</th><th>QQ</th><th>成交金额<font color="red">(元)</font></th><th>ip</th><th>合同结束时间</th><th>客户类型</th></tr>
+<volist name="cust" id="cm">
+<tr align="center"><td><input type="checkbox" name="changeId[]" value="{$cm.id}" /></td><td>{$cm.cusname}</td><td>{$cm.contact}</td><td>{$cm.mobile}</td><td>{$cm.qq}</td><td>{$cm.vp_money}</td><td>{$cm.firstip}</td><td>{$cm.firstedtime|date='Y-m-d',###|default='无'}</td><td>{$cm.custype|get_cus_type}</td>
+</tr>
+</volist>
+<script language="javascript">
+	$('input[name="selectAll"]').click(function(){
+		var sele=$(this).attr('checked');
+		$('input[name="changeId[]"]').attr('checked',sele);
+
+	})
+
+</script>
+			

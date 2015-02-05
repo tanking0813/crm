@@ -1,0 +1,123 @@
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ route_check ] --START--
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Run CheckRoute Behavior [ RunTime:0.312001s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ route_check ] --END-- [ RunTime:0.312001s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead Dispatcher.class.php 第 125 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ app_begin ] --START--
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Run ReadHtmlCache Behavior [ RunTime:0.015600s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ app_begin ] --END-- [ RunTime:0.015600s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ view_template ] --START--
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Run LocationTemplate Behavior [ RunTime:0.015600s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ view_template ] --END-- [ RunTime:0.015600s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ view_parse ] --START--
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 186 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 402 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 402 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 402 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 402 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 402 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 402 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 402 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 402 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 402 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 406 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 220 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead ThinkTemplate.class.php 第 154 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Run ParseTemplate Behavior [ RunTime:0.031200s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ view_parse ] --END-- [ RunTime:0.031200s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ view_filter ] --START--
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Run ContentReplace Behavior [ RunTime:0.015600s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Run TokenBuild Behavior [ RunTime:0.000000s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Run WriteHtmlCache Behavior [ RunTime:0.000000s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Run ShowRuntime Behavior [ RunTime:0.015600s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ view_filter ] --END-- [ RunTime:0.031200s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ view_end ] --START--
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Run ShowPageTrace Behavior [ RunTime:0.000000s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/login | INFO: Tag[ view_end ] --END-- [ RunTime:0.000000s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/verify | INFO: Tag[ route_check ] --START--
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/verify | INFO: Run CheckRoute Behavior [ RunTime:0.000000s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/verify | INFO: Tag[ route_check ] --END-- [ RunTime:0.000000s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/verify | NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead Dispatcher.class.php 第 125 行.
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/verify | INFO: Tag[ app_begin ] --START--
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/verify | INFO: Run ReadHtmlCache Behavior [ RunTime:0.000000s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/verify | INFO: Tag[ app_begin ] --END-- [ RunTime:0.000000s ]
+[ 2014-06-18T08:42:34+08:00 ] /crm/index.php/Public/verify | NOTIC: [8] Undefined variable: disturb Image.class.php 第 340 行.

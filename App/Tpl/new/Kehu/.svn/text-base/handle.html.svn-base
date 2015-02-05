@@ -1,0 +1,66 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+ <form method="post" action="">
+<div id="tabbody-div">
+
+<div class="list-div">
+ 
+		<table width="90%" border="0" cellspacing="0" cellpadding="0">
+		<caption><h3>添加跟单信息</h3></caption>
+		<tr><td class="label">公司名</td><td colspan="3"><if condition="$info neq false">{$info.cusname}<input type="hidden" name="cusname" value="{$info.cusname}" /><else /><input type="text" name="cusname" id="pikdata" style="height:20px;line-height:20px;width:365px;" onkeyup="findme('#pikdata');" autocomplete="off" /></if></td></tr>
+		<tr><td class="label">事件</td><td colspan="3"><input type="text"  name="note" size="52" /></td></tr>
+		
+		<tr><td class="label">内容描述</td><td><textarea name="description" cols="70" rows="6"></textarea></td>
+		<tr><td><label id="adgd" for="ntc" style="font-size:12px;color:blue;">添加下次跟单</label>&nbsp;&nbsp;<input id="ntc" type="checkbox" onclick="add_xcgd();" name="nextct"  /></td></tr>
+		</table>
+</div>
+
+<div class="list-div">
+<table width="90%" border="0" align="center" cellspacing="0" cellpadding="0" id="xcgd" style="display:none;">
+	<tr><td class="label">下次跟单时间</td><td><input type="text" name="nexttime" value="{:date('Y-m-d')}" class="Wdate" type="text" onClick="WdatePicker()" /></td></tr>
+	<tr><td class="label">备忘信息</td><td><textarea name="nextnote" cols="60" rows="4"></textarea></td></tr>
+</table>
+</div>
+		
+</div>
+<div class="button-div">
+    {__TOKEN__}
+			<input type="submit" name="sbt" value=" 确定 " class="button" />
+			<input type="button" value=" 返回 " class="button" onclick="window.location.href='__URL__'"/>
+		</div>	
+		</form> 
+</div>
+ <script language="javascript">
+		function findme(obj){
+			var sss=document.getElementById('pickv');
+				var position=$(obj).position();
+				var width=parseInt($(obj).width());
+				var height=parseInt($(obj).height());
+				$.getJSON('__URL__/cusAjaxBack',{'cusname':$(obj).val()},function(data){
+					if(null==sss){
+						$('body').append('<div style="background:white;position:absolute;top:'+(position.top+height)+'px;left:'+position.left+'px;z-index:1;width:'+width+'px;border:1px solid #ccc;" id="pickv">'+data.data+'</div>');
+					}else{
+						$('#pickv').html(data.data);
+					}
+				},'json');
+			}
+		function getFullname(obj){
+			var fullname=$(obj).html();
+			$('#pikdata').val(fullname);
+			$('#pickv').remove();
+		
+		}
+		
+		function add_xcgd(){
+			if($('#xcgd').css('display')=='none'){
+				$('#xcgd').css('display','block');
+				$('#adgd').html('收起');
+			}else{
+				$('#xcgd').css('display','none');
+				$('#adgd').html('添加下次跟单');
+			}
+		
+		}
+	 </script>
+
+	<include file="Public:n_footer" />

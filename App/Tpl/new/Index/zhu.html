@@ -1,0 +1,85 @@
+<include file="Public:n_header" />
+<div class="list-div">
+	<table cellpadding="0" cellspacing="0">
+	<tr><th>金牌销售</th><th></th></tr>
+	<tr><td rowspan="3" align="center"><img src="__PUBLIC__/Images/avatar/1.jpg"><td>职员姓名：{$gold.uname}</td></tr>
+	<tr><td>职位名称：{$gold.rank}</td></tr>
+	<tr><td>成交客户：{$gold.count}</td></tr>
+	</table>
+	</div>	
+
+
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="4" class="group-title">实体产品统计信息</th>
+  </tr>
+  <tr>
+    <td>本月成交客户:</td>
+    <td><strong>{$total_cus}</strong></td>
+    <td>本月成交订单:</td>
+    <td><strong>{$total_order}</strong></td>
+  </tr>
+  <tr>
+    <td>本月成交金额:</td>
+    <td><strong>{$total_payment}</strong></td>
+    <td>本月实收金额:</td>
+    <td><strong>{$total_paid}</strong></td>
+  </tr>
+</table>
+</div>
+<div class="list-div">
+<table  cellspacing='1' cellpadding='3'>
+<caption><h4>计划跟单</h4></caption>
+	
+	<tr><th>客户名称：</th><th>联系人：</th><th>电话</th><th>QQ</th><th>时间：</th><th>备注：</th></tr>
+	<volist name="cron_total" id="ct">
+	<tr><td>{$ct.cusname}</td><td>{$ct.contact}</td><td>{$ct.mobile}</td><td>{$ct.qq}</td><td>{$ct.nexttime|date='Y-m-d',###}</td><td>{$ct.note}</td></tr>
+   </volist> 
+</table>   
+</div>
+<div id="show_message" class="show_pop"  style="width:600px;height:300px;overflow:scroll;">
+
+</div>
+<div id="show_notice" class="show_pop"  style="width:400px;height:300px;overflow:scroll;">
+
+</div>
+<div style="width:300px;height:50px;text-align:center;line-height:50px;background:pink;position:fixed;bottom:0;right:0">最新系统消息:<a href="javascript:;" onclick="sys_message('{$message|count}');">{$message|count}</a>&nbsp;&nbsp;&nbsp;&nbsp;最新文章:<a href="javascript:;" onclick="sys_notice('{$notice|count}');">{$notice|count}</a>&nbsp;&nbsp;&nbsp;&nbsp;待办事务:<a href="javascript:;"></a></div>
+<script language="javascript">
+	function sys_message(num){
+		if(num!=0){
+		
+			EV_modeAlert('show_message');
+			$.getJSON('__URL__/show_message',function(data){
+				$('#show_message').html(data.data);
+			},'json');
+		}
+	}
+	function sys_notice(num){
+		if(num!=0){
+			EV_modeAlert('show_notice');
+			$.getJSON('__URL__/show_notice',function(data){
+				$('#show_notice').html(data.data);
+			},'json');
+		}
+	}
+
+	function set_readed_mess(mid){
+		$.post('__URL__/read_message',{'mid':mid},function(data){
+			if(data==1){
+				$('#bkb'+mid).remove();
+			}
+		});
+	
+	}
+	function set_readed_notice(nid){
+	
+		$.post('__URL__/read_notice',{'nid':nid},function(data){
+			if(data==1){
+				window.location.href="__APP__/BBS/title_detail/id/"+nid;
+			}
+		});
+	
+	}
+</script>
+<include file="Public:n_footer" />

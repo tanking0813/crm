@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta name="Copyright" content="Copyright (c) 2009 thinkPHP.cn" />
+        <meta name="generator" content="" />
+        <meta name="Keywords" content="中光电信" />
+        <meta name="description" content="中光电信" />
+        <title>{$title} - 中光电信</title>
+<css href="__PUBLIC__/Css/General.css,__PUBLIC__/Css/main.css" />
+<load href="__PUBLIC__/Js/jquery-1.4.2.js" />
+<load href="__PUBLIC__/Js/my/pop.js" />
+<load href="__PUBLIC__/Js/My97DatePicker/WdatePicker.js" />
+ </head>
+ <body>
+ <h1>
+<span class="action-span1"><a href="__APP__/Index">中光电信CRM控制台</a>&nbsp;---&nbsp;</span><span id="search_id" class="action-span1">
+<eq name="MODULE_NAME" value="Index">综合信息</eq>
+<eq name="MODULE_NAME" value="Kehu">用户信息</eq>
+<eq name="MODULE_NAME" value="Order">购买信息</eq>
+<eq name="MODULE_NAME" value="User">管理信息</eq>
+<eq name="MODULE_NAME" value="Products">产品信息</eq>
+<eq name="MODULE_NAME" value="Serve">客服信息</eq>
+<eq name="MODULE_NAME" value="Sys">系统设定</eq>
+<eq name="MODULE_NAME" value="Oa">个人考勤</eq>
+</span>
+<div style="clear:both"></div>
+</h1>

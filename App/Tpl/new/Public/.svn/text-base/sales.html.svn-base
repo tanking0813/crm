@@ -1,0 +1,7 @@
+:<select name="uid" >
+	<volist name="salesmans" id="v">
+		<option value="{$v[uid]}">{$v[nickname]}</option>
+
+	</volist>
+
+</select>

@@ -1,0 +1,49 @@
+<include file="Public:n_header" />
+<style>
+.bg{background:}
+.table1{margin:10px; }
+.tr1{
+	height:30px;line-height:30px; font-size:14px; font-weight:bold;
+}
+.tr4{
+	height:25px;line-height:25px;color:red; font-size:12px;}
+.tr2{
+	height:25px;line-height:25px; font-size:12px;
+}
+.tr3{
+	 text-align:center;height:40px;line-height:40px; 
+}
+</style>
+<div id="tabbody-div">
+<table width=800 class='table1'>
+	<caption><h2>用户登录记录</h2></caption>
+	<tr class='tr1'>
+		<td>登录记录</td>
+		<td>
+		<form action='__URL__/sech' method='post'>
+		<input type='text' name='username' value="请输入要检索的用户名" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue" />&nbsp;&nbsp;
+		<input type='submit' value='搜索' />
+		</form>
+		</td>
+	</tr>
+	<volist name='data' id='vo'>
+		<neq name='vo[uid]' value='0'>
+		<tr class='tr2'>
+			<td>用户&nbsp;&nbsp;&nbsp;&nbsp;{$vo.user}&nbsp;&nbsp;&nbsp;&nbsp;以ip为&nbsp;&nbsp;&nbsp;&nbsp;{$vo.login_ip}&nbsp;&nbsp;&nbsp;&nbsp;在&nbsp;&nbsp;&nbsp;&nbsp;{$vo.optime|date="y-m-d H:i:s",###}&nbsp;&nbsp;&nbsp;&nbsp;时成功登录网站</td>
+			<td><a href='__URL__/dele/id/{$vo[id]}' ></a></td>
+		</tr>
+		<else/>
+		<tr class='tr4'>
+			<td>有可疑用户&nbsp;&nbsp;&nbsp;&nbsp;{$vo.user}&nbsp;&nbsp;&nbsp;&nbsp;以ip为&nbsp;&nbsp;&nbsp;&nbsp;{$vo.login_ip}&nbsp;&nbsp;&nbsp;&nbsp;在&nbsp;&nbsp;&nbsp;&nbsp;{$vo.optime|date="y-m-d H:i:s",###}&nbsp;&nbsp;&nbsp;&nbsp;时试图登录网站</td>
+			<td><a href='__URL__/dele/id/{$vo[id]}' ></a></td>
+		</tr>
+		</neq>
+	</volist>
+	<tr class='tr3' >
+		<td colspan=2> {$page} </td>
+	</tr>
+</table>
+ </div>
+	   
+
+    <include file="Public:n_footer" />

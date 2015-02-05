@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta name="Copyright" content="Copyright (c) 2009 thinkPHP.cn" />
+        <meta name="generator" content="ThinkPHP {$Think.version}" />
+        <meta name="Keywords" content="topthink,thinkphp,php,快速开发,php快速开发,php开源框架,企业级,网站开发,php开发,轻量级,Php最佳实践,orm,php framework,lightweight,framework,流年,open source,开源,mvc" />
+        <meta name="description" content="中文最佳实践框架  JUST THINK IT ThinkPHP 大道至简 开发由我|php快速开发|just think it|php开源框架|php网站开发|上海顶想|ORM|Framework|PHP企业开发" />
+        <title> 洒饭团</title>
+		<css href="../Public/Css/Home_{$Think.MODULE_NAME}.css" />
+ <load href="__PUBLIC__/Js/jquery.js" />
+ </head>
+ <body style="background:#fff;">
+<div class="main content">
+<div class="sign-in">
+<div class="signin-box" style="height:210px;">
+ <span class="signup_button">  
+    <form method="post" autocomplete="off" id="lsform" action="__URL__/checklogin" >
+	<div class="denglu">
+	<div class="left">帐&nbsp;&nbsp; 号</div><div class="right"><INPUT TYPE="text" class="input_text" check="Require" warning="请输入帐号" autocomplete="off" NAME="username" value=""/></div>
+		</div>
+	<div class="denglu">
+	<div class="left">密&nbsp;&nbsp; 码</div><div class="right"><INPUT TYPE="password" class="input_text" check="Require" warning="请输入密码" autocomplete="off" NAME="password" value=""/></div>
+		</div>
+	<div class="denglu">
+	<div class="left">验证码</div><div class="right"><INPUT TYPE="text" class="input_text" name='verify' size="5" value=""/></div><div class="right" style="margin-top: 3px;"><img style='cursor:pointer' style="maring:5px;" title='刷新验证码' src='__URL__/verify' id='verifyImg' onclick="this.src='__URL__/verify?'+Math.random()"/> </div>
+		</div>
+	<div class="denglu">
+	<div class="left"><input type="checkbox" name="cookietime" id="ls_cookietime" style="width:20px;float:right;" checked />	</div>
+	<div class="right">
+自动登录<label>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" onclick="showWindow('login', 'member.php?mod=logging&amp;action=login&amp;viewlostpw=1')"><font style="color:#333;">找回密码</font></a></label>
+	</div></div>
+<div class="denglu">
+
+<a href="__URL__/regedit/">注册</a>
+
+
+<input type="submit" class="g_button button_red" name="signIn" id="signIn" value="登录" style="float:right;width:80px;height: 29px;margin-right:40px;"/>
+ </div>
+
+
+
+
+
+  </form>
+  </span>
+</div>
+
+</div>
+<div id="batemail">
+					</div>
+
+
+</div>
+
+<div class="google-footer-bar">
+  <div class="footer content clearfix">
+  <ul>
+  <li>© 2012 rrbang.me</li>
+  <li><a href="" target="_blank">如何开始</a></li>
+  <li><a href="" target="_blank">关于人人帮</a></li>
+  <li><a href="" target="_blank">帮助</a></li>
+  </ul>
+
+    <ul style="max-widht:20%;float:right;">
+  <li> <a  class="lang-chooser" > 人人帮   </a></li>
+  </ul>
+ 
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

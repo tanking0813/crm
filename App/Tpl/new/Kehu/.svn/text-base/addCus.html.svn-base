@@ -1,0 +1,93 @@
+<include file="Public:n_header" />
+
+<div class="tab-div">
+<div id="tabbody-div">
+  <form method="post" action="__URL__/addCus">
+  <div class="list-div">
+		<table align="center" width="90%" border="0" cellspacing="0" cellpadding="0">
+		<caption><h3>添加新客户</h3></caption>
+		<tr><td class="label">公司名</td><td colspan="3"><input type="text" name="cusname" size="70" /></td></tr>
+		<tr rowspan="3"><td class="label">地&nbsp;&nbsp;&nbsp;址</td><td colspan="3"><textarea cols="70" rows="3" name="address"></textarea></td></tr>
+		<tr><td class="label">网&nbsp;&nbsp;&nbsp;址</td><td cols="3"><input type="text" name="web" size="60" /></td></tr>
+		<tr><td class="label" >客户类型</td>
+		<td cols="3"><select type="text" name="custype" id="custp">
+		<option value="0">潜在客户</option>
+		<option value="5">潜在重点客户</option>
+		<option value="1">意向客户</option>
+		<option value="2">成交客户</option>
+		<option value="3">重点客户</option>
+		</select></td>
+		
+		</tr>
+		</table>
+		</div>
+		<div class="list-div" id="lianxiren">
+		<table align="center" width="90%" border="0" cellspacing="0" cellpadding="0">
+	
+		<tr><td class="label">联系人</td><td><input type="text" name="contact[]"></td><td class="label">职&nbsp;&nbsp;&nbsp;务</td><td><input type="text" name="cont_job[]"></td></tr>
+		<tr><td class="label">手&nbsp;&nbsp;&nbsp;机</td><td><input type="text" name="mobile[]" maxlength="11" /></td><td class="label">电&nbsp;&nbsp;&nbsp;话</td><td><input type="text" name="tel[]"></td></tr>
+		<tr><td class="label">邮&nbsp;&nbsp;&nbsp;箱</td><td><input type="text" name="email[]" /></td><td class="label">身份证</td><td><input type="text" name="id_card[]"></td>
+		
+		</tr>
+		<tr><td class="label">qq</td><td><input type="text" name="qq[]" /></td><td></td><td><a href="javascript:;" onclick="addmore();">再添加一个</a></td></tr>
+		</table>
+		
+		</div>
+		<script language="javascript">
+			
+			//获取事件源
+			
+			
+			
+			function addmore(){
+				
+				$('#lianxiren').append('<table align="center" width="90%" border="0" cellspacing="0" cellpadding="0" name="nn"><tr><td class="label">联系人</td><td><input type="text" name="contact[]"></td><td class="label">职&nbsp;&nbsp;&nbsp;务</td><td><input type="text" name="cont_job[]"></td></tr><tr><td class="label">手&nbsp;&nbsp;&nbsp;机</td><td><input type="text" name="mobile[]" maxlength="11" /></td><td class="label">电&nbsp;&nbsp;&nbsp;话</td><td><input type="text" name="tel[]"></td></tr><tr><td class="label">邮&nbsp;&nbsp;&nbsp;箱</td><td><input type="text" name="email[]" /></td><td class="label">身份证</td><td><input type="text" name="id_card[]"></td></tr><tr><td class="label">qq</td><td><input type="text" name="qq[]" /></td><td></td><td><a href="javascript:;" onclick="remove_self(this);">移除</a></td></tr></table>');
+			
+			}
+			
+			function remove_self(obj){
+				$(obj).parentsUntil('table').remove();
+			
+			}
+		
+		</script>
+		
+		
+		<div class="list-div">
+		<table width="90%" align="center" border="0" cellspacing="0" cellpadding="0" id="ge" style="display:none;">
+		
+		<tr><td class="label">产&nbsp;&nbsp;&nbsp;品</td><td colspan="3"><select id="sertype"  name="type_id"><option value="0">--选择产品--</option>
+		<volist name="cate" id="pl"><option value="{$pl.tid}">{$pl.fg}{$pl.labelname}</option></volist>
+		</select></td></tr>
+		<tr><td class="label">I&nbsp;&nbsp;&nbsp;P</td><td><input type="text" name="ip"></td><td class="label">域&nbsp;&nbsp;&nbsp;名</td><td><input type="text" name="domain"></td></tr>
+		<tr><td class="label">成交金额</td><td><input type="text" name="payment" /></td><td class="label">用户名</td><td><input type="text" name="cus_username" /></td></tr>
+		<tr><td class="label">开始时间</td><td><input name="from" value="{:date('Y-m-d')}" class="Wdate" type="text" onClick="WdatePicker()"></td><td class="label">到期时间</td><td><input name="to" class="Wdate" type="text" onClick="WdatePicker()" value="<php>echo date('Y-m-d',strtotime('next year'));</php>"/></td></tr>
+		<tr><td class="label">备&nbsp;&nbsp;&nbsp;注</td><td colspan="3"><textarea cols="60" rows="6" name="note"></textarea></td></tr>
+		</table>
+		</div>
+		<div class="button-div">
+        
+        {__TOKEN__}
+			<input type="submit" name="sbt" value=" 确定 " class="button"  />
+			<input type="button" value=" 返回 " class="button" onclick="window.location.href='__URL__'"/>
+		</div>	
+		</form> 
+</div>
+</div>
+<script language="javascript">
+$(function(){
+	$('#custp').change(function(){
+	//alert(1);
+		if($(this).val()!=0&&$(this).val()!=5){
+			$('#ge').show();
+		
+		}else{
+			$('#ge').hide();
+		}
+	
+	})
+
+})
+
+</script>
+	<include file="Public:n_footer" />

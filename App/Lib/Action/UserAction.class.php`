@@ -1,0 +1,370 @@
+<?php
+// 本类由系统自动生成，仅供测试用途
+	class UserAction extends CommonAction{
+	
+	public function index(){
+		$User=D('user');
+		//$boss=$User->where('department=0')->getField('uname');
+		$total=$User->count();
+		$this->assign('total',$total);
+		$this->assign('boss',$boss);
+		$Depar=D('department');
+		$depart=$Depar->order('concat(path,"-",did) asc')->select();
+		$this->assign('depart',$depart);//部门数据 
+		$data=array();
+		foreach($depart as $key=>$val){
+
+			$data[$key]['dname']=$val['dname'];
+			$data[$key]['user']=$User->Field('uid,uname,userswitches')->where('department='.$val['did'])->order('userswitches desc')->select();
+		}
+		//$this->assign('user',$alluser);
+		//dump($data);
+		$this->assign('data',$data);//员工关系数据
+		$this->display();
+	}
+	//添加部门
+	public function add_depart(){
+		if(isset($_POST['departname'])){
+		//	dump($_POST);
+			$Dpart=D('department');
+			$data=array_map('trim',$_POST);
+		//	dump($data);
+			$data['parentid']=array_pop(explode('-',$data['path']));
+			$data['addtime']=time();
+			$data['dname'] = $data['departname'];
+		//	dump($data);
+		//	exit;
+			$tag=$Dpart->add($data);
+			if($tag){
+				$this->success('添加成功^_^!');
+			}else{
+				$this->error('未成功添加');
+			}
+		}else{
+			//dump(get_dcate());
+			$department=get_dcate();
+			//dump($department);
+			$this->assign('d',$department);
+			$this->display();
+		}
+	}
+	//添加员工
+	public function add_member(){
+
+		if(isset($_POST['memName'])){
+			$passwd=trim($_POST['passw']);
+			$User=D('user');
+            if(!$User->autoCheckToken($_POST)){
+                 $this->error('请不要重复提交');
+            }
+			if(empty($_POST['depart'])){
+				$this->error('请选择员工部门');
+			}
+			$data['uname']=trim($_POST['memName']);
+			$data['loginname']=trim($_POST['loginname']);
+			$data['password']= md5($passwd);
+			$data['department']=trim($_POST['depart']);
+			
+			$data['email']=trim($_POST['email']);
+			$data['qq']=trim($_POST['qq']);
+			$data['mobile']=trim($_POST['mobile']);
+			$data['address']=trim($_POST['address']);
+			$data['rank']=trim($_POST['zhicheng']);
+			$data['userswitches'] = trim($_POST['userswitches']);
+			$data['xgpassword'] = 0;
+		/* 	echo '<pre>';
+			var_dump($data);
+			echo "</pre>"; 
+		*/
+			
+			$tag=$User->add($data);
+			if($tag){
+				$this->success('新员工添加成功');
+			}else{
+				$this->error('添加失败');
+			}
+		}else{
+			$department=get_dcate();
+				//dump($department);
+			$this->assign('d',$department);
+			$this->display();
+		}
+	}
+	//成员信息表
+	public function mem_edit(){
+		if(!$_POST['sbt']){
+			$uid=$_GET['memid'];
+			$User=D('user');
+			//echo C('DB_PREFIX');
+			$info=$User->query('select u.*,d.dname from '.C('DB_PREFIX').'user as u,'.C('DB_PREFIX').'department as d where d.did=u.department and uid='.$uid);
+				//echo $User->getLastSql();
+		//	dump($info);
+			//exit;
+			$this->assign('info',$info);
+			$department=get_dcate();
+				//dump($department);
+			$this->assign('d',$department);
+			$this->display();
+		}else{
+			//管理员修改员工信息
+			$map['uname']=$_POST['uname'];
+			$map['department']=$_POST['department'];
+			if(!empty($_POST['password'])){
+				$map['password']=md5($_POST['password']);
+			}
+			$map['loginname']=trim($_POST['loginname']);
+			$map['email']=trim($_POST['email']);
+			$map['qq']=trim($_POST['qq']);
+			$map['mobile']=trim($_POST['mobile']);
+			$map['address']=trim($_POST['address']);
+			$map['userswitches']=trim($_POST['userswitches']);
+		//	dump($map);
+			$uid=$_GET['memid'];
+			if(D('user')->where('uid='.$uid)->save($map)){
+				$this->success('修改成功',__URL__);
+			}else{
+				$this->error('修改失败',__URL__);
+				
+			}
+			//dump($map);
+		
+		}
+	}
+	public function meminfo(){
+		//修改自己的信息页面
+		$uid=$_GET['id'];
+		$User=D('user');
+		//echo C('DB_PREFIX');
+		$info=$User->query('select u.*,d.dname from '.C('DB_PREFIX').'user as u,'.C('DB_PREFIX').'department as d where d.did=u.department and uid='.$uid);
+		//echo $User->getLastSql();
+		//dump($info);
+		$this->assign('info',$info);
+		$this->display();
+	}
+	//保存个人修改信息
+	public function modinfo(){
+		if(D('User')->where('uid='.Session('uid'))->save($_POST)){
+			$this->success('修改成功',__URL__);
+		}else{
+			$this->error('未做修改',__URL__);
+		}
+	}
+
+	public function modipass(){
+		//修改自己的密码
+		if($_POST['pawd']&&(trim($_POST['pawd'])==trim($_POST['repawd']))){
+			$map['password']=md5(trim($_POST['repawd']));
+			if(D('user')->where('uid='.Session('uid'))->save($map)){
+				$this->success('修改成功');
+			}else{
+				$this->success('未做修改');
+			}
+		}else{
+				$this->error('请确认两次密码输入一致');
+		
+		}
+	}
+	//登录员工登录记录
+	public function user_login_log(){
+		import('ORG.Util.Page');
+		$user_log = M('user_login_record');
+		$count = $user_log->count();
+		$Page = new Page($count,25);
+		$show = $Page->show();
+		$data = $user_log->order('optime')->limit($Page->firstRow.','.$Page->listRows)->select();
+	//	dump($data);	
+		$this->assign('data',$data);
+		$this->assign('page',$show);
+		$this->display();
+	}
+	//删除员工登录记录
+	/* Public function dele(){
+		$user_log = M('user_login_record');
+		$dd = $user_log->delete($_GET['id']);
+		if($dd){
+			$this->success('删除成功！！','index');
+		}else{
+			$this->error('删除失败！！');
+		}
+	} */
+	public function sech(){
+		import('ORG.Util.Page');
+		$user_log = M('user_login_record');
+		$count = $user_log->count();
+		$Page = new Page($count,25);
+		$show = $Page->show();
+	//	echo $_POST['username'];
+		$date['user'] = array('like','%'.$_POST['username'].'%' );
+		$data = $user_log->where($date)->order('optime')->limit($Page->firstRow.','.$Page->listRows)->select();
+	//	dump($data);
+			if(empty($data)){
+				$this->Error('没有你查找的用户！！！');
+			}	
+		$this->assign('data',$data);
+		$this->assign('page',$show);
+		$this->display('user_login_log');
+	}
+	public function authset(){
+		
+		if($_GET['userid']){
+			$perm=get_perm_m($_GET['userid']);
+			if(isset($_GET['actname'])){
+				if(in_array($_GET['checkstr'],$perm)){
+					echo 1;
+				}else{
+					echo 0;
+				}
+			}else{
+				$this->assign('permission',$perm);
+				$where['uid']=$_GET['userid'];
+				$level=D('user')->where($where)->getField('permLevel');
+				$this->assign('level',$level);
+				$this->display();
+			}
+		}else{
+		
+			if(isset($_GET['groupid'])){
+				$perm=get_perm_d($_GET['groupid']);
+				if(in_array($_GET['checkstr'],$perm)){
+					echo 1;
+				}else{
+					echo 0;
+				}
+			}else{
+			
+				$department=get_dcate();
+				//dump($department);
+				$this->assign('d',$department);
+				$this->display('setting');
+			
+			}
+		}
+	}
+	
+	//保存个人权限设置
+	public function authset_save(){
+		//dump($_POST);
+		$User=D('User');
+		if(isset($_POST['inherit'])){
+			$save['inherit']=$_POST['inherit'];
+			$save['permLevel']='1';
+			$save['perm']='';
+			if($User->where('uid='.$_POST['modiId'])->save($save)){
+				$this->success('设置成功',__URL__);
+			}else{
+				$this->error('设置失败',__URL__);
+			}
+		}else{
+			$save['perm']=join(',',$_POST['perm']);
+			$save['inherit']='2';
+			$save['permLevel']=$_POST['level'];
+			if($User->where('uid='.$_POST['modiId'])->save($save)){
+				$this->success('设置成功',__URL__);
+			
+			}else{
+				$this->error('设置失败',__URL__);
+			}
+		}
+
+		
+	}
+	//部门权限
+	public function setting_save(){
+		if(isset($_POST['depart'])){
+			$map['perm']=join(',',$_POST['perm']);
+			if(D('department')->where('did='.$_POST['depart'])->save($map)){
+				$this->success('设置成功');
+			}else{
+				$this->error('未做更改',__URL__);
+			}
+		}
+	}
+	
+	//工作移交
+	public function change_owner(){
+		if(isset($_POST['sbt'])){
+			$save['salemanId']=$_POST['to_saleman'];
+			$change['id']=array('in',$_POST['changeId']);
+			$Od=D('order');
+			if(D('cus_info')->where($change)->save($save)){
+				$ochan['cusid']=array('in',$_POST['changeId']);
+				$oa=$Od->where($ochan)->select();
+				if(empty($oa)){
+					$this->success('移交成功',__URL__);
+				}else{
+				
+					$osa['owner']=$_POST['to_saleman'];
+					if($Od->where($ochan)->save($osa)){
+						$this->success('移交成功',__URL__);
+					}else{
+						$path='CRM_ERROR_CHANGE_OWNER.log';
+						write_log(LOG_PATH.$path,"CUSID:".join($_POST['changeId'])."\t FROM:".$_POST['from_saleman']."\t TO:".$_POST['to_saleman']."\n");
+					}
+				}
+			}else{
+				$this->error('未移交',__URL__);
+			}
+		}else{
+			
+			$this->assign('from_man', allusers());
+			$this->assign('to_man',saleman());
+			$this->display();
+		}
+	} 
+	
+	public function ownerSearch(){
+		//视图查询条件
+		
+		if(!empty($_GET['salemanId'])){
+			$data['salemanId']=$_GET['salemanId'];
+		
+	
+			$Cus=D('cus_info');
+			$ret=$Cus->Field('id,cusname,contact,email,qq,mobile,address,custype')->where($data)->select();
+			//$fdata=$Cus->getLastSql();
+			$Od=D('order');
+			
+			foreach($ret as &$v){
+				$v['contact_list']=array(
+									'contact'=>explode('|',$v['contact']),
+								
+										'mobile'=>explode('|',$v['mobile']),
+								
+										'email'=>explode('|',$v['email']),
+										'qq'=>explode('|',$v['qq']),
+										
+										);
+										
+				$v['contact']=$v['contact_list']['contact'][0];
+				$v['mobile']=$v['contact_list']['mobile'][0];
+				$v['qq']=$v['contact_list']['qq'][0];
+			
+				$mn=$Od->where('`cusid`='.$v['id'])->sum('payment');
+				$fmession=$Od->Field('`ip`,`to`,`payment`')->where('`cusid`='.$v['id'])->order('`to` asc')->select();
+				$v['firstip']=$fmession[0]['ip'];
+				$v['firstedtime']=$fmession[0]['to'];
+				
+				$v['vp_money']=$mn;
+				
+			}
+			$this->assign('cust',$ret);
+			$fdata = $this->fetch();
+			$this->ajaxReturn($fdata,'正确~',1);
+		}else{
+			$this->ajaxReturn('','无~',0);
+		}
+	
+	
+	}
+	public function remove_user(){
+		$uid=$_POST['user'];
+		if(D('user')->where('uid='.$uid)->delete()){
+			print 1;
+		}else{
+			print 0;
+		}
+	}
+
+//class end!
+}
+?>

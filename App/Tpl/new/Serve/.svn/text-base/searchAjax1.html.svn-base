@@ -1,0 +1,5 @@
+<tr><th align="center">操作</th><th>客户名称</th><th>IP</th><th>提交时间</th><th>处理状态</th><th>内容</th><th>备注</th></tr>
+				<volist name="server" id="se">
+				<tr><td><a href="__URL__/detail/docid/{$se.id}">查看</a>&nbsp;&nbsp;&nbsp;<a href="__URL__/doneIt/docid/{$se.id}">处理</a></td><td>{$se.cusname}</td><td>{$se.ip}</td><td>{$se.ctime|date='Y-m-d',###}</td><td><if condition="$se.status eq '1'"><font color="red">未处理</font><elseif condition="$se.status eq '2'" /><font color="green">处理中</font><elseif condition="$se.status eq '3'" /><font color="#ccc;">处理完成</font></if></td><td>{$se.content}</td><td>{$se.note}</td></tr>
+			
+				</volist>

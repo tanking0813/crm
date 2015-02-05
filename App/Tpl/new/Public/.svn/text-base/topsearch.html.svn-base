@@ -1,0 +1,11 @@
+ <div id="tools">
+        	<div class="inner">
+        		<div class="book-tool">
+        			<div class="content cf">
+        				
+        			
+        				<a class="share y" href="javascript:void(0)" title="最新">最新工作<i>&nbsp;</i></a>
+        			</div>
+        		</div>
+        	</div>
+        </div>

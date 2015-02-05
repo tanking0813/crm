@@ -1,0 +1,4 @@
+<a href="javascript:;" onclick="EV_closeAlert();" class="y">关闭</a>
+<ul width="100%">
+<volist name="leave" id="qj"><li id="bkb{$qj.id}">你在 {$qj.ctime|date='Y-m-d H:i',###} 的 <if condition="$qj.action eq 'qj'">请假<elseif condition="$qj.action eq 'wc'" />外出</if> <if condition="$qj.status eq '2'"><font color="green">已审核通过</font><elseif condition="$qj.status eq '3'" /><font color="red">没有被批准</font></if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="set_readed_mess('{$qj.id}');">{$qj.reason}</a></li></volist>
+</ul>

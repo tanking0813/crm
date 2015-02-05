@@ -1,0 +1,47 @@
+<tr><th>客户名</th><th>产品名</th><th>IP&nbsp;/&nbsp;域名</th><th>存放位置</th><th>销售人</th><th>成交金额</th><th><a href="javascript:listTable.sort('fromtime',{$shunxu},'{$param}'); ">开始时间</a></th><th><a href="javascript:listTable.sort('totime',{$shunxu},'{$param}'); ">到期时间</a><img id="sortImg" src="__PUBLIC__/Images/wl/sort_desc.gif "/></th><th>状态</th><th>操作</th></tr>
+			<volist name="order" id="od">
+			<tr align="center" id="b_bkb{$od.order_id}">
+			
+			<td><a href = "#">{$od.cusname}</a></td>
+			<td>{$od.labelname}</td>
+			<td><?php
+				if(empty($od['ip'])){
+					echo $od['domain'];
+				}elseif(strpos($od['ip'],',')===false){
+					echo $od['ip'];
+				}else{
+					$odip=explode(',',$od['ip']);
+					$end=array_pop($odip);
+					$lastip_pos=array_pop(explode('.',$end));
+					echo $odip[0].'-'.$lastip_pos;
+				}
+				?>
+			</td>
+			<td>{$od.position}</td>
+			<td>{$od.salename}</td>
+			<td>{$od.payment}</td>
+			<td>{$od.fromtime|date='Y-m-d',###}</td>
+			<td>{$od.totime|order_end_check}</td>
+			<td><php>if(!empty($od['paid'])){ echo '<font color="gray">正常</font>';}else{echo '<font color="red">未入账</font>';}</php></td>
+			
+<!-- 			<td>
+			<php>
+			if(($od['paid']) = 0)
+				{echo '<font color="red">未入账</font>';}
+			elseif ($od['paid'] < $od['payment'] && $od['paid'] > 0) 
+				{echo '<font color="red">入账一般</font>';} 
+			else
+				{ echo '<font color="gray">正常</font>';}
+			</php>
+			</td>
+ -->			
+			<td>
+			<a href="__URL__/order_detail/num/{$od.order_id}?{$param}"><img src="__PUBLIC__/Images/wl/icon_view.gif" alt="查看" title="查看" /></a>
+			<if condition="check_permission('Order:edit_order')">&nbsp;&nbsp;&nbsp;<a href="__URL__/edit_order/id/{$od.order_id}?{$param}"><img src="__PUBLIC__/Images/wl/icon_priv.gif" alt="管理" title="管理" /></a></if>
+			<if condition="check_permission('Order:remove_order')">
+			&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="remove_order('{$od.order_id}')"><img src="__PUBLIC__/Images/wl/icon_trash.gif" alt="删除" title="删除" /></a></if></td>
+			</if></tr>
+			</volist>
+			<tr align="center"><td colspan="8">{$page}&nbsp;&nbsp;&nbsp;<span style="float:right;color:orange;">应付金额统计：{$count_payment}&nbsp;&nbsp;&nbsp;实付金额统计：{$count_paid}</span ></td></tr>
+
+	

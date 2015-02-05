@@ -1,0 +1,91 @@
+<include file="Public:n_header" />
+<div class="list-div">
+<form action="#" method="post" class="cf">
+<table align="center" border="0" cellspacing="3" cellpadding="1">
+<caption><h3>CDN资源申请记录</h3></caption>
+	<tr><th>申请人</th><th>申请内容</th><th>申请时间</th><th>审核状态</th><th>最后操作</th><th>操作内容</th><th>操作</th></tr>
+	<volist name="resource" id="rs"><tr><td>{$rs.creator_text}</td><td>{$rs.reason}</td><td>{$rs.ctime|date='Y-m-d H:i',###}</td><td><if condition="($rs.status eq 1) or ($rs.status eq 2)">审核中<elseif condition="$rs.status eq 3" />审核通过</if></td><td><php>if(!empty($rs['lastman'])){echo $rs['lastman'];}elseif(!empty($rs['firstman'])){echo $rs['firstman'];}</php></td><td><php>if(!empty($rs['lastman'])){echo $rs['last_content'];}elseif(!empty($rs['firstman'])){echo $rs['resource'];}</php></td><td><a href="{$rs.id}">{$rs.chuli}</td></tr></volist>
+</table>
+</form>
+</div>
+
+ <div id="shenhe" class="show_pop"  style="width:300px;">  	
+       
+        <form id="tform2" method="post" action="__URL__/shenpi">
+	<table width="100%" height="150" align="center">
+	<tr align="center"><td colspan="2"><label for="zhun1">同意</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="zhun1" type="radio" name="zhun" value="1" checked  /></td></tr>
+	<tr align="center"><td colspan="2"><label for="zhun2">拒绝</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="zhun2" name="zhun" value="0" /></td></tr>
+	<tr align="center" id="apply"><td>资源：</td><td><textarea cols="30" rows="3" name="resource"></textarea></td></tr>
+	
+	<tr><td align="right"><input type="hidden" name="buzhou"  /><input type="hidden" name="sid"  /><input type="submit" value=" 确 认 " /></td><td><input type="button" onclick="javascript:EV_closeAlert();" name="" value=" 取 消 " /></td></tr>
+	</table>
+
+   </form>    
+</div>
+ <div id="shenhe1" class="show_pop"  style="width:400px;">  	
+       
+        <form id="tform3" method="post" action="__URL__/shenpi">
+	<table width="100%" align="center">
+	<tr><td>资源：</td><td><textarea name="resource"  cols="30" rows="3" readonly></textarea></td></tr>
+	<tr><td>采购备注：</td><td><textarea cols="30" rows="3" name="last_content"></textarea></td></tr>
+	<tr><td>支付金额：</td><td><input type="text"  name="money"  /></td></tr>
+	<tr><td align="right"><input type="hidden"  name="zhun"  value="1" /><input type="hidden" name="buzhou"  /><input type="hidden" name="sid"  /><input type="submit" value=" 提 交 " /></td><td><input type="button" onclick="javascript:EV_closeAlert();" name="" value=" 取 消 " /></td></tr>
+	</table>
+
+   </form>    
+</div>
+ <div id="shenhe2" class="show_pop"  style="width:400px;">  	
+       
+        <form id="tform4" method="post" action="__URL__/ruzhang">
+	<table width="100%" align="center">
+	<tr><td>支出金额：</td><td><input type="text"  name="money" readonly /></td></tr>
+	<tr><td>入账备注：</td><td><textarea cols="30" rows="3" name="rz_note"></textarea></td></tr>
+	<tr><td align="right"><input type="hidden" name="sid"  /><input type="submit" value=" 提 交 " /></td><td><input type="button" onclick="javascript:EV_closeAlert();" name="" value=" 取 消 " /></td></tr>
+	</table>
+
+   </form>    
+</div>
+
+<script language="javascript">
+	$(function(){
+		$('#zhun1').click(function(){
+			if($(this).attr('checked')==true){
+				$('#apply').html('<td>资源：</td><td><textarea cols="30" rows="3" name="resource"></textarea></td>');
+			}else{
+				$('#apply').html('<td>原因：</td><td><textarea cols="30" rows="3" name="reason"></textarea></td>');
+			}
+		})
+		
+		$('#zhun2').click(function(){
+			if($(this).attr('checked')==true){
+				$('#apply').html('<td>原因：</td><td><textarea cols="30" rows="3" name="reason"></textarea></td>');
+			}else{
+				$('#apply').html('<td>资源：</td><td><textarea cols="30" rows="3" name="resource"></textarea></td>');
+			}
+		})
+	
+	})
+	function cdn_shenpi(id,status){
+		EV_modeAlert('shenhe');
+		$('#tform2 input[name="buzhou"]').val(status);
+		$('#tform2 input[name="sid"]').val(id);
+	
+	}
+	function cdn_caigou(id,status,other){
+		EV_modeAlert('shenhe1');
+		$('#tform3 input[name="buzhou"]').val(status);
+		$('#tform3 input[name="sid"]').val(id);
+		$('#tform3 textarea[name="resource"]').html(other);
+		//alert(other);
+	}
+	function cdn_ruzhang(id,money){
+		EV_modeAlert('shenhe2');
+		$('#tform4 input[name="money"]').val(money);
+		$('#tform4 input[name="sid"]').val(id);
+	
+	}
+	
+</script>
+
+	 		
+<include file="Public:n_footer" />

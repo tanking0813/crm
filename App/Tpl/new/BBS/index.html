@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta name="Copyright" content="Copyright (c) 2009 thinkPHP.cn" />
+        <meta name="generator" content="ThinkPHP {$Think.version}" />
+        <meta name="Keywords" content="中光电信" />
+        <meta name="description" content="中光电信" />
+        <title>{$title} - 中光电信</title>
+		<css href="__PUBLIC__/Css/General.css,__PUBLIC__/Css/main.css" />
+ <load href="__PUBLIC__/Js/jquery-1.4.2.js" />
+</head>
+<body>
+<div class="list-div">
+<table>
+<tr><th>标题</th><th>发布时间</th><th>发布人</th><th></th></tr>
+<volist name="content" id="ct"><tr align="center"><td><a href="__URL__/title_detail/id/{$ct.id}">{$ct.title}</a></td><td>{$ct.ctime|date='Y-m-d H:i',###}</td><td>{$ct.username}</td></tr></volist>
+</table>
+
+</div>
+</body></html>

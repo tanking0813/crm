@@ -1,0 +1,14 @@
+	
+	<include file="Public:n_header" />
+<div class="tab-div">
+<div id="tabbody-div">
+	<div class="list-div">	
+				<table width="90%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+				<caption><h3>处理记录</h3></caption>
+				<tr><th>时间</th><th>内容</th><th>处理人</th><th>产品IP</th><th>设备型号</th><th>存放位置</th><th></th></tr>
+				<volist name="usrtable" id="vv"><tr><td>{$vv.labelname}</td><td>{$vv.order_ip|long2ip}</td><td>{$vv.order_domain}</td><td>{$vv.products_ip}</td><td>{$vv.products_model}</td><td>{$vv.store}</td></tr></volist></table>
+			</div>
+			
+				 </div>
+	 </div>
+    <include file="Public:n_footer" />

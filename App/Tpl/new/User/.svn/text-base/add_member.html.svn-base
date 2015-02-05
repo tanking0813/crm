@@ -1,0 +1,49 @@
+<include file="Public:n_header" />
+
+	 		
+<div class="tab-div">
+<div id="tabbody-div">
+<form method="post" id="addkehu" method="post" action="__URL__/add_member">
+			<table id="general-table" align="center" cellpadding="3" cellspacing="1">
+			
+<caption><h4>添加员工</h4></caption>
+<tr><td class="label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</td><td><input type="text" class="input_text" name="memName" ></td></tr>
+<tr><td class="label">登&nbsp;录&nbsp;名:</td><td><input type="text" class="input_text" name="loginname" /></td></tr>
+
+<tr><td class="label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</td><td><input type="text" class="input_text" name="passw" value="test" ></td></tr>
+<tr><td class="label">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门:</td><td>
+	<select name="depart" style="display:inline-block;">
+		<option  selected>选择部门</option>
+		<volist name="depart" id="dept">
+			<option value="{$dept.did}">{$dept.dname}</option>
+		</volist>
+	</select>
+</td></tr>
+<tr><td class="label">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:</td><td><input type="text" class="input_text" name="zhicheng" value="普通员工"></td></tr>
+<tr><td class="label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:</td><td><input type="text" class="input_text" name="email" ></td></tr>
+<tr><td class="label">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:</td><td><input type="text" class="input_text" name="address" ></td></tr>
+<tr><td class="label">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机:</td><td><input type="text" class="input_text" name="mobile" ></td></tr>
+<tr><td class="label">Q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q:</td><td><input type="text" class="input_text" name="qq" ></td></tr>
+<tr><td class="label">是否禁用:</td><td>
+	<input type="radio" name="userswitches" checked='checked' value="1" />
+    启用
+	<input type="radio" name="userswitches" value="0" />
+    禁用
+</td></tr>
+
+</table>
+
+<div class="button-div">
+{__TOKEN__}
+				<input type="hidden" name="addId" value="{$Think.session.uid}" />
+						<input type="submit" value=" 确定 " class="button" />
+						<input type="reset" value=" 返回 " class="button" onclick="window.location.href='__URL__'"/>
+					</div>
+
+
+</div>
+   </form> 
+
+ </div>			
+
+    <include file="Public:n_footer" />

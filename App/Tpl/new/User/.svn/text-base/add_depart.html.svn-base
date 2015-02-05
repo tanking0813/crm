@@ -1,0 +1,23 @@
+<include file="Public:n_header" />
+<div id="tabbody-div">
+
+        <form id="addzu" method="post" action="__URL__/add_depart">
+        	<table align="center"><caption><h4>添加部门</h4></caption>
+
+        		<tr><td>部门名称：</td><td><input type="text" name="departname" /></td></tr>
+        	
+
+        	</table>
+  
+
+	<div class="button-div">
+			
+						<input type="submit" value=" 确定 " class="button" />
+					
+					</div>
+		
+	</form>  
+	 </div>
+	   
+
+    <include file="Public:n_footer" />

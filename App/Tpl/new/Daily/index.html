@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta name="Copyright" content="Copyright (c) 2009 thinkPHP.cn" />
+        <meta name="generator" content="ThinkPHP {$Think.version}" />
+        <meta name="Keywords" content="中光电信" />
+        <meta name="description" content="中光电信" />
+        <title>{$title} - 中光电信</title>
+		<css href="__PUBLIC__/Css/General.css,__PUBLIC__/Css/main.css" />
+ <load href="__PUBLIC__/Js/jquery.js" />
+<load href="__PUBLIC__/Js/My97DatePicker/WdatePicker.js" />
+<script type="text/javascript" src="__PUBLIC__/ueditor/editor_config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/editor_all.js"></script>
+<link rel="stylesheet" type="text/css" rel="__PUBLIC__/ueditor/themes/default/ueditor.css" />
+</head>
+<body>
+<h1><span class="action-span"><a href="__URL__/write_daily">新建日志</a></span></h1>
+	<div style="width:100%;height:5px;clear:both;"></div>
+		<div class="list-div">
+		<form action="__URL__/delete_daily" method="post" id="thf">
+		<volist name="daily" id="dl">
+		<table width="90%" align="center" border="0" cellspacing="0" cellpadding="0" id="ge">
+		<tr><th align="left">&nbsp;&nbsp;&nbsp;<input type="checkbox" name="dai_id[]" value="{$dl.id}" /></th><th align="center"><a href="__URL__/detail/daily_id/{$dl.id}" style="font-size:12px;font-weight:bold;">{$dl.title}</a></th><th width="20%"><a href="__URL__/detail/daily_id/{$dl.id}">查看全文</a>&nbsp;&nbsp&nbsp;&nbsp;<a href="__URL__/edit_daily/daily_id/{$dl.id}">编辑</a></th></tr>
+		</table>
+		<div style="width:90%;padding-left:30px;margin-top:5px;">
+		<span style="width:90%;height:50px;color:#acacac;font-size:14px;padding-left:30px;margin-top:5px;"><if condition="$dl.type eq 'p'">私人日志<elseif  condition="$dl.type eq 'j'" />工作日志</if>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;日志日期&nbsp;&nbsp;{$dl.time|date='Y-m-d',###}&nbsp;&nbsp;{$dl.time|week_zh_cn}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;最后修改&nbsp;&nbsp;{$dl.lasttime|date='Y-m-d',###}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;评论&nbsp;&nbsp;{$dl.reply_total}&nbsp;&nbsp;&nbsp;</span>
+		<div style="width:90%;height:auto;overflow:clip;margin:5px;">{$dl.content}</div>
+		</div>
+			<volist name="dl.reply" id="repc">
+			<div style="width:98%;height:10px;margin:0 auto;clear:both;border-top:1px #acacac dashed;"></div>
+			<div style="width:90%;height:auto;padding-left:50px;overflow:clip;margin:5px;">
+			<span style="color:#996699"><strong>{$repc.reperson}</strong> 于 {$repc.time|date='Y-m-d H:i',###} 评论：</span>{$repc.reply}
+			</div>
+			</volist>
+			<div style="width:100%;height:2px;clear:both;"></div>
+		</volist>
+		</form>
+		</div>
+		<span><a href="javascript:;" onclick="all_select();">全选</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:;" onclick="de_select();">反选</a>&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="return checksubmit();">删&nbsp;除</a></span>
+		
+		<div class="button-div">{$page}</div>
+		</body>
+		</html>
+		<script type="text/javascript">
+			function all_select(){
+				$('input[name="dai_id[]"]').attr('checked',true);
+				
+			
+			}
+			
+			function de_select(){
+				$('input[name="dai_id[]"]').each(function(){
+					if($(this).attr('checked')){
+						$(this).attr('checked',false);
+					}else{
+						$(this).attr('checked',true);
+					
+					}
+				
+				});
+
+			}
+			
+			
+			function checksubmit(){
+				var len=$('input[name="dai_id[]"]:checked').length;
+				if(len>0){
+					$('#thf').submit();
+				}else{
+					return false;
+				}
+			
+			}
+		
+		</script>

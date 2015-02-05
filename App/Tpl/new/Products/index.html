@@ -1,0 +1,62 @@
+<include file="Public:n_header" />
+<div class="list-div">
+			<table border="0" width="500" cellpadding="0" cellspacing="0">
+			<form action="" method="get" class="cf">
+			<tr><td>客户名称：</td><td><input type="text" class="input_text" name="username" onkeyup="search();" value="{$param.cusname}" /></td><td>机柜：</td><td><select onchange="search();" name="jgui"><option value="0">请选择</option><volist name="store" id="jg"><option value="{$jg.id}" <eq name="jg.id" value="$param.store">selected</eq>>{$jg.fullname}</option></volist></select></td><td>ip</td><td><input  type="text" class="input_text" name="ip" onkeyup="search();" value="{$param.ip}" /></td><td><input class="srchbutton" type="button" value="&nbsp;" onclick="search();" title="搜索" /></td></tr>
+	 		</form>
+		
+			</table>
+			</div>
+
+	<div class="list-div" id="mess">
+	 		
+	
+	</div>
+		<script language="javascript">
+				$(function(){
+					var cusname="{$param.cusname}";
+					var store="{$param.store}";
+					var ip="{$param.ip}";
+					var p="{$param.p}";
+					$.getJSON('__URL__/prodAjax',{'cusname':cusname,'store':store,'ip':ip,'p':p},function(data){
+							$('#mess').html(data.data);
+					},'json');
+				
+				})
+				
+				function search(){
+				
+					
+					$.getJSON('__URL__/prodAjax',{'cusname':$('input[name="username"]').val(),'store':$('select[name="jgui"]').val(),'ip':$('input[name="ip"]').val()},function(data){
+							//alert(data.data);
+							$('#mess').html(data.data);
+					},'json');
+				}
+							
+
+		function imglist(url){
+			$.getJSON(url,function(data){
+				$('#mess').html(data.data);
+						
+			})
+					
+		}
+		function rem_conf(proid){
+			 r=confirm("确认删除?");
+			if (r==true){
+
+				$.post('__URL__/remove_products',{'id':proid},function(data){
+					if(data==1){
+						$('#bkb'+proid).remove();
+					
+					}else{
+						alert('系统错误,未删除');
+					}
+			
+				})
+			}
+		}
+
+		</script>
+	
+    <include file="Public:n_footer" />

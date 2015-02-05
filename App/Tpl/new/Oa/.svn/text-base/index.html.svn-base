@@ -1,0 +1,239 @@
+<include file="Public:n_header" />
+<script language="javascript">
+				$(function(){
+					search();
+				
+				})
+				
+				function search(){
+				
+					
+					$.getJSON('__URL__/kq_history_search',{'stime':$('input[name="stime"]').val(),'etime':$('input[name="etime"]').val()},function(data){
+							//alert(data);
+							$('#kqhismess').html(data.data);
+					},'json');
+				}
+</script>
+<div class="tab-div">
+			<div id="tabbar-div">
+				<p>
+					<span class="tab-front" id="general-tab">上下班登记</span>
+					<span class="tab-back" id="kq_tab">考勤记录</span>
+					<span class="tab-back" id="detail-tab">请假登记</span>
+					<span class="tab-back" id="mix-tab">请假历史记录</span>
+					<span class="tab-back" id="mix-wc">外出登记</span>
+					<span class="tab-back" id="mix-wchis">外出记录</span>
+				</p>
+			</div>
+<div class="list-div" style="display:block;">
+<form  method="post" id="The1">
+<table cellspacing='1' cellpadding='3'>
+	<caption><h3 id="tm_f">{:date('Y-m-d H:i:s  D')}</h3></caption>
+  <tr><th>标准时间</th><th>登记</th><th>情况说明</th></tr>
+  <tr align="center"><td>上班&nbsp;&nbsp;&nbsp;{$kaoqin.std_up|date='H:i:s',###}</td><td><span id="sb_up"><if condition="$dksj eq 's'">{$sbdk}</span><font color="red">{$delay}</font></if>{$kaed}{$upmess}</td><td>{$updesc}</td></tr>
+  <tr align="center"><td>下班&nbsp;&nbsp;&nbsp;{$kaoqin.std_down|date='H:i:s',###}</td><td><span id="sb_down"><if condition="$dksj eq 'x'">{$xbdk}</span><font color="red">{$delay}</font></if>{$downmess}</td><td>{$downdesc}</td></tr>
+</table>
+<font color="green" size="4">上班登记时间范围{$kaoqin.am_s|date='H:i:s',###}至{$kaoqin.am_e|date='H:i:s',###}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下班登记时间范围{$kaoqin.pm_s|date='H:i:s',###}至{$kaoqin.pm_e|date='H:i:s',###}</font>
+</form>
+</div>
+<div class="list-div" style="display:none;">
+
+<table cellspacing='1' cellpadding='3'>
+	<caption><h3 id="tm_f">考勤历史记录</h3></caption>
+</table>
+ <div class="list-div">
+			<table border="0" width="500" cellpadding="0" cellspacing="0">
+			<form action="" method="get" class="cf">
+			<tr><td align="center">时间：</td>
+			<td><input class="Wdate" type="text" onClick="WdatePicker()" name="stime"  value="{:date('Y-m').'-01'}" />
+			至
+			<input class="Wdate" type="text" onClick="WdatePicker()" value="{:date('Y-m-d')}" name="etime" /></td>
+			
+			<td><input class="srchbutton" type="button" value="&nbsp;" onclick="search();" title="搜索" /></td></tr>
+		
+			
+	 		</form>
+			
+			</table>
+			</div>
+ <div class="list-div" id="kqhismess">
+<table cellspacing='1' cellpadding='3' align="center">
+  <tr><th>时间</th><th>姓名</th><th>上班打卡</th><th>上班迟到(分)</th><th>情况说明（上班）</th><th>下班打卡</th><th>早退(分)</th><th>情况说明（下班）</th><th>其他</th></tr>
+</table>
+</div>
+
+</div>
+
+<div class="list-div" style="display:none;">
+<form  action="__URL__/ask_leave" method="post" id="TheLeave">
+<table cellspacing='1' cellpadding='3'>
+	<caption><h3 id="tm_f">新建请假</h3></caption>
+  <tr><td class="label">请假事由</td><td colspan="3"><textarea name="reason" cols="50" rows="5"></textarea></td></tr>
+  <tr><td class="label">请假时间</td><td><input type="text" name="leave_start" value="{:date('Y-m-d')}" class="Wdate"  onClick="WdatePicker()" />&nbsp;时&nbsp;<input type="text" name="leave_start_h" value="{:date('H')}" size="2" maxlength="2" onclick="this.value=''" />&nbsp;分&nbsp;<input type="text" name="leave_start_m" value="{:date('i')}" size="2" maxlength="2" onclick="this.value=''" />&nbsp;&nbsp;&nbsp;&nbsp;<strong>至</strong>&nbsp;&nbsp;&nbsp;<input type="text" name="leave_end" value="{:date('Y-m-d')}" class="Wdate" onClick="WdatePicker()" />&nbsp;时&nbsp;<input type="text" name="leave_end_h" value="{:date('H')}" size="2" maxlength="2" onclick="this.value=''" />&nbsp;分&nbsp;<input type="text" name="leave_end_m" value="{:date('i')}" size="2" maxlength="2" onclick="this.value=''" /></td></tr>
+  <tr><td class="label">请假类型</td><td colspan="3"><select name="leave_type"><option value="0">-选择-</option><option value="事假" selected>事假</option><option value="病假">病假</option><option value="其他">其他</option></select></td></tr>
+  <tr><td class="label">是否发送提醒:</td><td colspan="3"><label for="is_warn_a">是</label><input id="is_warn_a" type="radio" name="is_warn" value="1" checked />&nbsp;&nbsp;&nbsp;&nbsp;<label for="is_warn_b">否</label><input id="is_warn_b" type="radio" name="is_warn" value="0" /></tr>
+</table>
+	<div class="button-div">
+    {__TOKEN__}
+						<input type="button" value=" 确定 " class="button" onclick="return check_me('TheLeave')" />
+						<input type="button" value=" 返回 " class="button" onclick="window.location.href='__URL__'" />
+					</div>
+</form>
+</div>
+
+<div class="list-div" style="display:none;">
+
+<table cellspacing='1' bgcolor="#ccc" cellpadding='3'>
+	<caption><h3 id="tm_f">请假历史记录</h3></caption>
+  <tr><th>事由</th><th>申请时间</th><th>请假类型</th><th>开始时间</th><th>结束时间</th><th>状态</th><th>审批人</th><th>审批备注</th></tr>
+  <volist name="history" id="his">
+  <tr align="center"><td width="40%" align="left">{$his.reason}</td><td>{$his.ctime|date='Y-m-d H:i',###}</td><td>{$his.leave_type}</td><td>{$his.leave_start|date='Y-m-d H:i',###}</td><td>{$his.leave_end|date='Y-m-d H:i',###}</td><td><eq name="his.status" value="2">已销假</eq><eq name="his.status" value="1">审理中</eq><eq name="his.status" value="0">未批准</eq></td><td>{$his.authman}</td><td width="20%"><php>if(!empty($his['auth_reason'])){echo $his['auth_reason'];}else{if(!empty($his['lasttime'])){ echo date('Y-m-d H:i',$his['lasttime']);}}</php></td></tr>
+  </volist>
+</table>
+</div>
+
+<div class="list-div" style="display:none;">
+<form  action="__URL__/ask_waichu" method="post" id="TheFWC">
+<table cellspacing='1' cellpadding='3'>
+	<caption><h3 id="tm_f">外出登记</h3></caption>
+  <tr><td class="label">外出原因</td><td colspan="3"><textarea name="wc_reason" cols="50" rows="5"></textarea></td></tr>
+  <tr><td class="label">外出时间</td><td><input type="text" name="wc_leave_start" value="{:date('Y-m-d')}" class="Wdate"  onClick="WdatePicker()" />&nbsp;时&nbsp;<input type="text" name="wc_leave_start_h" size="2" maxlength="2" value="{:date('H')}" onclick="this.value=''" />&nbsp;分&nbsp;<input type="text" size="2" maxlength="2" name="wc_leave_start_m" value="{:date('i')}" onclick="this.value=''" />&nbsp;&nbsp;&nbsp;<strong>至</strong>&nbsp;&nbsp;&nbsp;<input type="text" name="wc_leave_end" value="{:date('Y-m-d')}" class="Wdate" onClick="WdatePicker()" />&nbsp;时&nbsp;<input size="2" maxlength="2" type="text" name="wc_leave_end_h" value="{:date('H')}" onclick="this.value=''" />&nbsp;分&nbsp;<input type="text" size="2" maxlength="2" name="wc_leave_end_m" value="{:date('i')}" onclick="this.value=''" /></td></tr>
+</table>
+	<div class="button-div">
+        {__TOKEN__}
+						<input type="button" value=" 提 交 " class="button" onclick="return check_me('TheFWC')" />
+						<input type="button" value=" 返 回 " class="button" onclick="window.location.href='__URL__'" />
+					</div>
+</form>
+</div>
+
+<div class="list-div" style="display:none;">
+
+<table cellspacing='1' bgcolor="#ccc" cellpadding='3'>
+	<caption><h3 id="tm_f">外出记录</h3></caption>
+  <tr><th>外出原因</th><th>申请时间</th><th>开始时间</th><th>结束时间</th><th>状态</th><th>审批人</th><th>审批备注</th></tr>
+  <volist name="waichu" id="wc">
+	<tr align="center"><td width="50%"  align="left">{$wc.reason}</td><td>{$wc.ctime|date='Y-m-d',###}</td><td>{$wc.leave_start|date='Y-m-d H:i',###}</td><td>{$wc.leave_end|date='Y-m-d H:i',###}</td><td><eq name="wc.status" value="2">已审批</eq><eq name="wc.status" value="1">审理中</eq><eq name="wc.status" value="0">未批准</eq></td><td>{$wc.authman}</td><td width="15%"><php>if(!empty($wc['auth_reason'])){echo  $wc['auth_reason'];}else{if(!empty($wc['lasttime'])){echo date('Y-m-d H:i',$wc['lasttime']);}}</php></td></tr>
+  
+  </volist>
+</table>
+</div>
+</div>
+ <div id="modireason" class="show_pop"  style="width:350px;">  	
+       
+        <form id="tform5" method="post" action="__URL__/modiReason">
+	<table width="100%" height="200" align="center">
+	<tr><td>情况说明</td><td><textarea cols="30" rows="3" name="rtext"></textarea></td></tr>
+	<tr><td colspan="2"><input type="hidden" name="kqid"  /><input type="submit" name="" value="提交" /><input type="button" name="" value="取消" onclick="EV_closeAlert();" /></td></tr>
+	</table>
+	</form>
+
+</div>	
+					<script language="javascript">
+						$(function(){
+							var std=setInterval(function(){
+								var str=new Date();
+								//alert(str);
+								var ye=str.getFullYear();
+								var mo=str.getMonth()+1;
+								var da=str.getDate();
+								var ho=str.getHours();
+								var mi=str.getMinutes();
+								var se=str.getSeconds();
+								var we=str.getDay();
+								var wk='';
+								switch(we){
+								
+									case 0:
+										wk='Sun'
+										break;
+									case 1:
+										wk='Mon'
+										break;
+									case 2:
+										wk='Tue'
+										break;
+									case 3:
+										wk='Wen'
+										break;
+									case 4:
+										wk='Thu'
+										break;
+									case 5:
+										wk='Fri'
+										break;
+									case 6:
+										wk='Sat'
+										break;
+								
+								
+								}
+								//var stb=str.toLocaleString();
+								var strtime=ye+'-'+mo+'-'+da+' '+ho+':'+mi+':'+se+'   '+wk;
+								$('#tm_f').html(strtime);
+							},1000);
+							/*标签转换*/
+							$('#tabbar-div span').click(function(){
+								var ind=$(this).index();
+								$('#tabbar-div span:eq('+ind+')').attr('class','tab-front').siblings().attr('class','tab-back');
+								$('.tab-div>.list-div:eq('+ind+')').css('display','block').siblings().not($('#tabbar-div')).css('display','none');
+								
+								
+								
+								
+
+							});
+							
+							
+						});
+						
+						
+						function shangban(){
+						
+							$.post('__URL__/daka',{'mark':'up','sbt':true},function(data){
+								if(data!=0){
+									$('#sb_up').html(data);
+									window.location.href="__URL__";
+								}else{
+								
+									alert('未登记成功，请重新登记');
+								}
+							
+							});
+						
+						}
+						
+						function xiaban(){
+							
+							$.post('__URL__/daka',{'mark':'down','sbt':true},function(data){
+								if(data!=0){
+										$('#sb_down').html(data);
+										window.location.href="__URL__";
+								}else{
+								
+									alert('未登记成功，请重新登记');
+								}
+							
+							});
+						
+						}
+						function check_me(mess){
+							var reg1=/\S+/;
+							var checkstr=$('#'+mess+' input:first').val();
+							if(reg1.test(checkstr)){
+								$('#'+mess).submit();
+							}else{
+								alert('请键入请假理由');
+								return false;
+							}
+						}
+						
+						
+						function reason_write(id){
+							EV_modeAlert('modireason');
+						
+							$('#modireason input[name="kqid"]').val(id);
+						}
+					</script>
+					
+<include file="Public:n_footer" />

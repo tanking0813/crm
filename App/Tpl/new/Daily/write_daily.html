@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta name="Copyright" content="Copyright (c) 2009 thinkPHP.cn" />
+        <meta name="generator" content="ThinkPHP {$Think.version}" />
+        <meta name="Keywords" content="中光电信" />
+        <meta name="description" content="中光电信" />
+        <title>{$title} - 中光电信</title>
+		<css href="__PUBLIC__/Css/General.css,__PUBLIC__/Css/main.css" />
+ <load href="__PUBLIC__/Js/jquery.js" />
+<load href="__PUBLIC__/Js/My97DatePicker/WdatePicker.js" />
+<script type="text/javascript" src="__PUBLIC__/ueditor/editor_config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/editor_all.js"></script>
+<link rel="stylesheet" type="text/css" rel="__PUBLIC__/ueditor/themes/default/ueditor.css" />
+</head>
+<body>
+<div id="tabbody-div">
+	<form action="__URL__/ventChk" method="post" id="theform1">
+	<table align="center" width="1000" height="400" cellspacing="2" cellpadding="2">
+	<tr><td>日志标题</td><td><input type="text" name="title" size="70"  value="{$Think.session.uname} ({$depart}) {:date('Y-m-d')} {:week_zh_cn()} 日志 " /></td></tr>
+	<tr><td>日志类型</td><td><select name="type"><option value="j">工作日志</option><option value="p">私人日志</option></select></td></tr>
+	<tr><td>时间</td><td><input type="text" name="time"  class="Wdate" onClick="WdatePicker()" value="{:date('Y-m-d')}"/></td></tr>
+    <tr><td colspan="2"><script type="text/plain" id="Daily_content" style="width:300px;"></script></td></tr>
+    <tr align="center"><td colspan="2" ><input type="submit" onclick="return check_null();" style="width:80px;height:24px;display:inline;padding:0;border:0;background:url(__PUBLIC__/Images/wl/any_button.jpg)" value=" 发表日志 " /></td></tr>
+	</table>
+    {__TOKEN__}
+	</form>
+</div>
+<script type="text/javascript">
+
+    var editor = new baidu.editor.ui.Editor({
+
+        toolbars:[['Spechars','Emotion','InsertImage','Bold','Italic','ForeColor','FontFamily','FontSize', ]],//自定义ueditor工具栏
+
+        initialContent: '',
+
+        minFrameHeight: 250,//初始化框架大小
+
+        autoFloatEnabled: true,//工具栏自动浮动-》关闭
+
+        textarea:'myVent'//form表单将通过该参数获得表单提交的数据
+
+    });
+
+    editor.render("Daily_content");
+	function check_null(){
+		var reg=/\S+/g;
+		var string=$('input[name="title"]').val();
+		var cont_str=editor.getContentTxt();
+		if(!reg.test(string)){
+			alert('请输入日志标题');
+			return false;
+		}else if(!reg.test(cont_str)){
+			alert('请输入日志正文');
+			return false;
+		}else{
+			return true;
+		}
+	}
+</script>
+</body></html>

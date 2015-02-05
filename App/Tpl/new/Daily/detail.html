@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta name="Copyright" content="Copyright (c) 2009 thinkPHP.cn" />
+        <meta name="generator" content="ThinkPHP {$Think.version}" />
+        <meta name="Keywords" content="中光电信" />
+        <meta name="description" content="中光电信" />
+        <title>{$title} - 中光电信</title>
+		<css href="__PUBLIC__/Css/General.css,__PUBLIC__/Css/main.css" />
+ <load href="__PUBLIC__/Js/jquery.js" />
+<load href="__PUBLIC__/Js/My97DatePicker/WdatePicker.js" />
+<script type="text/javascript" src="__PUBLIC__/ueditor/editor_config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/editor_all.js"></script>
+<link rel="stylesheet" type="text/css" rel="__PUBLIC__/ueditor/themes/default/ueditor.css" />
+</head>
+<body>
+		<div class="list-div">
+		
+		
+		<table width="90%" align="center" border="0" cellspacing="0" cellpadding="0" id="ge">
+		<tr><th align="center">{$dl.title}</th></tr>
+		</table>
+		<div style="width:90%;padding-left:30px;margin-top:5px;">
+		<span style="width:90%;height:50px;color:#acacac;font-size:14px;margin-top:5px;"><if condition="$dl.type eq 'p'">私人日志<elseif  condition="$dl.type eq 'j'" />工作日志</if>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;日志日期&nbsp;&nbsp;{$dl.time|date='Y-m-d',###}&nbsp;&nbsp;{$dl.time|week_zh_cn}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;最后修改&nbsp;&nbsp;{$dl.lasttime|date='Y-m-d',###}&nbsp;&nbsp;&nbsp;</span>
+		<div style="width:90%;margin-top:5px;">{$dl.content}</div>
+		
+		</div>
+		
+		</div>
+		
+		</body>
+		</html>

@@ -1,0 +1,28 @@
+<table><tr>
+					<th>商品名称</th>
+					<th>使用单位</th>
+					<th>存放位置</th>
+					<th>占用大小</th>
+					<th>IP</th>
+					<th>维护</th>
+					<th>上架时间</th>
+					<th>下架时间</th>
+					<th>操作</th>
+				</tr>
+				<volist name="prod" id="val">
+				<tr align="center" id="bkb{$val.pro_id}">
+				
+				<td>{$val.labelname}</td>
+				<td>{$val.cusname}</td>
+				<td>{$val.position}</td>
+				<td>{$val.size}<font color="red">(U)</font></td>
+				<td>{$val.ip}</td>
+				<td>{$val.tech}</td>
+				<td>{$val.fromtime|date='Y-m-d',###}</td>
+				<td>{$val.totime|date='Y-m-d',###}</td>
+				<td><a href="__URL__/prod_detail/id/{$val.pro_id}?{$param}"><img src="__PUBLIC__/Images/wl/icon_view.gif" alt="详细" title="详细"/></a>&nbsp;&nbsp;&nbsp;<a href="__URL__/edit_prod/id/{$val.pro_id}?{$param}"><img src="__PUBLIC__/Images/wl/icon_edit.gif" alt="编辑" title="编辑" /></a>&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="rem_conf('{$val.pro_id}')"><img src="__PUBLIC__/Images/wl/icon_trash.gif" alt="删除" title="删除" /></a></td>
+				</tr>
+				</volist>
+				<tr align="center"><td colspan="10">{$page}</td></tr>
+	</table>
+				

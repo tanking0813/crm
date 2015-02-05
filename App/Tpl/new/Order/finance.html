@@ -1,0 +1,68 @@
+<include file="Public:n_header" />
+<div class="list-div">
+		
+	 		<table border="0" align="center" width="90%" cellpadding="0" cellspacing="0">
+			<form action="__URL__" method="post" class="cf">
+	 		
+			<tr align="center"><td>客户名称：</td><td><input type="text" class="input_text" name="username" value="{$Think.get.username}" onkeyup="search();" /></td>
+			<td>合同号：</td><td><input type="text" class="input_text" name="contract_No" value="{$Think.get.contract_No}"  onkeyup="search();"/></td>
+			<td>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</td>
+			<td>
+				<select name="status" onchange="search();">
+<!-- 					<option value="3" <eq name="Think.get.status" value="3">selected</eq>>入账一半</option>
+					<option value="2" <eq name="Think.get.status" value="2">selected</eq>>全部</option>
+					<option value="1" <eq name="Think.get.status" value="1">selected</eq>>未入账</option>
+ -->	
+				<option value="2" <eq name="Think.get.status" value="2">selected</eq>>全部</option>
+				<option value="1" <eq name="Think.get.status" value="1">selected</eq>>入账未完</option>
+				<option value="all" <eq name="Think.get.status" value="all">selected</eq>>未入账</option>
+				</select>
+			</td>
+			<td>到期时间：</td>
+			<td><select name="endtime" onchange="search();"><option value="0">-选择-</option><option value="e" <eq name="Think.get.endtime" value="e">selected</eq>>已过期</option><option value="30" <eq name="Think.get.endtime" value="30">selected</eq>>一月</option><option value="7" <eq name="Think.get.endtime" value="7">selected</eq>>一周</option><option value="3" <eq name="Think.get.endtime" value="3">selected</eq>>三天</option></select></td>
+				<?php
+			if(check_permission(MODULE_NAME.':'.ACTION_NAME)==1){
+			?>
+			<td>销&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售：</td><td>
+				<select  name="saleman" onchange="search();"><option value="0">请选择</option><volist name="sale" id="s"><option value="{$s.uid}" <eq name="s.uid" value="$Think.session.uid"> selected </eq>>{$s.uname}</option></volist></select>
+				</td>
+				<?php
+				}else{
+				?>
+				<td colspan="2"></td>
+				<?php
+				}
+				?>
+			<td><input class="srchbutton" type="button" value="&nbsp;" onclick="search();" title="搜索" /></td>
+			</tr>
+	 		</form>
+			
+			</table>
+	 			
+	 		
+	 		</div>
+	
+	 		 <div class="list-div">
+	 		<table id="mess">
+			
+			</table>
+	 	</div>
+	 <script language="javascript">
+				function search(){
+					$('#mess').html('<caption><h3 style="margin:2px auto;text-align:center;background:#ddd;color:red;width:100%;height:30px;line-height:30px;">载入中...</h3></caption>');
+					$.getJSON('__URL__/finaSearch',{'cusname':$('input[name="username"]').val(),'contract_No':$('input[name="contract_No"]').val(),'status':$('select[name="status"]').val(),'to':$('select[name="endtime"]').val(),'salemanId':$('select[name="saleman"]').val()
+					},
+					function(data){
+							//alert(data);
+							$('#mess').html(data.data);
+					},'json');
+					//alert($('select[name="status"]').val());
+				}
+			$(function(){
+				search();
+		
+			})
+		
+	 </script>
+
+    <include file="Public:n_footer" />

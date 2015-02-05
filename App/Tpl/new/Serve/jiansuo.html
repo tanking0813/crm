@@ -1,0 +1,61 @@
+<include file="Public:n_header" />
+
+	<div class="list-div">
+			<table border="0" align="center" width="500" cellpadding="0" cellspacing="0">
+			<form action="" method="get" class="cf">
+			<tr align="center">
+			<td>客户名称：</td>
+			<td>
+			<input type="text" class="input_text" name="username" onkeyup="search();"/>
+			</td>
+			<td>操作人：</td>
+			<td>
+			<input type="text" class="input_text" name="caozuoname" onkeyup="search();"/>
+			</td>
+			<td>
+			<select  name="status" onchange="search();">
+			<option value="1">产品操作查询</option>
+			<option value="2">用户操作查询</option>
+			<!-- <option value="3">员工登录查询</option> -->
+			</select>
+			</td>
+			<td>产品名：</td>
+			<td>
+			<input type="text" class="input_text" name="pro" onkeyup="search();"/>
+			</td>
+			<td>开始时间：</td>
+			<td> <input class="Wdate" type="text" onClick="WdatePicker()" name="cname"  /></td>
+			<td>截止时间：</td>
+			<td> <input class="Wdate" type="text" onClick="WdatePicker()" name="sname" value='{:date("Y-m-d")}' /></td>
+			<td><input class="srchbutton" type="button" value="&nbsp;" onclick="search();" title="搜索" /></td>
+			</tr>
+	 		</form>
+			<script language="javascript">
+				$(function(){
+					search();
+				})    
+				function search(){
+				//	alert('sname':$('input[name="sname"]').val());
+				//	alert($('input[name="cname"]').val());
+					$.getJSON('__URL__/jiansuosearch',{
+					'username':$('input[name="username"]').val(),
+					'caozuoname':$('input[name="caozuoname"]').val(),
+					'cname':$('input[name="cname"]').val(),
+					'sname':$('input[name="sname"]').val(),
+					'pro':$('input[name="pro"]').val(),
+					'status':$('select[name="status"]').val()
+					}
+					,function(data){
+					//		alert(data.data);
+							$('#mess').html(data.data);
+					},'json');
+				}
+			</script>
+			</table>
+			</div>
+			<div class="list-div">
+			<table id="mess">
+				
+			</table>
+			</div>
+    <include file="Public:n_footer" />

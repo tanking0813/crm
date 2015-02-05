@@ -1,0 +1,3 @@
+<volist name="res" id="re">
+	<div  style="margin:0 auto;width:100%;height:30px;line-height:30px;" onmouseover="this.style.backgroundColor='#ddd'" onmouseout="this.style.backgroundColor=''"><span style="size:14px;margin-left:20px;">{$re.ip|long2ip}</span><span style="float:right;margin-right:20px;"><if condition="$re.status eq 'idle'"><font color="green">空闲</font><elseif condition="$re.status eq 'busy'" /><font color="red">已分配</font><elseif condition="$re.status eq 'N/A'" /><font color="gray">N/A</font></if></span></div>
+	</volist>

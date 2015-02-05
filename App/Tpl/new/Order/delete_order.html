@@ -1,0 +1,32 @@
+<include file="Public:n_header" />
+<div id="tabbody-div">
+	<form action="__SELF__" method="post" class="cf">
+
+		
+			 <div class="list-div">	
+	 			<table id="mess" width="800">
+				<tr><th>全部<input type="checkbox" name="selectAll" value="all" /></th><th>标识号</th><th>客户名称</th><th>产品</th><th>销售</th><th>创建时间</th></tr>
+<volist name="rubish" id="rb">
+<tr align="center"><td><input type="checkbox" name="orderids[]" value="{$rb.id}" /></td><td>{$rb.id}</td><td>{$rb.cusname}</td><td>{$rb.products_name}</td><td>{$rb.saleman}</td><td>{$rb.ctime|date='Y-m-d H:i:s',###}</td></tr>
+</volist>
+				</table>
+</div>
+	<div class="button-div">
+			<select name="caozuo"><option value="d">删除</option><option value="r">恢复</option></select>
+			<input type="submit" name="del" value=" 提交 " class="button" />
+			<input type="button" value=" 取消 " class="button" onclick="window.location.href='__URL__'"/>
+		</div>	
+		</form>
+</div>		
+
+<script language="javascript">
+	$(function(){
+		$('input[name="selectAll"]').click(function(){
+			var sele=$(this).attr('checked');
+			$('input[name="orderids[]"]').attr('checked',sele);
+
+		});
+	
+	});
+</script>
+<include file="Public:n_footer" />

@@ -1,0 +1,95 @@
+<include file="Public:n_header" />
+<style type="text/css">
+	.mov{background-color:#fff;}
+	
+</style>
+<div class="list-div">
+			<table height="40" border="0" cellspacing="0" cellpadding="0">
+			<form action="__URL__/add_pool" method="post" class="cf" id="TheForm1">
+	 		
+			<tr><td align="center">标记名：</td><td><input type="text" name="labelname" value="IP段{$count}" maxlength="6" /></td><td align="center">起始IP：</td><td style="font-size:14px;font-weight:bold;"><input type="text" class="input_text" name="ipleft"  maxlength="15" value="0.0.0.0" onclick="if(this.value=='0.0.0.0')this.value='';"/></td><td>结束IP：</td><td style="font-size:14px;font-weight:bold;"><input type="text"  name="ipright"  maxlength="15" value="0.0.0.0" onclick="if(this.value=='0.0.0.0')this.value='';" /></td><td><input type="button" style="background:#CC99CC;width:60px;height:25px;font-size:12px;font-weight:bold;" value=" 添 加 " onclick="return subme();"/></td></tr>
+	
+	 		</form>
+			</table>
+			
+</div>
+<script type="text/javascript">
+$(function(){
+	$('input[name="ipleft"]').blur(function(){
+		var reg1=/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
+		
+		var str1=$(this).val();
+		if(str1.length==0){
+			$(this).val('0.0.0.0');
+		}else if(reg1.test(str1)==false){
+				alert('IP仅由数字与.组成');
+				$(this).focus();
+				return;
+		}
+		if(str1.length>15){
+			$(this).val(str1.substr(0,15));
+		}
+	});
+	$('input[name="ipright"]').blur(function(){
+		var reg2=/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
+		var str2=$(this).val();
+		if(reg2.test(str2)==false){
+				alert('IP仅由数字与.组成');
+				$(this).focus();
+				return;
+		}
+		if(str2.length>15){
+			$(this).val(str2.substr(0,15));
+		}
+	});
+	
+	
+
+})
+	function chanColorIn(obj){
+		if($(obj).attr('class')!='mov'){
+			$(obj).css('background-Color','#fff');
+			$(obj).css('color','red');
+		}
+	
+	}
+	function chanColorOut(obj){
+		if($(obj).attr('class')!='mov'){
+			$(obj).css('background-Color','');
+			$(obj).css('color','black');
+		}
+	}
+	
+	function iplist(id,obj){
+		$('div.ctc').removeClass('mov');
+		$(obj).addClass('mov');
+		
+		$.getJSON('__URL__/get_resource',{'searchArea':id},function(data){
+			$('#busylist').html(data.data);
+			$('#idlelist').html(data.info);
+		},'json');
+	
+	}
+	
+	function subme(){
+		if($('input[name="ipleft"]').val() != '0.0.0.0' && $('input[name="ipright"]').val() != '0.0.0.0'){
+			$('#TheForm1').submit();
+		}else{
+			return false;
+		}
+	}
+</script>
+<div style="background:#ddd;float:left;width:35%;height:500px;overflow:scroll;border 1px black solid;">
+	
+	<volist name="pool" id="po">
+	<div class="ctc" style="margin:4px auto;font-size:12px;font-weight:bold;width:100%;height:30px;line-height:30px;cursor:pointer;" onclick="iplist('{$po.id}',this);" onmouseover="chanColorIn(this);" onmouseout="chanColorOut(this);"><span style="float:left;width:50%;text-align:left;margin-left:10px;">{$po.start|long2ip}&nbsp;&nbsp;~&nbsp;&nbsp;{$po.end|long2ip}</span><span style="float:left;width:30%;text-align:left;">{$po.name}</span><span style="width:10%;margin-right:5px;float:right;"><a href="__URL__/delete_ip_area/need/{$po.id}">删除</a></span></div>
+	</volist>
+</div>
+
+
+<div id="idlelist" style="background:#F8F8FF;float:left;width:25%;height:500px;overflow:scroll;border 1px black solid;">
+</div>
+<div id="busylist" style="background:#F8F8FF;float:left;width:40%;height:500px;overflow:scroll;border 1px black solid;">
+</div>
+<a style="background:#CC9999;display:block;width:100px;height:30px;line-height:30px;text-align:center;float:left;margin-top:5px;margin-left:20px;"href="__URL__/flush_resource">刷新资源池</a>
+<include file="Public:n_footer" />

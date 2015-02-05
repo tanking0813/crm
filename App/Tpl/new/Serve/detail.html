@@ -1,0 +1,26 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+<div id="tabbody-div">
+		<table width="90%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+			<form method="post" action="__URL__/doneIt">
+			<tr><td class="label">客户名称</td><td>{$msg.cusname}<td></tr>
+			<tr><td class="label">客户IP</td><td>{$msg.ip}</td></tr>
+			<tr><td class="label">提交时间</td><td>{$msg.ctime|date='Y-m-d',###}</td></tr>
+			<tr><td class="label">反馈内容</td><td>{$msg.content}</td></tr>
+			<tr><td class="label">处理人</td><td>{$msg.lastman}</td></tr>
+			<tr><td class="label">最后处理时间</td><td>{$msg.endtime|date='Y-m-d H:i',###}</td></tr>
+			<tr><td class="label">处理备注</td><td>{$msg.note}</td></tr>
+			
+			
+		</table>
+		
+	<!--<div class="list-div">	
+				<table width="90%" id="general-table" align="center" cellpadding="3" cellspacing="1"><tr><th>处理人</th><th>处理内容描述</th><th>时间</th></tr>
+				<caption><h4>售后处理详细记录</h4></caption>
+				<volist name="server_d" id="det"><tr align="center"><td>{$det.name}</td><td>{$det.note}</td><td>{$det.time|date='Y-m-d',###}</td></tr></volist></table>
+			</div>-->
+		</form>
+			
+	 </div>
+	 </div>
+    <include file="Public:n_footer" />

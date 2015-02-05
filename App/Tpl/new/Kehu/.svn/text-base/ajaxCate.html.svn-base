@@ -1,0 +1,23 @@
+<select name="type_id[]"><option value="0">--类别--</option><volist name="fcate" id="fc"><option value="{$fc.tid}">{$fc.labelname}</option></volist></select>
+<script language="javascript">
+var ob1=$('select[name="type_id[]"]:eq(1)');
+				$(ob1).change(function(){
+					if(ob1.val()=='0'){
+						$('select[name="type_id[]"]:gt(1)').parent('td').next().html('');
+					}else{
+						var s1=ob1.val();
+						
+						$.post('__URL__/cate_out'+s1,function(data){
+							var obj1=$('select[name="type_id[]"]:eq(1)');
+							//alert(data.data.length);
+							if(data.data.length>688){
+							
+								$('select[name="type_id[]"]:gt(1)').parent('td').next().html(data.data);
+							}else{
+								$('select[name="type_id[]"]:gt(1)').parent('td').next().html('');
+							
+							}
+						},'json');
+					}
+				});
+</script>

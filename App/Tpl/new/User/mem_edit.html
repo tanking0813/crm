@@ -1,0 +1,77 @@
+<include file="Public:n_header" />
+
+<div id="tabbody-div">
+<h1><span class="action-span"><a href="__URL__/authset/userid/{$info[0].uid}">修改权限</a></span></h1>
+	 	<form id="tform1" action="" method="post">
+		<table width="60%" align="center">
+
+	 		<tr><td class="label">用户名:</td><td><input type="text" name="uname" value="{$info[0].uname}" /></td></tr>
+	 		<tr><td class="label">登录名:</td><td><input type="text" name="loginname" value="{$info[0].loginname}" /></td></tr>
+	 		
+			<tr><td class="label">密码:</td><td><input type="text" id="pswdn" name="password" value="" disabled /><input id="markn" type="checkbox" /></td></tr>
+			<tr><td class="label">部门:</td><td>
+			<select name="department">
+			
+		
+					<option value="0">---部门---</option>
+					<volist name="d" id="tp">
+					
+						<option value="{$tp.did}" <if condition="$info[0]['department'] eq $tp['did']"> selected </if> >{$tp.fg}{$tp.dname}</option>
+					
+					</volist>
+				
+		
+			
+			
+			
+			</select></td></tr>
+	 		<tr><td class="label">职称:</td><td>
+				<select name='zhicheng'>
+					<option value="0">---职称---</option>
+					
+					<option value="总经理" <if condition="$info[0][rank] eq '总经理'"> selected </if> >总经理</option>
+					<option value="销售经理" <if condition="$info[0][rank] eq '销售经理'"> selected </if> >销售经理</option>
+					<option value="部门经理" <if condition="$info[0][rank] eq '部门经理'"> selected </if> >部门经理</option>
+					<option value="普通员工" <if condition="$info[0][rank] eq '普通员工'"> selected </if> >普通员工</option>
+				</select>
+
+			</td></tr>
+	 		<tr><td class="label">邮箱:</td><td><input type="text" name="email" value="{$info[0].email}" /></td></tr>
+	 		<tr><td class="label">手机:</td><td><input type="text" name="mobile" value="{$info[0].mobile}" /></td></tr>
+	 		<tr><td class="label">QQ:</td><td><input type="text" name="qq" value="{$info[0].qq}" /></td></tr>
+	 		<tr><td class="label">地址:</td><td><input type="text" name="address" value="{$info[0].address}" /></td></tr>
+			<tr><td class="label">是否禁用:</td><td>
+				<input type="radio" name="userswitches" value="1" <eq name= 'info[0][userswitches]' value='1' > checked="checked" </eq>  />
+				启用
+				<input type="radio" name="userswitches" value="0" <eq name= 'info[0][userswitches]' value= '0' > checked='checked' </eq>  />
+				禁用
+			</td></tr>
+
+			
+	 	</table>
+		<script>
+			$(function(){
+				$('#markn').click(function(){
+				
+					if($(this).attr('checked')){
+					
+						$('#pswdn').attr('disabled',false);
+					}else{
+						
+						$('#pswdn').attr('disabled',true).val('');
+					}
+				})
+				
+			
+			})
+		
+		</script>
+	 	</div>
+		<div class="button-div">
+					
+						<input type="submit" value=" 修改 " name="sbt" class="button" />
+						<input type="reset" value=" 返回 " class="button" />
+					</div>
+		</form>
+		</div>
+    <include file="Public:n_footer" />

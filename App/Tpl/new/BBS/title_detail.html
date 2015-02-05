@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta name="Copyright" content="Copyright (c) 2009 thinkPHP.cn" />
+        <meta name="generator" content="ThinkPHP {$Think.version}" />
+        <meta name="Keywords" content="中光电信" />
+        <meta name="description" content="中光电信" />
+        <title>{$title} - 中光电信</title>
+<css href="__PUBLIC__/Css/General.css,__PUBLIC__/Css/main.css" />
+ <load href="__PUBLIC__/Js/jquery-1.4.2.js" />
+ <style type="text/css">
+	.list-div p{
+		line-height:25px;
+		letter-spacing:2px;
+		word-spacing:2px;
+	
+	}
+	.rep_area{
+		resize: none;
+		width: 300px;
+		height: 60px;
+		max-width: 300px;
+		max-height: 60px;
+	}
+	.rep_motion{
+		width: 300px;
+		height: 24px;
+		
+	}
+	.rep_motion input{
+		float:right;
+		width:60px;
+		height:24px;
+		line-height:24px;
+		margin-right:5px;
+		
+	}
+</style>
+</head>
+<script type="text/javascript">
+	var title_id={$cont.id};
+	$(function(){
+		$.post('__URL__/add_click',{'title_id':title_id});
+		$('#active_rep .rep_area').change(function(){
+			alert(1);
+		
+		})
+	});
+
+</script><body>
+<div style="width:100%;height:5px;clear:both;"></div>
+		<div class="list-div">
+	
+		<div style="text-align:center;margin:10px auto;"><h3 style="color:red">{$cont.title}</h3></div>
+		<div style="width:90%;height:20px;color:#acacac;font-size:12px;margin:5px auto;text-align:center;">发表人：&nbsp;&nbsp;{$cont.publisher}&nbsp;&nbsp;|&nbsp;&nbsp;发表时间：&nbsp;&nbsp;{$cont.ctime|date='Y-m-d',###}&nbsp;&nbsp;{$cont.ctime|week_zh_cn}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;点击：&nbsp;&nbsp;{$cont.clicked}&nbsp;&nbsp;&nbsp;</div>
+		
+		<hr style="margin:0px 10px;color:blue;clear:both;"/>
+		<div style="width:90%;padding-left:30px;margin:10px auto;">
+		<div style="width:90%;height:auto;overflow:clip;margin:5px;clear:both;line-height:40px;">{$cont.content}</div>
+
+		</div>
+		<volist name="reply" id="repc">
+		<div style="width:98%;height:10px;margin:0 auto;clear:both;border-top:1px #acacac dashed;"></div>
+		<div style="width:90%;height:auto;padding-left:50px;overflow:clip;margin:5px;">
+		<span style="color:#996699"><strong>{$repc.rep_name}</strong> 于 {$repc.time|date='Y-m-d H:i',###} 评论：</span>{$repc.reply}
+		</div>
+		</volist>
+		
+		<div style="width:98%;height:10px;margin:0 auto;clear:both;border-bottom:1px #acacac dashed;"></div>
+		<div style="float:left;margin:5px 50px;width:50%;">
+	
+		<input style="width:50%;height:22px;margin:2px;line-height:22px;" type="text" name="rep{$cont.id}" value="评 论" onclick="reply_this('{$cont.id}')" />
+		
+		</div>
+		<div style="width:100%;height:2px;clear:both;"></div>
+		
+		
+		</div>
+</body></html>
+	<script language="javascript">
+	
+			function reply_this(id){
+				var activ=$('#active_rep input:hidden').val();
+				if(activ){
+					$('#active_rep').replaceWith('<input style="width:50%;height:22px;margin:2px;line-height:22px;" type="text" name="rep'+activ+'" value="评 论" onclick="reply_this(\''+activ+'\')" />');
+				}
+				$('input[name="rep'+id+'"]').replaceWith('<div id="active_rep" style="width:304px;height:80px;margin:2px;line-height:30px;"><span>还可以输入&nbsp;<i style="color:red;font-size:16px;font-weight:bold;">100</i>&nbsp;字</span><input name="rephi" type="hidden"  value="'+id+'" /><textarea  onpropertychange="check_max_length(this);" oninput="check_max_length(this);" class="rep_area" name="reptext"></textarea><div class="rep_motion"><input type="button" value="发 表" onclick="return do_reply();"/></div></div>');
+			
+			}
+			function do_reply(){
+				
+				if($('#active_rep textarea:first').val()!=''&&$('#active_rep textarea:first').val().length<=100){
+					$('#active_rep input:button').attr('disabled',true);
+					$.post('__URL__/title_reply',{'reply_id':$('#active_rep input[name="rephi"]').val(),'content':$('#active_rep textarea[name="reptext"]').val()},function(data){
+						if(data=='succ'){
+							window.location.href='__URL__/title_detail/id/{$Think.get.id}';
+						}else{
+							alert('系统忙，请稍后再试!');
+						}
+					});
+				}else{
+					alert('请确认输入内容，且内容长度不超过100字');
+					return false;
+				}
+			
+			}
+			
+			function check_max_length(obj){
+				var length=$(obj).val().length;
+
+				if(length<=100){
+					$('#active_rep i').html(100-length);
+					$('#active_rep .rep_area').css('backgroundColor','');
+			
+				}else{
+					$('#active_rep i').html(0);
+					$('#active_rep .rep_area').css('backgroundColor','red');
+				}
+				return;
+			}
+		</script>

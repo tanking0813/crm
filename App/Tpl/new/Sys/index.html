@@ -1,0 +1,56 @@
+<include file="Public:n_header" />
+	<div class="list-div">
+			<table border="0" width="500" cellpadding="0" cellspacing="0">
+			<form action="" method="get" class="cf">
+	 		
+			<tr><td  align="center">姓名：</td>
+			<td><select  name="uname" onchange="search();">
+			<option value="{$Think.session.uid}">{$Think.session.uname}</option>
+			<volist name="user" id="us"><option value="{$us.uid}">{$us.uname}</option></volist>
+			</select></td>
+			<td align="center">时间：</td>
+			<td><input class="Wdate" type="text" onClick="WdatePicker()" name="stime"  value="{:date('Y-m').'-01'}" />
+			至
+			<input class="Wdate" type="text" onClick="WdatePicker()" value="{:date('Y-m-d')}" name="etime" /></td>
+			
+			<td><input class="srchbutton" type="button" value="&nbsp;" onclick="search();" title="搜索" /></td></tr>
+		
+			
+	 		</form>
+			
+			</table>
+			</div>
+<div class="list-div" id="mess">
+<table cellspacing='1' cellpadding='3'>
+  <tr><th>时间</th><th>姓名</th><th>上班打卡</th><th>上班迟到(分)</th><th>情况说明（上班）</th><th>下班打卡</th><th>早退(分)</th><th>情况说明（下班）</th><th>其他</th></tr>
+</table>
+</div>
+
+<div class="list-div" id="mess2">
+<table cellspacing='1' cellpadding='3'>
+	<caption>请假及外出</caption>
+  <tr><th width="10%">时间</th><th width="40%">理由</th><th width="10%">开始时间</th><th width="10%">结束时间</th><th>审核人</th><th width="20%">审核备注</th><th width="10%">类型</th></tr>
+</table>
+</div>
+<script language="javascript">
+				$(function(){
+					search();
+				
+				})
+				
+				function search(){
+				
+					
+					$.getJSON('__URL__/search',{'uid':$('select[name="uname"]').val(),'stime':$('input[name="stime"]').val(),'etime':$('input[name="etime"]').val()},function(data){
+							
+						$('#mess').html(data.data);
+					},'json');
+					$.getJSON('__URL__/searchLeave',{'uid':$('select[name="uname"]').val(),'stime':$('input[name="stime"]').val(),'etime':$('input[name="etime"]').val()},function(data){
+						$('#mess2').html(data.data);
+					},'json');
+				}
+			
+			</script>
+
+
+<include file="Public:n_footer" />

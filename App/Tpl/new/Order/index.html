@@ -1,0 +1,178 @@
+<include file="Public:n_header" />
+
+	 <div class="list-div">
+		
+	 		<table>
+			<form action="#" method="post" class="cf">
+			<tr><td>客户名称：</td><td colspan="2"><input type="text" class="input_text" name="username"  value="{$param.cusname}" onkeyup="search();"/></td>
+			<td>IP：</td><td><input type="text" class="input_text" name="ip"  value="{$param.ip}" onkeyup="search();"/></td>
+			<td>机柜：</td><td colspan="3"><select onchange="search();" name="jgui"><option value="0">请选择</option><volist name="store" id="jg"><option value="{$jg.id}" <eq name="jg.id" value="$param.store">selected</eq>>{$jg.fullname}</option></volist></select></td>
+			</tr>
+			<tr>
+			<td>使用产品：</td><td  colspan="2">
+			<select  name="proid" onchange="search();">
+			<option value="0">请选择</option>
+			<volist name="prolist" id="p">
+			<option value="{$p.bpath}" <eq name="param.proid" value="$p.bpath">selected</eq>>{$p.fg}{$p.labelname}</option>
+			</volist>
+			</select>
+			</td>
+			<eq name="Think.session.group" value="6">
+			<else />
+			<td>成交时间</td>
+			<td>
+			<select name="order_ctime" onchange="search();">
+			<option value="0">-选择-</option>
+			<option value="1" <eq name="param.order_ctime" value="1">selected</eq>>本月</option>
+			<option value="2" <eq name="param.order_ctime" value="2">selected</eq>>上月</option>
+			<option value="3" <eq name="param.order_ctime" value="3">selected</eq>>本季度</option>
+			<option value="4" <eq name="param.order_ctime" value="4">selected</eq>>本年</option>
+			<php>
+				$thisYear=date('Y');
+				for($i=$thisYear;$i>2010;){
+					$i--;
+					echo '<option value="'.$i.'"';
+					echo $param['order_ctime']==$i?'selected':'';
+					echo '>'.$i.'年</option>';
+				}
+			</php>
+			</select>
+			</td>
+			</eq>
+			<td>到期时间：</td>
+			<td>
+			<select name="endtime" onchange="search();">
+			<eq name="Think.session.group" value="6" >
+			<option value="30"<eq name="param.to" value="30">selected</eq>>一月</option>
+			<option value="7" <eq name="param.to" value="7">selected</eq>>一周</option>
+			<option value="3" <eq name="param.to" value="3">selected</eq>>三天</option>
+			<else />
+			<option value="0">-选择-</option>
+			<option value="e" <eq name="param.to" value="e">selected</eq>>已过期</option>
+			<option value="30"<eq name="param.to" value="30">selected</eq>>一月</option>
+			<option value="7" <eq name="param.to" value="7">selected</eq>>一周</option>
+			<option value="3" <eq name="param.to" value="3">selected</eq>>三天</option>
+			</eq>
+			</select>
+			</td>
+			
+			<if condition="check_permission('Order:search') eq 1">
+			
+			<td>销&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售：</td>
+			<td><select name="saleman" onchange="search();">
+			<option value="0">请选择</option>
+			<volist name="sale" id="s">
+			<option value="{$s.uid}" 
+			<php>
+			if(empty($param['salemanId']))
+			{if($s['uid']==$Think['session']['uid']){echo 'selected';}}else{if($s['uid']==$param['salemanId']){echo 'selected';}}</php>>{$s.uname}</option>
+			</volist>
+			</select>
+			</td>
+			<else />
+				
+					<td>&nbsp;</td>
+			</if>
+			<!--
+			<td><input class="srchbutton" type="button" value="&nbsp;" onclick="search();" title="搜索" /></td>
+			-->
+			</tr>
+	 		</form>
+			
+			</table>
+	 		</div>
+	 		 <div class="list-div">
+	 		<table id="mess">
+			
+			</table>
+	 	</div>
+		<div id="modiOrder" class="show_pop" style="height:300px;width:900px;">  	
+
+</div>  
+	 <script language="javascript">
+			var cusname="{$param.cusname}";
+			var proid="{$param.proid}";
+			var salemanId="{$param.salemanId}";
+			var order_ctime="{$param.order_ctime}"
+			var to="{$param.to}";
+			var ip="{$param.ip}";
+			var store="{$param.store}";
+			var p="{$param.p}";
+			$(function(){
+					
+					$.getJSON('__URL__/search',{'cusname':cusname,'proid':proid,'salemanId':salemanId,'order_ctime':order_ctime,'to':$('select[name="endtime"]').val(),'ip':ip,'store':store,'p':p},function(data){ 
+					//alert(data.data);
+							$('#mess').html(data.data);
+					},'json');
+		
+			})
+				function search(){
+					//alert($('select[name="saleman"]').val());
+					$.getJSON('__URL__/search',{'cusname':$('input[name="username"]').val(),'proid':$('select[name="proid"]').val(),'salemanId':$('select[name="saleman"]').val(),'order_ctime':$('select[name="order_ctime"]').val(),'to':$('select[name="endtime"]').val(),'ip':$('input[name="ip"]').val(),'store':$('select[name="jgui"]').val()},function(data){
+							$('#mess').html(data.data);
+					},'json');
+				}
+			
+			
+	
+	function modify_order(id){
+		EV_modeAlert('modiOrder');
+		$.getJSON('__URL__/modify_order',{'onumber':id},function(data){
+			$('#modiOrder').html(data.data);
+		},'JSON')
+	
+	}
+
+	function imglist(url){
+			$.getJSON(url,function(data){
+				$('#mess').html(data.data);
+						
+			})
+					
+	}
+	function remove_order(id){
+		r=confirm("确认删除?");
+		if (r==true){
+
+				$.post('__URL__/remove_order',{'onum':id},function(data){
+					if(data==1){
+						$('#b_bkb'+id).remove();
+					
+					}else{
+						alert('系统错误,未删除');
+					}
+			
+				})
+			}
+
+	}
+	var list={fromtime:'开始时间',totime:'到期时间'};
+	var listTable=new Object();
+	listTable.sort=function(info,order,param){
+	var order=!order?1:0;
+	var p_src=['sort_desc.gif','sort_asc.gif'];
+	var s=($('#sortImg').attr('src')).split('/');
+	s.pop();
+	if(order){
+			p_src=s.join('/')+'/'+p_src[order];
+	
+	}else{
+			p_src=s.join('/')+'/'+p_src[order];
+				
+	}
+	$.getJSON('__URL__/search?'+param+'&field='+info+'&order='+order,function(data){
+		
+		$('#mess').html(data.data)
+		var hah=list[info];
+		$('#sortImg').insertAfter($('th>a:contains('+hah+')'));
+		$('#sortImg').attr({src:p_src});
+							
+
+	},'json');
+}
+	
+	
+	 </script>
+
+
+    <include file="Public:n_footer" />

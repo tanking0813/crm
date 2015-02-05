@@ -1,0 +1,43 @@
+<include file="Public:n_header" />
+<div id="tabbody-div">
+	<form action="__SELF__" method="post" class="cf">
+<div class="list-div">
+
+			<table border="0" cellspacing="0" cellpadding="0">
+		
+			<tr>
+			<td class="label">移交人：</td>
+			<td><select name="from_saleman" onchange="search();">
+			<option value="0">请选择</option>
+			<volist name="from_man" id="s"><option value="{$s.uid}">{$s.uname}</option></volist>
+			</select>
+			</td>
+			<td class="label">移交给：</td>
+			<td><select name="to_saleman"><option value="0">请选择</option>
+			<volist name="to_man" id="sis"><option value="{$sis.uid}">{$sis.uname}</option></volist>
+			</select></td></tr>
+			</table>
+	 	</div>
+		
+			 <div class="list-div">	
+	 			<table id="mess" width="800">
+				
+				</table>
+</div>
+	<div class="button-div">
+			<input type="submit" name="sbt" value=" 确定 " class="button" />
+			<input type="button" value=" 返回 " class="button" onclick="window.location.href='__URL__'"/>
+		</div>	
+		</form>
+</div>		
+
+<script language="javascript">
+	function search(){
+	
+		var id=$('select[name="from_saleman"]').val();
+			$.getJSON("__URL__/ownerSearch",{'salemanId':id},function(data){
+				$('#mess').html(data.data);
+			},'json');
+	}
+</script>
+	  <include file="Public:n_footer" />

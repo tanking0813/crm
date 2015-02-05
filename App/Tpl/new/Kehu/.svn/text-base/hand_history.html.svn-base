@@ -1,0 +1,1 @@
+<volist name="handhis" id="his"><tr><td>{$his.time|date='Y-m-d H:i',###}</td><td>{$his.note}</td><td>{$his.description|htmlspecialchars_decode}</td><td>{$his.uname}</td></tr></volist>

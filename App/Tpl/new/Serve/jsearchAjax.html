@@ -1,0 +1,1 @@
+<tr><th>操作时间</th><th>操作电脑的ip</th><th>操作者</th><th>记录</th></tr><volist name="date" id="se"><tr  ><td width='20%'>{$se.optime|date='Y-m-d',###}</td><td width='20%'>{$se.login_ip}</td><td width='10%'>{$se.user}</td><neq name='se[uid]' value='0'>	<td>用户登录成功</td>	<else/>	<tr class='tr4'>	<td>用户非法登录</td>	</tr>	</neq></tr></volist>

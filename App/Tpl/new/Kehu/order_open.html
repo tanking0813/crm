@@ -1,0 +1,30 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+<div id="tabbody-div">
+
+        <form id="orderopen" method="post" action="">
+		<table width="800" align="center">
+		<caption><h4>开通产品</h4></caption>
+		<tr><td>公司名</td><td colspan="3">{$info.cusname}</td></tr>
+		
+		<tr><td>产&nbsp;&nbsp;&nbsp;品</td><td>{$info.proname}</td><td></td><td></td></tr>
+			
+			<tr><td>I&nbsp;&nbsp;&nbsp;P</td><td><input type="text" name="ip"></td><td>域&nbsp;&nbsp;&nbsp;名</td><td><input type="text" name="domain"></td></tr>
+			<tr><td>成交金额</td><td><input type="text" name="payment" /></td><td>备&nbsp;&nbsp;&nbsp;注</td><td><input type="text" name="note" /></td></tr>
+				<tr><td>开始时间</td><td><input name="from" value="{:date('Y-m-d')}" class="Wdate" type="text" onClick="WdatePicker()"></td><td>到期时间</td><td><input name="to" value="<php>echo date('Y-m-d',strtotime('next year'));</php>" class="Wdate" type="text" onClick="WdatePicker()" /></td></tr>
+	
+	
+		
+		</table>
+		<div class="button-div">
+			<input type="hidden" name="cusid" value="{$info.cusid}" />
+			<input type="hidden" name="proid" value="{$info.proid}" />
+			<input type="hidden" name="order_id" value="{$info.order_id}" />
+	{__TOKEN__}
+			<input type="submit" name="sbt" value=" 确定 " class="button" />
+			<input type="reset" value=" 重置 " class="button" />
+		</div>	
+		</form> 
+</div>
+</div>
+    <include file="Public:n_footer" />

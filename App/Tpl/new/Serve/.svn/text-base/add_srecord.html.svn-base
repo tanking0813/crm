@@ -1,0 +1,46 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+<div id="tabbody-div">
+			
+			<table width="90%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+			<form method="post">
+			<tr><td class="label">客户名称</td><td><input type="text" name="cusname" id="pikdata" style="height:20px;line-height:20px;width:365px;" onkeyup="findme('#pikdata');" autocomplete="off" /></td></tr>
+			<tr><td class="label">客户IP</td><td><input type="text" name="ip" value="" /></td></tr>
+			<tr><td class="label">客户问题描述</td><td><textarea cols="50" rows="5" name="content"></textarea></td></tr>
+			<tr><td class="label">反馈时间</td><td><input name="ctime" value="{:date('Y-m-d')}" class="Wdate" type="text" onClick="WdatePicker()" /></td></tr>
+			<tr><td class="label">处理备注</td><td><textarea cols="50" rows="5" name="note"></textarea></td></tr>
+		</table>
+			<div class="button-div">
+				<input type="hidden" name="addId" value="{$Think.session.uid}" />
+				<label for="zzcl">处理中：</label><input id="zzcl" type="radio" name="status" value="2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="ycl">已处理：</label><input type="radio" id="ycl" name="status" value="3" checked /><br /><br /><br />
+				{__TOKEN__}
+						<input type="submit" name="submit" value=" 确定 " class="button" />
+						<input type="button" value=" 返回 " class="button" onclick="window.history.go(-1)"/>
+					</div>
+		
+
+	 </div>
+	 </div>
+	 <script type="text/javascript">
+		function findme(obj){
+			var sss=document.getElementById('pickv');
+				var position=$(obj).position();
+				var width=parseInt($(obj).width());
+				var height=parseInt($(obj).height());
+				$.getJSON('__URL__/cusAjaxBack',{'cusname':$(obj).val()},function(data){
+					if(null==sss){
+						$('body').append('<div style="background:white;position:absolute;top:'+(position.top+height)+'px;left:'+position.left+'px;z-index:1;width:'+width+'px;border:1px solid #ccc;" id="pickv">'+data.data+'</div>');
+					}else{
+						$('#pickv').html(data.data);
+					}
+				},'json');
+			}
+		function getFullname(obj){
+			var fullname=$(obj).html();
+			$('#pikdata').val(fullname);
+			$('#pickv').remove();
+		
+		}
+	
+	 </script>
+    <include file="Public:n_footer" />

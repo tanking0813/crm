@@ -1,0 +1,99 @@
+<include file="Public:n_header" />
+	<div class="tab-div">
+	<div id="tabbody-div">
+	<form method="post">
+	<div class="list-div">
+			<table style="margin:0 auto;" align="center" cellpadding="3" cellspacing="1">
+		
+			<tr><td class="label">产品名称</td><td>{$detail.labelname}</td></tr>
+			<tr><td class="label">使用单位</td><td>{$detail.cusname}</td></tr>
+			<tr><td class="label">&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;P</td><td>{$detail.ip}</td></tr>
+			<tr><td class="label">存放位置</td><td><select name="store"><eq name="detail.store" value="0"><option value="0">请选择</option></eq><volist name="store" id="st"><option value="{$st.id}" <eq name="st.id" value="$detail.store">selected</eq>>{$st.fullname}</option></volist></select></td></tr>
+			<tr><td class="label">占用大小</td><td><input type="text" name="size" value="{$detail.size}" />&nbsp;&nbsp;(u)</td></tr>
+			<tr><td class="label">设备型号</td><td><input type="text" name="style" value="{$detail.style}" /></td></tr>
+			<tr><td class="label">交换机接口</td><td><input type="text" name="port" value="{$detail.port}" /></td></tr>
+			<tr><td class="label">MAC地址</td><td><input type="text" name="mac" value="{$detail.mac}" /></td></tr>
+			<tr><td class="label">维护技术</td><td><select name="techID"><volist name="tech" id="tc"><option value="{$tc.uid}" <eq name="tc.uid" value="$detail.techID">selected</eq>>{$tc.uname}</option></volist></select></td></tr>
+			<tr><td class="label">维护密码</td><td><input type="text" name="passwd" value="{$detail.passwd}" /></td></tr>
+			<tr><td class="label">上架时间</td><td>{$detail.fromtime|date='Y-m-d',###}</td></tr>
+			<tr><td class="label">下架时间</td><td>{$detail.totime|date='Y-m-d',###}</td></tr>
+			<tr><td class="label">备注信息</td><td><textarea name="note" cols="60" rows="4">{$detail.prod_note}</textarea></td></tr>
+			
+			<tr><td  class="label"><a href="javascript:;" id="click_me_more">more</a></td><td></td></tr>
+			
+			</table>
+
+	 </div>
+	 
+	 <div class="list-div" id="list-div-more" style="display:none;">
+		<table width="70%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+			<tr><td class="label">SerailNo</td><td><input type="text" name="serailNo"  /></td></tr>
+			<tr><td class="label">CPU</td><td><input type="text" name="cpu"  /></td></tr>
+			<tr><td class="label">内存</td><td><input type="text" name="memory"  /></td></tr>
+			<tr><td class="label">硬盘</td><td><input type="text" name="disk" /></td></tr>
+			<tr><td class="label">主板</td><td><input type="text" name="motherboard" /></td></tr>
+			<tr><td class="label">pic1</td><td><input type="file" id="picture1" name="picture[]" onchange="loadImage(this,'box1');" /></td></tr>
+			<tr><td class="label">pic2</td><td><input type="file" id="picture2" name="picture[]" onchange="loadImage(this,'box2');" /></td></tr>
+			<tr><td><div id='box1'></div></td><td><div id='box2'></div></td></tr>
+		</table>
+	</div>
+	<div class="button-div">
+			<input type="hidden" name="pro_id" value="{$detail.pro_id}" />
+			<input type="submit" name="sub" value="保存" class="button" />
+			<input type="button" value="返回" onclick="window.location.href='__APP__/Products/index?{$param}'" class="button" />			
+	</div>			
+	</form>		
+	</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$('#click_me_more').toggle(function(){
+									$('#list-div-more').show();
+									$('#list-div-more input').attr('disabled',false);
+								},function(){
+									$('#list-div-more').hide();
+									$('#list-div-more input').attr('disabled',true);	
+										
+								});
+		
+		});
+	
+	</script>
+	
+<script type="text/javascript">
+var picPath;
+var image;
+// preview picture
+function preview(container){
+	// 下面代码用来获得图片尺寸，这样才能在IE下正常显示图片
+	document.getElementById(container).innerHTML
+	= "<img width='"+image.width+"' height='"+image.height+"' id='aPic' src='"+picPath+"'>";
+}
+function loadImage(ele,container) {
+	picPath   = getPath(ele);
+	image     = new Image();
+	image.src = picPath;
+	preview(container);
+}
+function getPath(obj){
+	if(obj){
+		//ie
+		if (window.navigator.userAgent.indexOf("MSIE")>=1){
+			obj.select();
+			// IE下取得图片的本地路径
+			return document.selection.createRange().text;
+		}
+		//firefox
+		else if(window.navigator.userAgent.indexOf("Firefox")>=1){
+			if(obj.files){
+				// Firefox下取得的是图片的数据
+				return obj.files.item(0).getAsDataURL();
+			}
+			return obj.value;
+		}
+		return obj.value;
+	}
+}
+</script>
+
+    <include file="Public:n_footer" />

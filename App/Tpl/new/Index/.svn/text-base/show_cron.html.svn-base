@@ -1,0 +1,9 @@
+<a href="javascript:EV_closeAlert()" class="y">关闭</a> 
+   <volist name="cron_total" id="ct"><div class="list-div">
+	<table width="100%" height="150">
+	<tr><td width="10%">客户名称：</td><td colspan="5">{$ct.cusname}</td></tr>
+	<tr><td width="10%">联系人：</td><td width="20%">{$ct.contact}</td><td>电话：</td><td width="30%">{$ct.mobile}</td><td>qq：</td><td width="20%">{$ct.qq}</td></tr>
+	<tr><td width="10%">时间：</td><td colspan="5">{$ct.nexttime|date='Y-m-d',###}</td></tr>
+	<tr><td width="10%">备注：</td><td colspan="5">{$ct.note}</td></tr>
+	</table>
+   </div></volist>  

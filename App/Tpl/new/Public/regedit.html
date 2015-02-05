@@ -1,0 +1,15 @@
+
+
+<div style="width:500px;height:400px;margin:0 auto">
+ <form METHOD=POST action="__URL__/regedit/"  >
+用户名：<INPUT TYPE="text"   warning="请输入用户名" NAME="username" value=""></br>
+密   码：<INPUT TYPE="password"  check="Require" warning="请输入密码" NAME="password" value=""></br>
+重   复：<INPUT TYPE="password"  check="Require" warning="请输入密码" NAME="repassword" value=""></br>
+邮   箱：<INPUT TYPE="text"   warning="请输入登录邮箱" NAME="email" value=""></br>
+昵称：<INPUT TYPE="text"   warning="请输入登录邮箱" NAME="nickname" value=""></br>
+验证码:<input type='text' name='verify' size="5"> 
+ <img style='cursor:pointer' title='刷新验证码' src='__URL__/verify' id='verifyImg' onclick="this.src='__URL__/verify?'+Math.random()"/> <br />
+<INPUT TYPE="submit" value="注册" >
+</form>
+
+</div>

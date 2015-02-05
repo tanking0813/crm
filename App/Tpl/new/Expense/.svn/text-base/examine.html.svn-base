@@ -1,0 +1,95 @@
+<include file="Public:n_header" />
+
+<div class="tab-div">
+<div class="list-div">
+		
+	 		<table cellspacing='1' cellpadding='3'>
+			<form action="__SELF__" method="get" class="cf">
+	 		
+			<tr align="center"><td >审核状态：</td>
+			<td><select name="status"><option value="0" <eq name="Think.get.status" value="0">selected</eq>>未完成</option><option value="1" <eq name="Think.get.status" value="1">selected</eq>>未审核</option><option value="neq" <eq name="Think.get.status" value="neq">selected</eq>>审核中</option><option value="all" <eq name="Think.get.status" value="all">selected</eq>>全部</option></select></td>
+			
+			<td>类型：</td>
+			<td><select name="ask_type"><option value="0" <eq name="Think.get.ask_type" value="0">selected</eq>>全部</option><option value="b" <eq name="Think.get.ask_type" value="b">selected</eq>>报销账款</option><option value="g" <eq name="Think.get.ask_type" value="g">selected</eq>>申领工资</option></select></td>
+			
+			<td>申请人：</td><td>
+				<select  name="uid"><option value="0">--请选择--</option><volist name="user" id="s"><option value="{$s.uid}" <eq name="Think.get.uid" value="$s.uid">selected</eq>>{$s.uname}</option></volist></select>
+				</td>
+			<td><input class="srchbutton" type="submit" value="&nbsp;" title="搜索" /></td>
+			</tr>
+	 		</form>
+			
+			</table>
+	 			
+	 		
+	 		</div>
+			<div class="list-div">
+			<table bgcolor="#ccc" cellspacing='1' cellpadding='3'>
+			
+			<tr><th>申请金额</th><th>申请人</th><th>申请类型</th><th>申请备注</th><th>申请时间</th><th>审核状态</th><th>最后修改</th><th>操作</th></tr>
+			<volist name="exlist" id="el">
+			<tr align="center"><td>{$el.money}</td><td>{$el.user_text}</td><td><if condition="$el.ask_type eq 'b'">报销账款<elseif condition="$el.ask_type eq 'g'"/>申领工资</if></td><td width="50%" align="left">{$el.reason}</td><td>{$el.time|date='Y-m-d H:i',###}</td><td><if condition="$el.step eq '1'">未审核<elseif condition="$el.step eq '2'" />审核中<elseif condition="($el.step eq '3') or ($el.step eq '4')" />审核通过<elseif condition="$el.step eq '5'" />已结款<elseif condition="$el.step eq '6'" />未批准</if></td><td><if condition="$el.last_man neq null">{$el.last_man}<elseif condition="$el.second_man neq null" />{$el.second_man}<elseif condition="$el.first_man neq null" />{$el.first_man}</if></td><td>{$el.chuli}</td></tr>
+			</volist>
+			</table>
+			</div>
+
+</div>
+ <div id="shenhe" class="show_pop"  style="width:300px;">  	
+       
+        <form id="tform2" method="post" action="__URL__/shenpi">
+	<table width="100%" height="150" align="center">
+	<tr align="center"><td colspan="2"><label for="zhun1">同意</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="zhun1" type="radio" name="zhun" value="1" checked /></td></tr>
+	<tr align="center"><td colspan="2"><label for="zhun2">拒绝</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="zhun2" name="zhun" value="0" /></td></tr>
+	<tr align="center"><td>理由：</td><td><textarea cols="30" rows="3" name="reason"></textarea></td></tr>
+	
+	<tr><td align="right"><input type="hidden" name="buzhou"  /><input type="hidden" name="sid"  /><input type="hidden" name="param" value="{$param}" /><input type="submit" value=" 确 认 " /></td><td><input type="button" onclick="javascript:EV_closeAlert();" name="" value=" 取 消 " /></td></tr>
+	</table>
+
+   </form>    
+</div>
+ <div id="shenhe1" class="show_pop"  style="width:300px;">  	
+       
+        <form id="tform3" method="post" action="__URL__/shenpi">
+	<table width="100%" height="150" align="center">
+	<tr><td>申请金额：</td><td><input type="text"  name="payment"  readonly /></td></tr>
+	<tr><td>实支金额：</td><td><input type="text"  name="shizhi"  /></td></tr>
+	<tr align="center"><td>理由：</td><td><textarea cols="30" rows="3" name="reason"></textarea></td></tr>
+	<tr><td align="right"><input type="hidden"  name="zhun"  value="1" /><input type="hidden" name="buzhou"  /><input type="hidden" name="sid"  /><input type="hidden" name="param" value="{$param}" /><input type="submit" value=" 确认支付 " /></td><td><input type="button" onclick="javascript:EV_closeAlert();" name="" value=" 取 消 " /></td></tr>
+	</table>
+
+   </form>    
+</div>
+ <div id="shenhe2" class="show_pop"  style="width:300px;">  	
+       
+        <form id="tform4" method="post" action="__URL__/ruzhang">
+	<table width="100%" height="150" align="center">
+	<tr><td>入账金额：</td><td><input type="text"  name="paid"  readonly /></td></tr>
+	<tr><td>备注：</td><td><textarea cols="30" rows="4" name="note"></textarea></td></tr>
+	<tr><td align="right"><input type="hidden"  name="zhun"  value="1" /><input type="hidden" name="buzhou"  /><input type="hidden" name="param" value="{$param}" /><input type="hidden" name="sid"  /><input type="submit" value=" 入 账 " /></td><td><input type="button" onclick="javascript:EV_closeAlert();" name="" value=" 取 消 " /></td></tr>
+	</table>
+
+   </form>    
+</div>
+<script language="javascript">
+	function shenpi(id,status){
+		EV_modeAlert('shenhe');
+		$('#tform2 input[name="buzhou"]').val(status);
+		$('#tform2 input[name="sid"]').val(id);
+	
+	}
+	
+	function zhizhang(id,step,money){
+		EV_modeAlert('shenhe1');
+		$('#tform3 input[name="sid"]').val(id);
+		$('#tform3 input[name="buzhou"]').val(step);
+		$('#tform3 input[name="payment"]').val(money);
+	}
+	function ruzhang(id,status,paid){
+		EV_modeAlert('shenhe2');
+		$('#tform4 input[name="buzhou"]').val(status);
+		$('#tform4 input[name="sid"]').val(id);
+		$('#tform4 input[name="paid"]').val(paid);
+		
+	}
+</script>
+	<include file="Public:n_footer" />

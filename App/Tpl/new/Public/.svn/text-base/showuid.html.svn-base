@@ -1,0 +1,6 @@
+
+<div class="z img80" style="width:90px;">
+<a href="linka" target="_blank" >
+<img src="__PUBLIC__/avg/{$avg_small}" ></a> 
+</div>
+<a href="__APP__/Space/uid/{$result['uid']}"  target="_blank" >{$result['username']}</a></br>

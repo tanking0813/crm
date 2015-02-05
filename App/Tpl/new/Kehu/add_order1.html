@@ -1,0 +1,90 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+<div id="tabbody-div">
+        <<form id="addorder" method="post" name="Theform">
+		<table width="800" align="center">
+		<caption><h4>开通产品</h4></caption>
+		<tr><td class="label">公司名</td><td colspan="3">{$customer.cusname}</td></tr>
+		
+		<tr><td class="label">客户类型</td><td colspan="3">{$customer.custype|get_cus_type}</tr>
+		<tr><td class="label">产&nbsp;&nbsp;&nbsp;品</td><td><select id="sertype" name="type_id"><option value="0">--选择产品类型--</option>
+			<volist name="cate" id="pl"><option value="{$pl.tid}">{$pl.fg}{$pl.labelname}</option></volist>
+			
+			</select>
+			
+			</td><td></td><td></td></tr>
+			
+			<tr><td class="label">I&nbsp;&nbsp;&nbsp;P&nbsp;<input type="checkbox" name="ipon" value="1" checked /></td><td><input type="text" name="ip" onblur="check_uniq_ip();" /><span id="noti_message"></span></td><td class="label">域&nbsp;&nbsp;&nbsp;名</td><td><input type="text" name="domain"></td></tr>
+			<tr><td class="label">成交金额</td><td><input type="text" name="payment" /></td><td class="label">用户名</td><td><input type="text" name="cus_username" /></td></tr>
+				<tr>
+				<td class="label">税额：</td>
+				<td><input type="text" name="tax" /></td>
+				<td class="label">客户回扣：</td>
+				<td><input type="text" name="rebate" /></td>
+				</tr>
+				<tr>
+				<td class="label">开始时间</td>
+				<td><input name="from" value="{:date('Y-m-d')}" class="Wdate" type="text" onClick="WdatePicker()"></td>
+				<td class="label">到期时间</td>
+				<td><input name="to" value="<php>echo date('Y-m-d',strtotime('next year'));</php>" class="Wdate" type="text" onClick="WdatePicker()" /></td>
+				</tr>
+				
+		<tr><td class="label">备&nbsp;&nbsp;&nbsp;注</td><td colspan="3"><textarea type="text" name="note" cols="80" rows="6"></textarea></td></tr>
+	
+		
+		</table>
+		<div class="button-div">
+            {__TOKEN__}
+			<input type="hidden" name="cusid" value="{$customer.id}" />
+		<input type="hidden" name="salemanId" value="{$Think.session.uid}" />
+		<input type="hidden" name="param" value="{$param}" /> 
+			<input type="submit" name="sbt" value=" 确定 " class="button" onclick="return check_type_id();" />
+			<input type="button" value="返回" class="button" onclick="window.location.href='__APP__/Kehu/index?{$param}'"/>
+		</div>	
+		</form>
+</div>
+</div>
+<script language="javascript">
+	$(function(){
+		$('input[name="ipon"]').click(function(){
+			if($(this).attr('checked')==true){
+				$('input[name="ip"]').attr('disabled',false);
+			}else{
+				$('input[name="ip"]').attr('disabled',true);
+				$('#noti_message').html('');
+			}
+		
+		});
+	
+	});
+	function check_type_id(){
+		if($('select[name="type_id"]').val()=='0'){
+			alert('请填写产品类型!');
+			return false;
+		}else{
+			$('#addorder').submit();
+		}
+	}
+	function check_uniq_ip(){
+		if($('input[name="ipon"]').attr('checked')==true){
+			$.get('__APP__/Ipool/checkUniqIp',{'check_ip':$('input[name="ip"]').val()},function(data){
+				
+				if(data=='a'){
+					$('#noti_message').html('<font color="red">非内部资源,请联系管理员核对</font>');
+					$('input[name="ip"]').focus();
+					return false;
+				}else if(data=='c'){
+					$('#noti_message').html('<font color="red">IP正在使用,请分配其他IP</font>');
+					$('input[name="ip"]').focus();
+					return false;
+				}else{
+					$('#noti_message').html('<font color="green">IP可用</font>');
+					return true;
+				}
+			});
+		}else{
+			return true;
+		}
+	}
+</script>
+    <include file="Public:n_footer" />

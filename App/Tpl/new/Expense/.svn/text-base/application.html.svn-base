@@ -1,0 +1,26 @@
+<include file="Public:n_header" />
+
+<div class="tab-div">
+<div id="tabbody-div">
+  <form method="post" action="__URL__/addCus">
+  <div class="list-div">
+		<table align="center" width="90%" border="0" cellspacing="0" cellpadding="0">
+		<caption><h3>申请报销</h3></caption>
+		<tr><td class="label">报销金额</td><td colspan="3"><input type="text" name="cusname" size="70" /></td></tr>
+		<tr rowspan="3"><td class="label">申请理由</td><td colspan="3"><textarea cols="70" rows="3" name="address"></textarea></td></tr>
+		
+		</tr>
+		</table>
+		</div>
+
+
+		
+		<div class="button-div">
+			<input type="submit" name="sbt" value=" 确定 " class="button" />
+			<input type="button" value=" 返回 " class="button" onclick="window.location.href='__URL__'"/>
+		</div>	
+		</form> 
+</div>
+</div>
+
+	<include file="Public:n_footer" />

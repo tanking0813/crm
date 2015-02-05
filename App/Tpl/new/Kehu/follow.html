@@ -1,0 +1,120 @@
+<?php
+	
+?>
+
+<include file="Public:n_header" />
+<div class="tab-div">
+<div id="tabbody-div">
+<div class="list-div">
+			<table border="0" cellspacing="0" cellpadding="0">
+			<form action="" method="get" class="cf">
+			
+			<tr style="height:35px;">
+				<td align="right">
+				<select name="namesearch">
+					<option value="0"
+						<eq name="$namesel" value="0">selected</eq>
+					>客户名称</option>
+					<option value="1"
+						<eq name="$namesel" value="1">selected</eq>
+					>联系人</option>
+				</select>&nbsp;&nbsp;
+				</td>
+					<td>
+					
+					<input type="text" id="kehusel" style="display:show;" class="input_text"  name="cusname" value="" />
+					<input type="text" id="lianxisel" style="display:none;" class="input_text"  name="contact"   value="" />
+					</td>
+					
+					<?php
+				if(check_permission(MODULE_NAME.':'.ACTION_NAME)==1){
+					?>
+			    <td style="text-align:right;">所属销售&nbsp;&nbsp;</td>
+				<td>
+				<select  name="salemanId"><option value="0">全部</option>
+				<volist name="sale" id="s">
+				
+				<option value="{$s.uid}" <php>if(empty($param['salemanId'])){if($s['uid']==$Think['session']['uid']){echo 'selected';}}else{if($s['uid']==$param['salemanId']){echo 'selected';}}</php>>{$s.uname}</option>
+				</volist>
+				</select>
+				</th>
+				<?php
+				}else{
+				?>
+				<td colspan="2">&nbsp;</td>
+				<?php
+				}
+				?>
+
+
+					<td colspan="4">
+						<input  class="srchbutton" type="submit" value="&nbsp;"  title="搜索" />
+					</td>
+				<br/>
+			    </tr>
+			
+				<tr>
+				<th>客户名称</th>
+				<th>联系人</th>
+				<th>所属销售</th>
+				
+				<th>事件</th>
+				<th>描述</th>
+				<th>预约时间</th>
+				<th>剩余时间</th>
+				<th>备忘</th>
+				
+				
+				</tr>
+				<volist name="cust" id="cm">
+					<tr align="center">
+					<td  width="20%">
+					<if condition="$cm.custype eq 1" >
+					<a href="__URL__/view/id/{$cm.num}/salename/{$cm.uname}/backname/1" style="text-decoration:none;color:green" title = "客户详情">{$cm.cusname}</a>
+				<elseif condition="$cm.custype eq 2" />
+					<a href="__URL__/view/id/{$cm.num}/salename/{$cm.uname}/backname/1" style="text-decoration:none;color:blue" title = "客户详情">{$cm.cusname}</a>
+				<elseif condition="$cm.custype eq 3" />
+					<a href="__URL__/view/id/{$cm.num}/salename/{$cm.uname}/backname/1" style="text-decoration:none;color:#666" title = "客户详情">{$cm.cusname}</a>
+				<else/>
+				</if>
+					</td>
+					<td width="8%">{$cm.contact}</td>
+					<td width="7%">{$cm.uname}</td>
+					<td width="10%">{$cm.note}</td>
+					<td width="20%">{$cm.description}</td>
+					<td width="10%">{$cm.gd_time}</td>
+					<td width="10%">{$cm.cday}</td>
+					<td width="15%">{$cm.nextnote}</td>
+					</tr>
+				</volist>
+	 		</form>
+			</table>
+			
+
+	 	</div>
+	
+	 
+	 <div class="list-div">	
+	 			<table id="mess" width="800">
+				
+				</table>
+</div>
+</div>
+</div>
+
+<script language="javascript">
+
+			$(function(){
+				  $("select[name='namesearch']").change(function(){
+					 if(this.value=="0"){
+						$("input[name='cusname']").show();
+						$("input[name='contact']").hide();
+					 }else{
+						$("input[name='cusname']").hide();
+						$("input[name='contact']").show();
+					 }
+				  });
+			});
+</script>
+
+    <include file="Public:n_footer" />

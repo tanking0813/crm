@@ -1,0 +1,116 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+<form action="__APP__/Products/open_products" method="post" enctype="multipart/form-data">
+			<div id="tabbar-div">
+				<p>
+					<span class="tab-front" id="general-tab">产品基本信息</span>
+		
+					<span class="tab-back" id="mix-tab">主机信息</span>
+				</p>
+			</div>
+	<div class="tabbody-div">
+		
+				<div class="list-div">
+	 			<table width="100%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+				<caption><h3>产品基本信息</h3></caption>
+				<tr><td class="label">客户名称</td><td colspan="3">{$cust.cusname}</td></tr>
+				<tr><td class="label">联系人</td><td>{$cust.contact}</td><td class="label">职务</td><td>{$cust.cont_job}</td></tr>
+				<tr><td class="label">邮箱</td><td>{$cust.email}</td><td class="label">QQ</td><td>{$cust.qq}</td></tr>
+				<tr><td class="label">手机</td><td>{$cust.mobile}</td><td class="label">固定电话</td><td>{$cust.tel}</td></tr>
+				<tr><td class="label">身份证</td><td>{$cust.id_card}</td><td class="label">主页</td><td>{$cust.web}</td></tr>
+				<tr><td class="label">地址</td><td colspan="3">{$cust.address}</td></tr>
+				</table>
+				<table width="100%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+				<tr><td class="label">产品名</td><td colspan="3"><select name="pid"><volist name="cate" id="ct"><option value="{$ct.tid}" <eq name="Think.get.pid" value="$ct.tid">selected</eq>>{$ct.fg}{$ct.labelname}</option></volist></select></td></tr>
+				<tr><td class="label">ip<input type="checkbox" name="ipon" value="1" checked /></td><td colspan="3"><textarea cols="80" rows="2" name="ip" onblur="check_uniq_ip()"></textarea><span id="noti_message"><font color="red">多个IP以英文逗号“,”隔开</font></span></td></tr>
+				<tr><td class="label">应付金额</td><td><input type="text" name="payment"  /></td><td class="label">域名</td><td><input type="text" name="domain" value="{$pl.domain}" /></td></tr>
+				<tr><td class="label">开通时间</td><td><input type="text" name="from" value="{:date('Y-m-d')}" class="Wdate"  onClick="WdatePicker()"/></td><td class="label">到期时间</td><td><input type="text" name="to"  value="<php>echo date('Y-m-d',strtotime('next year'));</php>" class="Wdate" onClick="WdatePicker()"/></td></tr>
+				<tr><td class="label">添加人备注</td><td colspan="3"><textarea name="note" cols="80" rows="3"></textarea></td></tr>
+				
+				</table>
+				</div>
+				<div class="list-div" style="display:none;">
+				<table width="100%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+					<tr><td class="label">机户机柜</td><td><select name="store"><option value="0">-请选择-</option><volist name="store" id="st"><option value="{$st.id}">{$st.fullname}</option></volist></select>
+					</td><td class="label">占用大小</td><td><input type="text" name="size"  />&nbsp;&nbsp;(u)</td></tr>
+					<td class="label">维护技术</td><td><select name="techID"><option value="0">-请选择-</option><volist name="tech" id="tc"><option value="{$tc.uid}">{$tc.uname}</option></volist></select></td><td class="label">维护密码</td><td><input type="text" name="passwd" /></td></tr>
+					<tr><td class="label">设备型号</td><td><input type="text" name="style"  /></td><td class="label">交换机接口</td><td><input type="text" name="port"  /></td></tr>
+					
+					<tr><td class="label">设备备注信息</td><td colspan="3"><textarea cols="80" rows="4" name="technote"></textarea></td></tr>
+					<tr><td class="label">serialNo</td><td><input type="text" name="serialNo"  /></td><td class="label">CPU</td><td><input type="text" name="cpu"   /></td></tr>
+					<tr><td class="label">内存</td><td><input type="text" name="memory"    /></td><td class="label">硬盘</td><td><input type="text" name="disk" /></td></tr>
+					<tr><td class="label">主板</td><td><input type="text" name="motherboard"  /></td><td class="label">MAC地址</td><td><input type="text" name="mac" /></td></tr>
+				<tr><td class="label">图片1</td><td><input type="file" id="picture1" name="photo1" onchange="loadImage(this,'box1');" /></td><td class="label">图片2</td><td><input type="file" id="picture2" name="photo2" onchange="loadImage(this,'box2');" /></td></tr>
+			<tr><td colspan="2"><div id='box1'></div></td><td colspan="2"><div id='box2'></div></td></tr>
+				</table>
+				</div>
+				
+						 
+		 </div>
+		 	<div class="button-div">
+						{__TOKEN__}
+                        <input type="hidden" name="cusid" value="{$cust.id}">
+						
+                        <input type="hidden" name="param" value="{$param}" />
+						<input type="submit" name="sbt" value="提交" class="button" />
+						<input type="button" value="返回" class="button" onclick="window.history.back(-1);" />
+			</div>
+		 </form>	
+</div>
+<script type="text/javascript">
+	$(function(){
+		$('input[name="ipon"]').click(function(){
+			if($(this).attr('checked')==true){
+				$('textarea[name="ip"]').attr('disabled',false);
+			}else{
+				$('textarea[name="ip"]').attr('disabled',true);
+				$('#noti_message').html('');
+			}
+		
+		})
+	
+	})
+	function more_detail(obj){
+		if($(obj).attr('checked')){
+			$('input[name="serialNo"]').attr('disabled',false);
+			$('#list-div-more').show();
+		}else{
+			$('input[name="serialNo"]').attr('disabled',true);
+			$('#list-div-more').hide();
+		}
+	
+	}
+	$(function(){
+			$('#tabbar-div span').click(function(){
+				var ind=$(this).index();
+				$('#tabbar-div span:eq('+ind+')').attr('class','tab-front').siblings().attr('class','tab-back');
+				$('.tabbody-div .list-div:eq('+ind+')').css('display','block').siblings().css('display','none');
+			});
+	
+	});
+	
+	function check_uniq_ip(){
+		if($('input[name="ipon"]').attr('checked')==true){
+			$.get('__APP__/Ipool/checkUniqIp',{'check_ip':$('textarea[name="ip"]').val()},function(data){
+				
+				if(data=='a'){
+					$('#noti_message').html('<font color="red">非内部资源,请联系管理员核对</font>');
+					$('textarea[name="ip"]').focus();
+					return;
+				}else if(data=='c'){
+					$('#noti_message').html('<font color="red">IP正在使用,请分配其他IP</font>');
+					$('textarea[name="ip"]').focus();
+					return;
+				}else{
+					$('#noti_message').html('<font color="green">IP可用</font>');
+					return true;
+				}
+			});
+		}else{
+			return true;
+		}
+	}
+	
+</script>
+<script type="text/javascript" src="__PUBLIC__/Js/previewPic.js"></script>
+<include file="Public:n_footer" />

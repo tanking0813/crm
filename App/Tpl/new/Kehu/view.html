@@ -1,0 +1,266 @@
+<include file="Public:n_header" />
+
+<div id="tabbody-div">		
+			<div class="list-div">
+	 			<table width="90%" align="center">
+				<?php
+				if(strpos($param,"order_ctime")){
+				?>
+				<input type="button" value=" 返回 " class="button" onclick="window.location.href='__APP__/Order/index?{$param}'"/>
+				<?php
+				} 
+				if(strpos($param,"contract_No")){
+				?>
+				<input type="button" value=" 返回 " class="button" onclick="window.location.href='__APP__/Order/finance?{$param}'"/>
+				<?php 
+				}
+				if(strpos($param,"rangeb")){
+				?>
+				<input type="button" value=" 返回 " class="button" onclick="window.location.href='__APP__/Kehu/index?{$param}'"/>
+				<?php 
+				}
+				if($backname){
+				?>
+				<input type="button" value=" 返回 " class="button" onclick="window.location.href='__APP__/Kehu/follow?{$param}'"/>
+				<?php
+				}
+				?>
+
+				<caption><h3>基本信息</h3></caption>
+				<tr><td class="label">客户名称</td><td colspan="3">{$cust.cusname}</td></tr>
+				<tr><td class="label">联系人</td>
+				<td>{$cust.contact}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<?php
+					if(!$backname){
+				?>
+				<a href="javascript:;" style="color:green;text-decoration:none;" onclick="EV_modeAlert('more_contact')">添加拜访客户信息</a>
+				<?php
+					}
+				?>
+				</td>
+				<td class="label">职务</td><td>{$cust.cont_job}</td></tr>
+				<tr><td class="label">邮箱</td><td>{$cust.email}</td>
+				<td class="label">QQ</td><td>{$cust.qq}</td></tr>
+				<tr><td class="label">手机</td><td>{$cust.mobile}</td>
+				<td class="label">固定电话</td><td>{$cust.tel}</td></tr>
+				<tr><td class="label">身份证</td><td>{$cust.id_card}</td>
+				<td class="label">主页</td><td>{$cust.web}</td></tr>
+				<tr><td class="label">地址</td><td>{$cust.address}</td>
+				<td class="label">客户类型</td><td>{$cust.custype|get_cus_type}</td></tr>
+				<tr><td class="label">所属销售</td><td>{$saleman}</td>
+				<td class="label">&nbsp;</td><td>&nbsp;</td></tr>
+				</table>
+			</div>
+			<div class="list-div">
+				<table width="90%" align="center" border="0">
+				<caption><h3><a href="javascript:;" id="show_gminfo">购买信息</h3></caption></table>
+			</div>
+				<div id="is_show_me">
+				<volist name="prod" id="pl">
+				<div class="list-div">
+				<table width="90%" align="center" border="0">
+				<tr>
+					<td class="label">产品编号</td><td width="10%">{$pl.order_id}&nbsp;&nbsp;&nbsp;<if condition="$pl.order_status eq 2"><a style="color:blue;text-decoration:none;" href="javascript:;" onclick="modify_order('{$pl.order_id}')">修改</a></if></td>
+					<td class="label">产品</td><td>{$pl.cplx}{$pl.labelname}</td>
+				</tr>
+				<tr><td class="label">ip</td><td>{$pl.ip}</td>
+					<td class="label">域名</td><td>{$pl.domain}</td>
+				</tr>
+				
+				<tr><td class="label">应付金额</td><td>{$pl.payment}</td>
+				<td class="label">销售人</td><td>{$pl.salename}</td>
+					
+				</tr>
+				<tr><td class="label">开始时间</td><td>{$pl.fromtime|date='Y-m-d',###}</td>
+					<td class="label">结束时间</td><td>{$pl.totime|date='Y-m-d',###}</td>
+				</tr>
+				<tr>
+					<td class="label">用户名</td><td colspan="3">{$pl.cus_username}</td>
+				</tr>
+				<tr>
+					<td class="label">备注信息</td><td colspan="3">{$pl.note}</td>
+				</tr>
+					
+				</table>
+				</div>
+				</volist>
+				</div>
+	
+ 		<!--
+		<form method="post" id="handle_form" action="#">
+		<div class="list-div">
+			
+		<table width="90%" border="0" cellspacing="0" cellpadding="0">
+		<caption><h3>添加拜访客户信息</h3></caption>
+		<tr><td class="label">事件</td><td colspan="3"><input type="text"  name="note" size="52" /></td></tr>
+		
+		<tr><td class="label">内容描述</td><td><textarea name="description" cols="70" rows="6"></textarea></td>
+		<tr>
+        
+        <td><label id="adgd" for="ntc" style="font-size:12px;color:blue;">添加下次跟单</label>&nbsp;&nbsp;<input id="ntc" type="checkbox" onclick="add_xcgd();" name="nextct"  value="1"/></td>
+        
+        </tr>
+		</table>
+		</div>
+
+<div class="list-div">
+<table width="90%" border="0" align="center" cellspacing="0" cellpadding="0" id="xcgd" style="display:none;">
+	<tr><td class="label">下次拜访时间</td><td><input type="text" name="nexttime" value="{:date('Y-m-d')}" class="Wdate" type="text" onClick="WdatePicker()" /></td></tr>
+	<tr><td class="label">备忘信息</td><td><textarea name="nextnote" cols="60" rows="4"></textarea></td></tr>
+</table>
+</div>
+
+<div class="button-div">
+			<input type="hidden" name="customer_id" value="{$cust.id}">
+			<input type="button" value=" 提 交 " class="button" onclick="return handle_submit('{$Think.session.uname}','{:date('Y-m-d H:i')}',this)"/>
+			<input type="button" value=" 返 回 " class="button" onclick="window.location.href='__APP__/Kehu/index?{$param}'"/>
+</div>	
+		</form> 
+-->
+				
+				 <div class="list-div">	
+					 <table width="90%" align="center"  cellspacing="1" cellpadding="3" id="list-div3"> 
+<caption><h3>客户操作记录</h3></caption><tr><th width="15%">时间</th><th width="20%">事件</th><th>内容描述</th><th width="10%">操作员工</th></tr>
+</table>
+				 </div>
+				 
+				 <script language="javascript">
+					$(function(){
+						var cid= {$cust.id} ;					
+						$.getJSON('__URL__/hand_history',{'cid':cid},function(data){
+							$('#list-div3').append(data.data);
+							
+						},'json');
+						
+						
+						
+						$('#show_gminfo').toggle(
+							function(){ 
+								$('#is_show_me').hide();
+							},
+							function(){
+								$('#is_show_me').show();
+							}
+						
+						);
+					})
+					function modify_order(id){
+						EV_modeAlert('modiOrder');
+						$.getJSON('__APP__/Order/modify_order',{'onumber':id},function(data){
+							$('#modiOrder').html(data.data);
+						},'json')
+					
+					}
+					
+					function handle_submit(uname,nowtime,object){
+						$(object).attr('disabled',true);
+						var reg1=/\S+/;
+						var nextct=$('#ntc').attr('checked')?1:0;
+						var note=$('#handle_form input[name="note"]').val();
+						var description=$('#handle_form textarea[name="description"]').val();
+						var nexttime=$('#handle_form input[name="nexttime"]').val();
+						var nextnote=$('#handle_form textarea[name="nextnote"]').val();
+						var customer_id=$('#handle_form input[name="customer_id"]').val();
+						if(reg1.test(note) && reg1.test(description)){
+							//alert(customer_id);
+							$.post('__APP__/Kehu/handle',{'customer_id':customer_id,'note':note,'description':description,'nexttime':nexttime,'nextnote':nextnote,'nextct':nextct},function(data){
+								if(data==1){
+									$('<tr><td>'+nowtime+'</td><td>'+note+'</td><td>'+description+'</td><td>'+uname+'</td></tr>').insertAfter('#list-div3 tr:first');
+									alert('成功！');
+									$(object).attr('disabled',false);
+								}else if(data==2){
+									$('<tr><td>'+nowtime+'</td><td>'+note+'</td><td>'+description+'</td><td>'+uname+'</td></tr>').insertAfter('#list-div3 tr:first');
+									alert('成功！');
+									$(object).attr('disabled',false);
+								}else if(data==-1){
+									alert('添加本次失败，请稍候再试');
+									$(object).attr('disabled',false);
+								}else if(data==-2){
+									alert('添加失败，请稍候再试');
+									$(object).attr('disabled',false);
+								}
+							})
+							
+						}else{
+							alert('请键入事件及内容后提交');
+							$(object).attr('disabled',false);
+						}
+
+					}
+						
+				function add_xcgd(){
+					if($('#xcgd').css('display')=='none'){
+						$('#xcgd').css('display','block');
+						$('#adgd').html('收起');
+					}else{
+						$('#xcgd').css('display','none');
+						$('#adgd').html('添加下次跟单');
+					}
+			
+				}
+						
+				 </script>
+				 
+				 
+				 
+			<div id="more_contact" class="show_pop"  style="width:800px;">
+			 <a href="javascript:EV_closeAlert()" class="y">关闭</a>
+				
+                <!--
+					$count=count($cust['contact_list']['contact']);
+					for($i=0;$i<$count;$i++){
+						echo '
+                        
+                        <div class="list-div"><table width="90%" height="150" border="0" cellspacing="0" cellpadding="0" align="center">
+							<tr><td class="label">联系人</td><td>'.$cust['contact_list']['contact'][$i].'</td>
+							<td class="label">职务</td><td>'.$cust['contact_list']['cont_job'][$i].'</td></tr>
+							<tr><td class="label">邮箱</td><td>'.$cust['contact_list']['email'][$i].'</td>
+							<td class="label">QQ</td><td>'.$cust['contact_list']['qq'][$i].'</td></tr>
+							<tr><td class="label">手机</td><td>'.$cust['contact_list']['mobile'][$i].'</td>
+							<td class="label">固定电话</td><td>'.$cust['contact_list']['tel'][$i].'</td></tr>
+							<tr><td class="label">身份证</td><td>'.$cust['contact_list']['id_card'][$i].'</td></table></div>';
+						echo '<div style="height:5px;clear:both;"></div>
+                        -->
+                        <form method="post" id="handle_form" action="#">
+                        
+                        <div class="list-div">
+								<?php
+
+								?>
+                                <table width="90%" border="0" cellspacing="0" cellpadding="0">
+                                <caption><h3>添加拜访客户信息</h3></caption>
+                                <tr><td class="label">事件</td><td colspan="3"><input type="text"  name="note" size="52" /></td></tr>
+                                
+                                <tr><td class="label">内容描述</td><td><textarea name="description" cols="70" rows="6"></textarea></td>
+                               <!--
+                                <tr>
+                                
+                                <td><label id="adgd" for="ntc" style="font-size:12px;color:blue;">添加下次跟单</label>&nbsp;&nbsp;<input id="ntc" type="checkbox" onclick="add_xcgd();" name="nextct"  value="1"/></td>
+                                
+                                </tr>
+                                -->
+                                <tr><td class="label">下次拜访时间</td><td><input type="text" name="nexttime" value="{:date("'.Y-m-d.'")}" class="Wdate" type="text" onClick="WdatePicker()" /></td></tr>
+                                
+                                
+                            <tr><td class="label">备忘信息</td><td><textarea name="nextnote" cols="60" rows="4"></textarea></td></tr>
+                                </table>
+						</div>
+                       
+                        
+        <div class="button-div" id = "xcgdbt">
+			<input type="hidden" name="customer_id" value="{$cust.id}">
+			<input type="button" value=" 提 交 " class="button" onclick="return handle_submit('{$Think.session.uname}','{:date('Y-m-d H:i')}',this)"/>
+			<input type="reset" value=" 重 置 " class="button"/>
+            <!--
+             onclick="window.location.href='__APP__/Kehu/index?{$param}'"
+             -->
+        </div>	
+        </form>
+		</div>
+
+<div id="modiOrder" class="show_pop" style="width:1000px;height:300px;">  	
+
+</div>  
+				
+</div>
+<include file="Public:n_footer" />

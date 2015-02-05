@@ -1,0 +1,128 @@
+<div id="sortList"><div class="inner"><div class="menu-title">操作</div></div></div>
+<div id="selector" style="border-right:1px solid #E5E5E5">
+	<div class="inner">
+		<div class="book-menu">
+			<div class="list">
+				<ul>
+					<li 
+					<eq name="MODULE_NAME" value="Index">class="show child"
+
+						<else/>
+						class="child"
+					</eq>
+					>
+					
+						<a 
+						
+						<eq name="MODULE_NAME" value="Index">class="title selected" 
+
+						<else/>
+						class="child" 
+					</eq>
+						href="__APP__/Index" title="综合信息">&nbsp;综合信息</a>
+						</li>
+					<li
+					<eq name="MODULE_NAME" value="Kehu">class="show child"
+
+						<else/>
+						class="child"
+					</eq>
+					>
+						<a 
+						
+						<eq name="MODULE_NAME" value="Kehu">class="title selected" 
+
+						<else/>
+						class="child" 
+					</eq>
+						href="__APP__/Kehu" title="入门">&nbsp;客户信息</a>
+					<ul >
+						<li><a class="" href="__URL__/addCus">添加客户</a></li>
+									
+					</ul>
+				</li>
+					<li 
+						<eq name="MODULE_NAME" value="Order">class="show child"
+
+						<else/>
+						class="child"
+					</eq>
+					>
+						<a 
+							
+						<eq name="MODULE_NAME" value="Order">class="title selected" 
+
+						<else/>
+						class="child" 
+					</eq>
+						 href="__APP__/Order" title="订单管理">&nbsp;订单管理</a>
+					<!--<ul >
+						<li><a class="" href="__APP__/Order/idc">1.1&nbsp;idc</a></li>
+						<li><a class="" href="__APP__/Order/cdn">1.1&nbsp;cdn</a></li>
+						<li><a class="" href="__APP__/Order/ibs">1.1&nbsp;ibs</a></li>						
+						</ul>-->
+				</li>
+				<li 
+				<eq name="MODULE_NAME" value="User">class="show child"
+
+						<else/>
+						class="child"
+					</eq>
+				>
+						<a 
+							<eq name="MODULE_NAME" value="User">class="title selected" 
+
+						<else/>
+						class="child" 
+					</eq>
+						href="__APP__/User" title="员工管理">&nbsp;员工信息</a>
+					<ul>
+						<li><a class="" href="javascript:;" onclick="EV_modeAlert('addzu')">新增部门</a></li>
+						<li><a class="" href="javascript:;" onclick="EV_modeAlert('adduser')">新增员工</a></li>
+						
+						<li><a class="" href="#">角色管理</a></li>	
+											
+						</ul>
+				</li>
+					<li 
+				<eq name="MODULE_NAME" value="Products">class="show child"
+
+						<else/>
+						class="child"
+					</eq>
+				>
+						<a 
+							<eq name="MODULE_NAME" value="Products">class="title selected" 
+
+						<else/>
+						class="title" 
+					</eq>
+						href="__APP__/Products" title="产品管理">&nbsp;产品信息</a>
+						<ul><li><a class="" href="__URL__/add_product" >添加产品</a></li></ul>
+				</li>
+				
+				<li 
+				<eq name="MODULE_NAME" value="Serve">class="show child"
+
+						<else/>
+						class="child"
+					</eq>
+				>
+						<a 
+							<eq name="MODULE_NAME" value="Serve">class="title selected" 
+
+						<else/>
+						class="title" 
+					</eq>
+						href="__APP__/Serve" title="售后服务">&nbsp;售后服务</a>
+				<!--	<ul>
+						<li><a class="" href="__APP__/Serve/idc">1.1&nbsp;idc</a></li>
+						<li><a class="" href="__APP__/Serve/cdn">1.1&nbsp;cdn</a></li>
+						<li><a class="" href="__APP__/Serve/ibs">1.1&nbsp;ibs</a></li>											
+						</ul>-->
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</div>

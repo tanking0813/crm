@@ -1,0 +1,1 @@
+<tr><th align="center">操作时间</th><th>客户名称</th><th>产品名</th><th>操作人</th><th>操作记录</th></tr>		<volist name="date" id="se">		<tr  >		<td width='20%'>{$se.time|date='Y-m-d',###}</td>		<td width='20%'>{$se.cusname}</td>		<td width='20%'>{$se.labelname}</td>		<td width='10%'>{$se.user}</td>		<td align='left'>{$se.content}</td>	</tr>	</volist>

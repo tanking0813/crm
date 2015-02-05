@@ -1,0 +1,50 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+	 		<div id="tabbody-div">
+		
+	 		<table width="70%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+			<form  method="post" class="cf" name="Theform">
+				<tr><td class="label">产品编号</td><td colspan="3">{$or.order_id}</td></tr>
+				<tr><td class="label">使用客户</td><td colspan="3">{$or.cusname}</td></tr>
+				<tr><td class="label">联系人</td><td>{$or.contact}</td><td class="label">职务</td><td>{$or.cont_job}</td></tr>
+				<tr><td class="label">开始日期</td><td>{$or.fromtime|date='Y-m-d',###}</td><td class="label">到期日期</td><td>{$or.totime|date='Y-m-d',###}</td></tr>
+				<tr>
+				<td class="label">固定电话</td>
+				<td>{$or.tel}</td>
+				<td class="label">应付金额</td>
+				<td>{$or.payment}元</td>
+				<input type='hidden' name='payment' value='{$or.payment}' />
+				</tr>
+				<tr>
+					<td class="label">入账金额:</td>
+					<td><input type="text" name="paid" value='{$or.paid}'  />元</td>
+					<td class="label">合同号</td>
+					<td><input type="text" name="hetong_num" value='{$or.contract_No}' /></td>
+				</tr>
+				<tr>
+					<td class="label">税费:</td>
+					<td>
+					<input type="text" name="tax"  value="{$or.tax}" /> 元
+					</td>
+					<td class="label">其他支出:</td>
+					<td><input type="text" name="rebate" value='{$or.rebate}' />元</td>
+				</tr>
+				<tr>
+					<td class="label">备注:</td>
+						<td colspan="3">
+							<textarea name="note" cols="80" rows="5">{$or.note}</textarea>
+						</td>
+					</tr>
+			</table>
+	 			<div class="button-div">
+                {__TOKEN__}
+					<input type="submit" name="sbt" value="入账" class="button" onclick="this.disabled=true;document.Theform.submit();"/>
+						<input type="hidden" name="onum" value="{$Think.get.num}">
+						<input type="button" value="返回" class="button" onclick="window.location.href='__URL__/finance'" />
+				
+						</form>
+					</div>
+	 		
+	 		</div>
+	 	</div>
+    <include file="Public:n_footer" />

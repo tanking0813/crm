@@ -1,0 +1,28 @@
+	<tr><th>合同号</th><th>客户名</th><th>产品名</th><th>销售人</th><th>开始时间</th><th>到期时间</th><th>应付款</th><th>已付款</th><th>状态</th><th>操作</th></tr>
+		
+	<volist name="order" id="od">
+			<tr align="center">
+			<td>{$od.contract_No}</td>
+			<td>{$od.cusname|mb_substr='0','20','utf-8'}</td>
+			<td>{$od.labelname}</td>
+			<td>{$od.salename}</td>
+			<td>{$od.fromtime|date='Y-m-d',###}</td>
+			<td>{$od.totime|order_end_check}</td>
+			<td>{$od.payment}</td>
+			<td>{$od.paid}</td>
+			<td>
+			<php>
+			$istime=$od['totime']-time();
+			if(empty($od['paid'])){
+				echo '<font color="blue">待入账</font>';
+			}elseif($istime<=0){
+				echo '<font color="red">过期</font>';
+			}elseif($istime>0 && $istime<=604800){
+				echo '<font color="gray">'.ceil($istime/86400).'天后过期</font>';
+			}else{
+				echo '<font color="green">正常</font>';
+			}
+			</php></td>
+			<td><if condition="$od.paid eq '0'"><a href="__URL__/finance_save/num/{$od.order_id}?{$param}">入账</a><else /></if></td>
+			</tr>
+			</volist>

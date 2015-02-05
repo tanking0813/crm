@@ -1,0 +1,59 @@
+<tr><th width="30%">客户名称</th><th>联系人</th><th>手机</th><th>QQ</th><th><a href="javascript:listTable.sort('payment',{$order},'{$param}'); ">成交金额</a><img id="sortImg" src="__PUBLIC__/Images/wl/sort_desc.gif "/></th><th>IP</th><th width="10%">合同结束时间</th><th>客户类型</th><th>操作</th></tr>
+				<volist name="cust" id="cm">
+				<tr align="center" id="varitk_{$key}"><td  width="30%">{$cm.cusname}</td><td>{$cm.contact|default='无'}</td><td>{$cm.mobile|default='无'}</td><td>{$cm.qq|default='无'}</td><td>{$cm.vp_money|default='0.00'}</td>
+			
+				<td><div  id="pipvar{$key}" style="border:1px dashed green;width:150px;overflow-x:scroll;">{$cm['products'][0]['ip']|default='无'}</div></td><td width="10%" id="ptovar{$key}">{$cm['products'][0]['totime']|date='Y-m-d',###|default='无'}</td></div>
+				<script type="text/javascript">
+				<php>
+					echo 'if(typeof tpi'.$key.' === "undefined"){';
+						echo 'var tpi'.$key.'=null;';
+					echo '}else{';
+						echo 'clearInterval(tpi'.$key.');';
+					echo '}';
+					echo 'var pip_'.$key.'=new Array();';
+					echo 'var pto_'.$key.'=new Array();';
+					foreach($cm['products'] as $val){
+						echo "pip_".$key.".push('".$val['ip']."</td>');";
+						echo "pto_".$key.".push('".date('Y-m-d',$val['totime'])."</td>');";
+						
+					}
+					echo 'var _i'.$key.'=0;';
+					echo 'tpi'.$key.'=setInterval(function(){';
+						echo '$("#pipvar'.$key.'").html(pip_'.$key.'[_i'.$key.']);';
+						echo '$("#ptovar'.$key.'").html(pto_'.$key.'[_i'.$key.']);';
+						echo '_i'.$key.'+=1;';
+						echo 'if(_i'.$key.'==pip_'.$key.'.length){';
+							echo '_i'.$key.'=0;';
+						echo '}';
+					
+					echo '},5000);';
+					
+				</php>
+				</script>
+				<td>{$cm.custype|get_cus_type}</td>
+				<td>
+			
+				<if condition="check_permission('Kehu:view') neq false">
+				<a href="__URL__/view/id/{$cm.num}?{$param}">查看</a>
+				</if>
+				<if condition="check_permission('Kehu:edit_cusinfo') neq false">
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="__URL__/edit_cusinfo/cusid/{$cm.num}?{$param}">编辑</a>
+				</if>
+				<if condition="check_permission('Kehu:add_order') neq false">
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="__URL__/add_order/id/{$cm.num}?{$param}">开通产品</a></if>
+
+				</td>
+				</tr>
+				
+				</volist>
+				<tr align="center"><td colspan="9" align="center">{$page}&nbsp;&nbsp;&nbsp每页显示<select name="per_page" onchange="search(this.value);">
+				<option value="0">-选择-</option>
+				<option value="20" <eq name="Think.get.per_page" value="20">selected</eq>>20</option>
+				<option value="40" <eq name="Think.get.per_page" value="40">selected</eq>>40</option>
+				<option value="60" <eq name="Think.get.per_page" value="60">selected</eq>>60</option>
+				<option value="80" <eq name="Think.get.per_page" value="80">selected</eq>>80</option>
+				<option value="100" <eq name="Think.get.per_page" value="100">selected</eq>>100</option>
+				<option value="all" <eq name="Think.get.per_page" value="all">selected</eq>>全部</option>
+				</select></td></tr>
+				
+			

@@ -1,0 +1,91 @@
+<include file="Public:header" />
+<include file="Public:left" />
+<include file="Public:topsearch" />
+	 <div id="gird">
+	 	<div class="inner">
+	 	<div class="book-title" menu="11">
+	 		<input type="text" class="input_text" name="username" style="margin-left:10px;">
+	 			
+	 			
+	 		<a href="javascript:;"  onclick="EV_modeAlert('addproduct')" title="添加购买产品" style="display: inline-block;">
+					<h1>添加购买产品</h1>	</a>
+					<a href="javascript:;"  onclick="EV_mdddodeAlert()" title="添加购买产品" style="display: inline-block;">
+					<h1>添加测试</h1>	</a>
+	 		</div>
+	 		
+	 		<table width="800">
+			<tr><th>产品名</th><th>客户名</th><th></th><th>销售人</th><th>详细</th></tr>
+			<volist name="buy" id="by">
+			<tr>
+			<td>{$by.pid}</td>
+			<td>{$by.cid}</td>
+			<td>{$by.uid}</td>
+			<td>{$by.from}</td>
+			<td></td>
+			</tr>
+			
+			</volist>
+			</table>
+	 	</div>
+	 </div>
+
+
+ <div id="addproduct" class="show_pop"  style=" width:580px;">  	
+        <a href="javascript:EV_closeAlert()" class="y">关闭</a>
+        <form id="sss" method="post" action="__URL__/addproduct">
+        </br>用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户:<input type="text" class="input_text" name="cid" />
+</br>销&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售:{$salesmans}
+</br>产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品:<select name="from" style="display:inline-block;"><option value="idc">idc</option><option value="cdn">cdn</option><option value="ibs">ibs</option></select>
+<select name="fromid" style="display:inline-block;"><option value="1">a</option><option value="2">b</option><option value="3">c</option></select>
+</br>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价:<input type="text" class="input_text" name="money" />
+</br>实际价格:<input type="text" class="input_text" name="pay" />
+</br>开始时间:<input type="text" class="input_text" name="created" />
+</br>到期时间:<input type="text" class="input_text" name="expires" />
+</br>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:<input type="text" class="input_text" name="remark"  style="height:60px;"/>
+
+</br>
+<input type="submit" value="submit" />
+   </form>    
+</div>
+
+
+  <div id="addrserve" class="show_pop"  style=" width:580px;">  	
+        <a href="javascript:EV_closeAlert()" class="y">关闭</a>
+        <form id="sss" method="post" action="__APP__/Serve/addrserve">
+问题:<input type="text" class="input_text" name="bug" />
+</br>备注:<input type="text" class="input_text" name="remark"  style="height:60px;"/>
+<input type="hidden" name="pid" id="pid" value="" />
+</br>
+<input type="submit" value="submit" />
+   </form>    
+</div>
+<script>
+
+function EeV_addrserve(adiv,id){
+	$("#pid").val(id);
+EV_modeAlert(adiv);
+}
+
+
+function EV_mdddodeAlert(){
+
+$("#prepend").prepend("aaa");
+
+}
+
+$(function(){
+      $('#sss').submit(function(){
+ 
+   $('#sss').ajaxSubmit({ 
+      success:showResponse});// 提交表单
+   return false;   //防止浏览器提交表单
+   }); //ajax提交表单
+   function showResponse(data, statusText){
+data=eval('('+data+')');
+$("#prepend").prepend(data.data);
+EV_closeAlert();
+   }
+
+})
+</script>
+    <include file="Public:footer" />

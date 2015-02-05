@@ -1,0 +1,5 @@
+<a href="javascript:EV_closeAlert()" class="y">关闭</a> 
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+	<volist name="notice" id="nt"><tr id="bvb{$nt.id}"><th><a href="javascript:;" onclick="set_readed_notice('{$nt.id}');">{$nt.title|mb_substr='0','100'}</a></th></tr></volist>
+</table>

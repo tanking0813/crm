@@ -1,0 +1,65 @@
+<include file="Public:n_header" />
+
+<div class="tab-div">
+<div class="list-div">
+		
+	 		<table cellspacing='1' cellpadding='3'>
+			<form action="__SELF__" method="get" class="cf">
+	 		
+			<tr align="center"><td>审核状态：</td>
+			<td><select name="status""><option value="ea" <eq name="Think.get.status" value="ea">selected</eq>>待审核</option><option value="all" <eq name="Think.get.status" value="all">selected</eq>>全部</option><option value="6" <eq name="Think.get.status" value="6">selected</eq>>未批准</option></select></td>
+			<td><input class="srchbutton" type="submit" value="&nbsp;"  title="搜索" /></td>
+			</tr>
+	 		</form>
+			
+			</table>
+	 			
+	 		
+	 		</div>
+			<div class="list-div">
+			<table cellspacing='1' cellpadding='3' bgcolor="#ccc">
+			
+			<tr><th>申请金额</th><th>类型</th><th>申请内容</th><th>申请时间</th><th>审核状态</th><th>最后修改</th><th>其他</th></tr>
+			<volist name="exlist" id="el">
+			<tr align="center"><td>{$el.money}</td><td><if condition="$el.ask_type eq 'g'">申领工资<elseif condition="$el.ask_type eq 'b'" />报销账款</if></td><td align="left" width="50%">{$el.reason}</td><td>{$el.time|date='Y-m-d H:i',###}</td><td><if condition="$el.step eq '1'">未审核<elseif condition="$el.step egt '2'" />审核中<elseif condition="$el.step eq '3'" />审核通过<elseif condition="$el.step eq '4'" />已支款<elseif condition="$el.step eq '6'" />拒绝<elseif condition="$el.step eq '0'" />处理完毕</if></td><td><if condition="$el.last_man neq null">{$el.last_man}<elseif condition="$el.second_man neq null" />{$el.second_man}<elseif condition="$el.first_man neq null" />{$el.first_man}</if></td><td width="20%"><if condition="$el.step eq '4'"><a href="__URL__/shoukuan/eid/{$el.id}">确认收款</a><elseif condition="$el.step eq '6'" /><php>echo $el['second_reason']==''?$el['first_reason']:$el['second_reason'];</php></if></td></tr>
+			</volist>
+			</table>
+			</div>
+
+<div id="tabbody-div">
+  <form method="post" action="__URL__/application" id="app">
+  <div class="list-div">
+		<table align="center" width="90%" border="0" cellspacing="0" cellpadding="0">
+		<caption><h3>申请账款</h3></caption>
+		<tr><td class="label">申请类型</td><td><select name="ask_type"><option value="b">报销账款</option><option value="g">工资申请</option></select></td></tr>
+		
+		<tr><td class="label">申请金额</td><td colspan="3"><input type="text" name="money" /></td></tr>
+	
+		<tr rowspan="3"><td class="label">说明</td><td colspan="3"><textarea cols="70" rows="6" name="reason"></textarea></td></tr>
+		
+		</tr>
+		</table>
+		</div>
+
+
+		
+		<div class="button-div">
+			<input type="button" name="sbt" value=" 申请 " class="button" onclick="checkvalue()"/>
+		</div>	
+		</form> 
+</div>
+</div>
+<script language="javascript">
+	function checkvalue(){
+		if($('input[name="money"]').val()==''||$('textarea[name="reason"]').val()==''){
+		
+			alert('请填写报销金额及申请理由');
+			return false;
+		}else{
+			$('#app').submit();
+		}
+	
+	}
+
+</script>
+	<include file="Public:n_footer" />

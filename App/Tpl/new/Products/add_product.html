@@ -1,0 +1,35 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+<div id="tabbody-div">
+<form method="post">
+			<table width="90%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+			
+			
+			<tr><td class="label">产品类型</td><td><select id="sertype" name="type"><option value="0">--选择产品类型--</option>
+			<volist name="cate" id="pl"><option value="{$pl.tid}">{$pl.fg}{$pl.labelname}</option></volist>
+			
+			</select></td></tr>
+			
+			<tr><td class="label">机户机柜</td>
+			<td><select name="store"><option value="0">-请选择-</option><volist name="store" id="st"><option value="{$st.fullname}">{$st.fullname}</option></volist></select>
+			</td></tr>
+			<tr><td class="label">&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;P</td><td><input type="text" name="ip"  /></td></tr>
+			<tr><td class="label">占用大小</td><td><input type="text" name="size"  />&nbsp;&nbsp;(u)</td></tr>
+			<!--<tr><td class="label">产品名称</td><td><input type="text" name="proname"  />(内部识别,可以不填)</td></tr>-->
+			<tr><td class="label">维护技术</td><td><input type="hidden" name="techId" /><select name="tech"><option value="0">-请选择-</option><volist name="tech" id="tc"><option value="{$tc.uid}">{$tc.uname}</option></volist></select></td></tr>
+			<tr><td class="label">维护密码</td><td><input type="text" name="passwd" /></td></tr>
+			<tr><td class="label">上架时间</td><td><input type="text" name="uptime"  /></td></tr>
+			<tr><td class="label">下架时间</td><td><input type="text" name="downtime"  /></td></tr>
+			<tr><td class="label">备注信息</td><td><input type="text" name="note"  /></td></tr>
+			
+			</table>
+			<div class="button-div">
+            {__TOKEN__}
+						<input type="submit" name="sbt" value=" 确定 " class="button" />
+						<input type="reset" value=" 重置 " class="button" />
+					</div>
+		
+</form>
+	 </div>
+	 </div>
+    <include file="Public:n_footer" />

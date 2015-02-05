@@ -1,0 +1,66 @@
+<include file="Public:n_header" />
+
+<div class="list-div">
+<form  method="post">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="4" class="group-title">周一到周五</th>
+  </tr>
+
+  <tr>
+    <td class="label">上班考勤时段:</td>
+    <td width="40%"><input type="text" name="am_s5" value="{$confa.am_s}" />&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;<input  type="text" name="am_e5" value="{$confa.am_e}"></td>
+	<td class="label">上班标准时间:</td>
+    <td><input type="text" name="std_up5" value="{$confa.std_up}" /></td>
+
+	
+	  </tr>
+  <tr>
+    <td class="label">下班考勤时段:</td>
+    <td width="40%"><input type="text" name="pm_s5" value="{$confa.pm_s}" />&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;<input  type="text" name="pm_e5" value="{$confa.pm_e}"></td>
+	<td class="label">下班标准时间:</td>
+    <td><input type="text" name="std_down5" value="{$confa.std_down}" /></td>
+
+  </tr>
+
+  
+</table>
+</div>
+
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="4" class="group-title">周六至周日</th>
+  </tr>
+
+   <tr>
+    <td class="label">上班考勤时段:</td>
+    <td width="40%"><input type="text" name="am_s6" value="{$confb.am_s}" />&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;<input  type="text" name="am_e6" value="{$confb.am_e}"></td>
+	<td class="label">上班标准时间:</td>
+    <td><input type="text" name="std_up6" value="{$confb.std_up}" /></td>
+
+	
+	  </tr>
+  <tr>
+    <td class="label">下班考勤时段:</td>
+    <td width="40%"><input type="text" name="pm_s6" value="{$confb.pm_s}" />&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;<input  type="text" name="pm_e6" value="{$confb.pm_e}"></td>
+	<td class="label">下班标准时间:</td>
+    <td><input type="text" name="std_down6" value="{$confb.std_down}" /></td>
+
+  </tr>
+  
+  
+  
+  
+</table>
+
+</div>
+<div class="button-div">
+					<input type="submit" name="sbt" value="保存" class="button" />
+					
+						<input type="button" value="返回" class="button" onclick="window.location.href='__URL__'" />
+				
+						</form>
+					</div>
+
+<include file="Public:n_footer" />

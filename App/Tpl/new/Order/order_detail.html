@@ -1,0 +1,73 @@
+<include file="Public:n_header" />
+<div class="tab-div">
+	 		<div id="tabbody-div">
+			
+			
+			<input type="button" value="返回" class="button" onclick="window.location.href='__URL__?{$param}'" />
+			
+
+	 		<table width="70%" id="general-table" align="center" cellpadding="3" cellspacing="1">
+			<form  method="post" class="cf">
+				<tr><td class="label">产品编号</td><td colspan="3">{$or.order_id}</td></tr>
+				<tr><td class="label">使用客户</td><td colspan="3">{$or.cusname}</td></tr>
+				<tr><td class="label">联系人</td><td>{$or.contact}</td><td class="label">用户名</td><td>{$or.cus_username}</td></tr>
+				<tr><td class="label">开通日期</td><td>{$or.fromtime|date='Y-m-d',###}</td><td class="label">到期日期</td><td>{$or.totime|date='Y-m-d',###}</td></tr>
+				<tr><td class="label">固定电话</td><td>{$or.tel}</td><td class="label">合同号</td><td colspan="3">{$or.contract_No}</td></tr>
+				<tr><td class="label">应付金额</td><td>{$or.payment}</td><td class="label">已付金额</td><td>{$or.paid}</td></tr>
+				<tr><td class="label">机柜名</td><td>{$or.storename}</td>
+					<td class="label">IP</td>
+					<td>
+					<if condition = "$or.ip neq 'NULL'">{$or.ip}
+					<else>NULL
+					</if>
+					</td>
+					
+					</tr>
+				<tr><td class="label">备注:</td><td colspan="3">{$or.note}</td></tr>
+			
+			</table>
+	 		
+	 		</div>
+            <div class="list-div">
+                <table id="mess" width="70%" align="center" cellpadding="3" cellspacing="1">
+                <caption><h4>主机信息</h4></caption>
+				<tr>
+					<th width = "10%">设备型号</th>
+					<th width="20%">内存</th>
+					<th width = "10%">主板</th>
+					<th width="25%">CPU</th>
+					<th width = "10%" >MAC地址</th>
+					<th width="20%">硬盘</th>
+				</tr>
+                <tr>
+				<td width = "10%" align="center" >{$or.style}</td>
+				<td width="20%" align="center">{$or.memory}</td>
+				<td width = "10%" align="center" >{$or.motherboard}</td>
+				<td width="25%" align="center">{$or.cpu}</td>
+				<td width = "10%" align="center" >{$or.mac}</td>
+				<td width="20%" align="center">{$or.disk}</td>
+				</tr>
+                
+                
+           
+                
+                </table>
+	 		</div>
+			<div class="list-div">
+                <table id="mess" width="70%" align="center" cellpadding="3" cellspacing="1">
+                <caption><h4>订单操作历史</h4></caption>
+                <tr><th width="20%">时间</th><th width="20%">事件</th><th width="40%">操作内容</th><th width="20%">操作人</th></tr>
+                <volist name="finance_history" id="fh">
+                <tr align="center"><td width="20%">{$fh.time|date='Y-m-d H:i',###}</td><td width="20%">{$fh.event}</td><td width="40%">{$fh.content}</td><td width="20%">{$fh.user}</td></tr>
+                </volist>
+                </table>
+	 		</div>
+			<!--
+			<div class="button-div">
+						<input type="button" value="返回" class="button" onclick="window.location.href='__URL__?{$param}'" />
+			</div>
+			-->
+	 	</div>
+	
+
+    <include file="Public:n_footer" />

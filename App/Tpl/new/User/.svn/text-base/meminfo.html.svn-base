@@ -1,0 +1,37 @@
+<include file="Public:n_header" />
+
+<div id="tabbody-div">
+<h1><span class="action-span"><a href="javascript:;" onclick="EV_modeAlert('modiPass')">修改密码</a></span></h1>
+	 	<form id="tform1" action="__URL__/modinfo" method="post">
+		<table width="60%" align="center">
+
+	 		<tr><td class="label">用户名:</td><td>{$info[0].uname}</td></tr>
+			<tr><td class="label">登录名:</td><td><input type="text" name="loginname" value="{$info[0].loginname}" /></td></tr>
+	 		<tr><td class="label">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门:</td><td>{$info[0].dname}</td></tr>
+	 		<tr><td class="label">邮箱:</td><td><input type="text" name="email" value="{$info[0].email}" /></td></tr>
+	 		<tr><td class="label">手机:</td><td><input type="text" name="mobile" value="{$info[0].mobile}" /></td></tr>
+	 		<tr><td class="label">QQ:</td><td><input type="text" name="qq" value="{$info[0].qq}" /></td></tr>
+	 		<tr><td class="label">地址:</td><td><input type="text" name="address" value="{$info[0].address}" /></td></tr>
+
+	 	</table>
+	 	</div>
+		<div class="button-div">
+				
+						<input type="submit" value=" 修改 " class="button" />
+						<input type="button" value=" 返回 " class="button" onclick="window.location.href='__APP__'"/>
+					</div>
+		</form>
+		</div>
+
+ <div id="modiPass" class="show_pop"  style="width:300px;">  	
+       
+        <form id="tform2" method="post" action="__URL__/modipass">
+	<table width="100%" height="150" align="center">
+	<tr><td>新密码：</td><td><input type="password" name="pawd" value="" /></td></tr>
+	<tr><td>重&nbsp;&nbsp;&nbsp;复</td><td><input type="password" name="repawd" value="" /></td></tr>
+	<tr><td align="right"><input type="submit" value=" 更 改 " /></td><td><input type="button" onclick="javascript:EV_closeAlert();" name="" value=" 取 消 " /></td></tr>
+	</table>
+
+   </form>    
+</div>
+    <include file="Public:n_footer" />

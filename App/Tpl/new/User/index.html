@@ -1,0 +1,58 @@
+<include file="Public:n_header" />
+
+<style type="text/css">
+	.departlist{width:100%;}
+	.departlist .htiao{width:100%;height:30px;background:#88bef5;line-height:30px;}
+	.departlist ul{width:100%;}
+	.departlist ul li{display:block;margin:5px;height:50px;line-height:50px;width:150px;float:left;}
+</style>
+	
+	 		
+	 			<volist name="data" id="de">
+				<div class="list-div">
+					<div class="departlist">
+					<div class="htiao">
+					<span style="margin-left:10px;">{$de.dname}</span>
+					</div>
+					<div style="clear:both;"></div>
+					<ul>
+					<volist name="de.user" id="u">
+					<li id="bkb{$u.uid}">
+					<a <if condition="check_permission('User:mem_edit')"> href="__URL__/mem_edit/memid/{$u.uid}" </if> >
+					<if condition="$u.userswitches eq 1" >
+						<img src="__PUBLIC__/Images/avatar/noavatar_small.gif" width="50" height="50" />
+					<else />
+						<img src="__PUBLIC__/Images/avatar/userhear.jpg" width="50" height="50" />
+					</if>
+					</a>
+					<a <if condition="check_permission('User:mem_edit')"> href="__URL__/mem_edit/memid/{$u.uid}" </if> >{$u.uname|mb_substr='0','4','utf-8'}</a>
+					<if condition="check_permission('User:remove_user')">&nbsp;&nbsp;&nbsp;<a href="javascript:;" style="text-decoration:none;font-size:10px;color:red;" onclick="remove_user('{$u.uid}');">删除</a>
+					</if>
+				
+					</li></volist>
+					</ul>
+					</div>
+					<div style="clear:both;">
+					</div>
+					</div>
+				</volist>
+	 			<script language="javascript">
+					function remove_user(id){
+						r=confirm("确认删除?");
+						if (r==true){
+							$.post('__URL__/remove_user',{'user':id},function(data){
+								if(data==1){
+									$('#bkb'+id).remove();
+								}else{
+									alert('未删除成功，请稍候再试');
+								
+								}
+							
+							})
+						}
+					
+					}
+				
+				</script>
+
+    <include file="Public:n_footer" />

@@ -1,0 +1,228 @@
+/*关于我*/
+
+.h2 {
+margin-top: 60px;
+padding: 18px 40px;
+background: white;
+border-bottom: 1px #CCC solid	9;
+}
+.box {
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+.grayBtn {
+background: #FAFAFA;
+background: -moz-linear-gradient(#FAFAFA,#EAEAEA);
+background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
+border: 1px solid #D4D4D4;
+border-bottom-color: #BCBCBC;
+color: #333;
+ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa',endColorstr='#eaeaea')";
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa',endColorstr='#eaeaea');
+text-shadow: 0 1px 0 white;
+margin-left: 16px;
+padding: 8px 40px;
+display: inline-block;
+font-size: 16px;
+}
+.follow_new, .orangeBtn {
+color: #FEF4E9;
+border: 1px solid #DA7C0C;
+background: #F78911;
+background: -moz-linear-gradient(center top,#FAA51A,#F47A20) repeat scroll 0 0 transparent;
+background: -webkit-linear-gradient(#FAA51A,#F47A20) repeat scroll 0 0 transparent;
+background: -o-linear-gradient(#FAA51A,#F47A20) repeat scroll 0 0 transparent;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a',endColorstr='#f47b12');
+margin-left: 16px;
+padding: 8px 40px;
+display: inline-block;
+outline: medium none;
+text-shadow: 0 1px 0 #DA7C0C;
+font-size: 16px;
+}
+
+.follow_rm, .grayBtn {
+background: #FAFAFA;
+background: -moz-linear-gradient(#FAFAFA,#EAEAEA);
+background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
+border: 1px solid #D4D4D4;
+border-bottom-color: #BCBCBC;
+color: #333;
+ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa',endColorstr='#eaeaea')";
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa',endColorstr='#eaeaea');
+text-shadow: 0 1px 0 white;
+margin-left: 16px;
+padding: 8px 40px;
+display: inline-block;
+font-size: 16px;
+}
+.user_ico {
+background: none repeat scroll 0 0 white;
+border: 1px solid #DDD;
+box-shadow: 2px 3px 3px #EEE;
+float: left;
+margin-bottom: -54px;
+margin-left: 3px;
+margin-top: -30px;
+padding: 4px;
+width: 96px;
+}
+.h2 h2 {
+border-left: 1px solid #DDD;
+font-size: 16px;
+font-weight: normal;
+line-height: 22px;
+margin-left: 133px;
+}
+
+.user_profile {
+margin-bottom: -20px;
+margin-top: -18px;
+padding: 20px 27px 16px;
+}
+.user_name {
+font-size: 16px;
+line-height: 23px;
+margin-top: 3px;
+}
+.user_name .motto {
+color: #666;
+font-size: 12px;
+margin-top: -1px;
+}
+.sectionBody .sectionR {
+margin-top: 51px;
+font-size: 14px;
+padding-bottom: 40px;
+}
+
+.box {
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+.sectionR {
+float: right;
+width: 247px;
+padding-left: 100px;
+}
+.profile {
+line-height: 26px;
+color: #663;
+}
+
+.profile div {
+font-size: 14px;
+padding-bottom: 13px;
+}
+
+.profile div {
+font-size: 14px;
+padding-bottom: 13px;
+}
+.time {
+float: right;
+color: #999;
+margin-right: -2px;
+text-align: right;
+width: auto;
+height: 32px;
+line-height: 32px;
+padding-left: 9px;
+font-size: 14px;
+background: none repeat scroll 0 0 white;
+}
+.chipItem {
+overflow: hidden;
+height: 32px;
+line-height: 32px;
+max-width: 363px;
+font-size: 14px;
+}
+
+.sectionL {
+width: 425px;
+padding-bottom: 40px;
+}
+.sectionL dd {
+margin-left: 6px;
+color: #663;
+padding: 0 0 14px 0;
+}
+.sectionL .no_polist_time {
+margin-top: 50px;
+}
+
+.sectionL .no_polist {
+margin-left: 33px;
+margin-bottom: -1px;
+}
+
+.chip_title {
+font-size: 14px;
+margin-bottom: 23px;
+margin-left: 35px;
+}
+.chip {
+position: relative;
+padding: 10px 0;
+margin-top: 20px;
+}
+.chipItem {
+overflow: hidden;
+height: 32px;
+line-height: 32px;
+max-width: 363px;
+font-size: 14px;
+}
+.chip_action {
+background: url("/_img/user/bullet_grey.png") no-repeat scroll 5px 2px white;
+padding-left: 34px;
+padding-right: 12px;
+cursor: pointer;
+}
+.chipItem a {
+color: #663;
+font-size: 14px;
+}
+.userImg {
+position: absolute;
+top: -45px;
+width: 100%;
+margin-left: -40px;
+}
+.userImg img {
+float: right;
+box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+padding: 7px;
+margin-right: 35px;
+width: 245px;
+background: url(/_img/loading.gif) no-repeat 50% 50% white;
+}
+
+
+
+.change_bg_a {
+font-size: 14px;
+position: absolute;
+left: 0;
+top: 197px;
+color: white;
+background: black;
+opacity: .8;
+padding: 0 6px;
+line-height: 28px;
+display: none;
+}
+.sectionR {
+float: right;
+width: 247px;
+padding-left: 100px;
+}
+#user_sayme {
+font-size: 14px;
+}
+.pre {
+word-wrap: break-word;
+overflow: hidden;
+word-break: break-all;
+white-space: pre-wrap;
+white-space: -moz-pre-wrap;
+}
